@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import styles from "./Auth.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../slice/userSlice";
+import { login, signup } from "../services/authServices";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -11,6 +13,7 @@ export default function Signup() {
   const [error, setError] = useState("");
 
   const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,20 +24,10 @@ export default function Signup() {
 
   async function handleSignup(e) {
     e.preventDefault();
-    try {
-      const res = await fetch("http://localhost:5000/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name: fullname, email, password }),
-      });
-      const data = await res.json();
-      console.log("data", data);
-      localStorage.setItem("user", data);
-    } catch (err) {
-      setError(err);
-    }
+    setError("");
+    const data = await signup(username, fullname, email, password);
+    dispatch(loginUser(data.name));
+    navigate("/");
   }
 
   return (

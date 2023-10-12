@@ -3,12 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./Auth.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../slice/userSlice";
+import { loginUser } from "../slice/userSlice";
+import { login } from "../services/authServices";
 
 export default function Login() {
-  // const [user, setUser] = useState(localStorage.getItem("user") || null);
   const [email, setEmail] = useState("");
-  const [error, serError] = useState("");
+  const [error, setError] = useState("");
   const [password, setPassword] = useState("");
 
   const user = useSelector((state) => state.user.user);
@@ -23,22 +23,10 @@ export default function Login() {
 
   async function handleLogin(e) {
     e.preventDefault();
-    serError("");
-    try {
-      const res = await fetch("http://localhost:5000/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await res.json();
-      localStorage.setItem("user", JSON.stringify(data));
-      dispatch(login(data.name));
-      navigate("/");
-    } catch (err) {
-      console.log(err);
-    }
+    setError("");
+    const data = await login(email, password);
+    dispatch(loginUser(data.name));
+    navigate("/");
   }
 
   return (
