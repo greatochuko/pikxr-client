@@ -1,6 +1,7 @@
-import { useState } from "react";
-import styles from "./Signup.module.css";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import styles from "./Auth.module.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -8,6 +9,15 @@ export default function Signup() {
   const [fullname, setFullname] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const user = useSelector((state) => state.user.user);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   async function handleSignup(e) {
     e.preventDefault();
@@ -28,7 +38,7 @@ export default function Signup() {
   }
 
   return (
-    <div className={styles.login}>
+    <div className={styles.auth}>
       <div className={styles.img}></div>
       <div className={styles.loginContainer}>
         <div className={styles.header}>

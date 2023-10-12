@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-import styles from "./Login.module.css";
-import { useSelector } from "react-redux";
+import styles from "./Auth.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../slice/userSlice";
 
 export default function Login() {
   // const [user, setUser] = useState(localStorage.getItem("user") || null);
@@ -10,8 +11,15 @@ export default function Login() {
   const [error, serError] = useState("");
   const [password, setPassword] = useState("");
 
-  const user = useSelector((state) => state.user);
-  console.log(user);
+  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user.name) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -25,15 +33,16 @@ export default function Login() {
         body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
-      console.log("data", data);
       localStorage.setItem("user", JSON.stringify(data));
+      dispatch(login(data.name));
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
   }
 
   return (
-    <div className={styles.login}>
+    <div className={styles.auth}>
       <h5>{user.name || "no"}</h5>
       <div className={styles.img}></div>
       <div className={styles.loginContainer}>
