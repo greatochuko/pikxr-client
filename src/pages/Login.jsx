@@ -2,12 +2,16 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./Login.module.css";
+import { useSelector } from "react-redux";
 
 export default function Login() {
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(localStorage.getItem("user") || null);
   const [email, setEmail] = useState("");
   const [error, serError] = useState("");
   const [password, setPassword] = useState("");
+
+  const user = useSelector((state) => state.user);
+  console.log(user);
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -22,7 +26,7 @@ export default function Login() {
       });
       const data = await res.json();
       console.log("data", data);
-      setUser(data);
+      localStorage.setItem("user", JSON.stringify(data));
     } catch (err) {
       console.log(err);
     }
@@ -30,32 +34,40 @@ export default function Login() {
 
   return (
     <div className={styles.login}>
-      <div className={styles.header}>
-        <h1 className="title">Sign In to Pikxr</h1>
-        <p>
-          Dont Have an account? <Link to={"/signup"}>Signup</Link>
-        </p>
+      <h5>{user.name || "no"}</h5>
+      <div className={styles.img}></div>
+      <div className={styles.loginContainer}>
+        <div className={styles.header}>
+          <h1 className="title">Sign In to Pikxr</h1>
+          <p className={styles.signup}>
+            Don&apos;t Have an account? <Link to={"/signup"}>Signup</Link>
+          </p>
+        </div>
+        <form onSubmit={handleLogin}>
+          <input
+            type="text"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            autoComplete="off"
+          />
+          <input
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="off"
+          />
+          {error && <p className={styles.error}>{error}</p>}
+          <input type="submit" value="Login" />
+          <p className={styles.break}>or</p>
+          <div className={styles.oauth}>
+            <a href="#">Sign In with google</a>
+          </div>
+        </form>
       </div>
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="email"
-          autoComplete="off"
-        />
-        <input
-          type="password"
-          name="password"
-          value={password}
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-          autoComplete="off"
-        />
-        {error && <p className={styles.error}>{error}</p>}
-        <input type="submit" value="Login" />
-      </form>
     </div>
   );
 }
