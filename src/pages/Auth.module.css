@@ -5,9 +5,10 @@
   align-items: center;
   height: 100vh;
   gap: 2rem;
+  color: #333;
 }
 
-.loginContainer {
+.authContainer {
   flex: 1;
   border: solid 1px #ccc;
   /* height: 80%; */
@@ -30,6 +31,7 @@
 }
 
 .auth form input {
+  width: 100%;
   padding: 10px;
   border-radius: 5px;
   outline: none;
@@ -49,12 +51,22 @@
   cursor: pointer;
 }
 
+.auth form input[type="submit"].disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.auth form input[type="submit"].disabled:hover {
+  background-color: gray;
+}
+
 .auth form input[type="submit"]:hover {
   background-color: rgb(0, 103, 212);
 }
 
 .error {
   color: red;
+  font-size: 0.9rem;
 }
 
 .signup {
@@ -90,4 +102,8 @@
 
 .oauth:hover {
   color: rgb(0, 125, 255);
+}
+
+.inputField {
+  position: relative;
 }

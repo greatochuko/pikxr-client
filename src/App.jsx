@@ -9,15 +9,15 @@ import Authenticate from "./components/Authenticate";
 
 const router = createBrowserRouter([
   {
-    element: (
-      <Authenticate>
-        <AppLayout />
-      </Authenticate>
-    ),
+    element: <AppLayout />,
     children: [
       {
         path: "/",
-        element: <HomePage />,
+        element: (
+          <Authenticate>
+            <HomePage />
+          </Authenticate>
+        ),
       },
     ],
   },
