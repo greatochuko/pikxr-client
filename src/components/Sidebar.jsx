@@ -9,7 +9,7 @@ export default function Sidebar() {
       <div className={styles.logo}>Pikxr</div>
       <div className={styles.userInfo}>
         <img
-          src="http://localhost:5000/profilePicture.jpg"
+          src="http://localhost:5000/profileImg.jpg"
           alt="profile picture"
           className="profileImg"
         />
