@@ -8,10 +8,14 @@ export default function Sidebar() {
     <div className={styles.sidebar}>
       <div className={styles.logo}>Pikxr</div>
       <div className={styles.userInfo}>
-        <img src="/profileImg" alt="profile picture" className="profileImg" />
-        <h3 className="name">{user.name}</h3>
-        <p className="username">{user.username}</p>
-        <ul className="userStats">
+        <img
+          src="http://localhost:5000/profilePicture.jpg"
+          alt="profile picture"
+          className="profileImg"
+        />
+        <h3 className={styles.name}>{user.fullname}</h3>
+        <p className={styles.username}>@{user.username}</p>
+        <ul className={styles.userStats}>
           <li>
             <span>46</span>Posts
           </li>
@@ -23,6 +27,27 @@ export default function Sidebar() {
           </li>
         </ul>
       </div>
+      <nav className={styles.sideNav}>
+        <ul>
+          <li>
+            <a href="#" className={styles.active}>
+              Feed
+            </a>
+          </li>
+          <li>
+            <a href="#">Explore</a>
+          </li>
+          <li>
+            <a href="#">Notifications</a>
+          </li>
+          <li className={styles.settings}>
+            <a href="#">Settings</a>
+          </li>
+          <li>
+            <a href="#">Logout</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 }
