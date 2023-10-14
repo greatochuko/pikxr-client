@@ -1,7 +1,12 @@
+import Feed from "../components/Feed";
+import Stories from "../components/Stories";
+import styles from "./HomePage.module.css";
+
 export default function HomePage() {
   return (
-    <main style={{ height: "200vh" }}>
-      <h1>Homepage</h1>
+    <main className={styles.homepage}>
+      <Stories />
+      <Feed />
     </main>
   );
 }
