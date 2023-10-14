@@ -1,7 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { validateUsername } from "../services/authServices";
 
-export default function useValidateUsername(setUsernameError, username) {
+export default function useValidateUsername(username) {
+  const [usernameError, setUsernameError] = useState({
+    validated: false,
+    error: "",
+  });
   useEffect(() => {
     setUsernameError({ validated: false, error: "" });
     const controller = new AbortController();
@@ -11,7 +15,7 @@ export default function useValidateUsername(setUsernameError, username) {
         const { userExists } = await validateUsername(username, signal);
         setUsernameError({
           validated: !userExists,
-          error: userExists ? "Username in use" : "",
+          message: userExists ? "Username in use" : "",
         });
       } catch (err) {
         if (controller.signal.aborted) {
@@ -21,7 +25,7 @@ export default function useValidateUsername(setUsernameError, username) {
     }
     if (!username) {
       setUsernameError((curr) => {
-        return { ...curr, error: "" };
+        return { ...curr, message: "" };
       });
       return;
     }
@@ -30,4 +34,5 @@ export default function useValidateUsername(setUsernameError, username) {
       controller.abort();
     };
   }, [username, setUsernameError]);
+  return { usernameError };
 }

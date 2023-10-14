@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import styles from "./Auth.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,18 +15,21 @@ export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user.name) {
-      navigate("/");
-    }
-  }, [user, navigate]);
-
   async function handleLogin(e) {
     e.preventDefault();
     setError("");
     const data = await login(email, password);
-    dispatch(loginUser(data.name));
+    console.log(data);
+    if (data.error) {
+      setError(data.error);
+      return;
+    }
+    dispatch(loginUser(data));
     navigate("/");
+  }
+
+  if (user) {
+    return <Navigate to={"/"} replace={true} />;
   }
 
   return (

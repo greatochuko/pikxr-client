@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { validateEmail } from "../services/authServices";
 
-export default function useValidateEmail(setEmailError, email) {
+export default function useValidateEmail(email) {
+  const [emailError, setEmailError] = useState({ validated: false, error: "" });
+
   useEffect(() => {
     setEmailError({ validated: false, error: "" });
     const controller = new AbortController();
@@ -21,13 +23,13 @@ export default function useValidateEmail(setEmailError, email) {
     }
     if (!email) {
       setEmailError((curr) => {
-        return { ...curr, error: "" };
+        return { ...curr, message: "" };
       });
       return;
     }
     if (!email.includes("@") || !email.includes(".com")) {
       setEmailError((curr) => {
-        return { ...curr, error: "Enter a valid username" };
+        return { ...curr, message: "Enter a valid email" };
       });
       return;
     }
@@ -36,4 +38,5 @@ export default function useValidateEmail(setEmailError, email) {
       controller.abort();
     };
   }, [email, setEmailError]);
+  return { emailError };
 }
