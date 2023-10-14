@@ -1,5 +1,4 @@
-import { useSelector } from "react-redux";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import styles from "./AppLayout.module.css";
 import MainNav from "../components/mainNav";

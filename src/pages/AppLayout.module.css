@@ -1,9 +1,9 @@
 .appLayout {
   display: flex;
-  gap: 1rem;
   height: 100dvh;
 }
 
 .mainArea {
   flex: 1;
+  overflow-y: scroll;
 }

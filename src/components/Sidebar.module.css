@@ -4,6 +4,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 
 .logo {
@@ -69,8 +70,9 @@
 }
 
 .sideNav ul li a {
-  display: block;
-  padding: 8px 1rem;
+  display: flex;
+  align-items: center;
+  padding: 10px 1rem;
   font-size: 15px;
 }
 
@@ -78,9 +80,15 @@
   background-color: rgb(236, 236, 236);
 }
 
-.sidebar ul li a.active {
+.sideNav ul li a.active {
   border-right: 2px solid rgb(0, 140, 255);
   color: rgb(0, 140, 255);
+}
+
+.sideNav ul li a img {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
 }
 
 .sideNav .settings {
