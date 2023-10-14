@@ -1,0 +1,25 @@
+.feed {
+  margin-top: 1.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sortBy {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.sortBy p {
+  color: #aaa;
+  cursor: pointer;
+}
+
+.sortBy p.active {
+  color: #000;
+}

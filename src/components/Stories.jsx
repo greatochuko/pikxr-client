@@ -4,15 +4,15 @@ import Story from "./Story";
 export default function Stories() {
   const stories = [
     { src: "/story.jpg", username: "greatochuko" },
+    { src: "/story-2.jpg", username: "greatochuko" },
+    { src: "/story-2.jpg", username: "greatochuko" },
     { src: "/story.jpg", username: "greatochuko" },
-    { src: "/story.jpg", username: "greatochuko" },
-    { src: "/story.jpg", username: "greatochuko" },
-    { src: "/story.jpg", username: "greatochuko" },
+    { src: "/story-2.jpg", username: "greatochuko" },
   ];
   return (
     <div className={styles.stories}>
       <div className={styles.header}>
-        <h2>Stories</h2>
+        <h3>Stories</h3>
         <a href="">Watch all</a>
       </div>
       <div className={styles.storiesList}>

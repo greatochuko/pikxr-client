@@ -16,7 +16,7 @@
 
 .storiesList {
   display: flex;
-  gap: 1rem;
+  gap: 10px;
   overflow-x: scroll;
 }
 .storiesList::-webkit-scrollbar {
