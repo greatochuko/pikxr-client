@@ -5,15 +5,7 @@ export default function MasonryGrid() {
     <div className={styles.masonryGrid}>
       <div className={styles.grid}>
         <div className="post">
-          <div className={styles.imageContainer}>
-            <img src="/post1.jpg" alt="" />
-          </div>
-          <div className={styles.postDetails}>
-            <div className={styles.userDetails}>
-              <img src="/profileImg.jpg" alt="user profile Image" />
-              <p>@greatochuko</p>
-            </div>
-          </div>
+          <img src="/post1.jpg" alt="" />
         </div>
         <div className="post">
           <img src="post2.jpg" alt="" />

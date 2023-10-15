@@ -1,0 +1,8 @@
+.explore {
+  padding: 1rem 5rem;
+  overflow-y: scroll;
+}
+
+.explore::-webkit-scrollbar {
+  display: none;
+}

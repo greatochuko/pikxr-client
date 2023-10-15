@@ -2,12 +2,3 @@
   display: flex;
   height: 100dvh;
 }
-
-.mainArea {
-  flex: 1;
-  overflow-y: scroll;
-}
-
-.mainArea::-webkit-scrollbar {
-  display: none;
-}

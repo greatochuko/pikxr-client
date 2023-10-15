@@ -39,6 +39,7 @@ export default function Feed() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const sortBy = searchParams.get("sortBy");
+
   return (
     <div className={styles.feed}>
       <div className={styles.header}>
