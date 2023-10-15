@@ -10,12 +10,6 @@ export default function Story({ src, username }) {
       onMouseLeave={() => setIsHover(false)}
     >
       <img src={src} alt={username} />
-      <div className={styles.storyContainer}>
-        <div className={styles.userInfo}>
-          <img src="/profileImg.jpg" alt="profile img" />
-          <h4>@{username.slice(0, 7)}...</h4>
-        </div>
-      </div>
     </div>
   );
 }

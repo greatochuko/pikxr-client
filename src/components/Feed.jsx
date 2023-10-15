@@ -1,6 +1,39 @@
 import styles from "./Feed.module.css";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import MasonryGrid from "./MasonryGrid";
+import Post from "./Post";
+
+const posts = [
+  {
+    caption:
+      "Hi everyone, today i was on the most beautiful mountain in the world😍",
+    images: ["mountain.jpg"],
+    likes: 2500,
+    saves: 12,
+    comments: 125,
+    shares: 12,
+    creator: { username: "greatochuko", profileImg: "/profileImg.jpg" },
+  },
+  {
+    caption:
+      "Hi everyone, today i was on the most beautiful mountain in the world😍",
+    images: ["mountain.jpg"],
+    likes: 2500,
+    saves: 12,
+    comments: 125,
+    shares: 12,
+    creator: { username: "greatochuko", profileImg: "/profileImg.jpg" },
+  },
+  {
+    caption:
+      "Hi everyone, today i was on the most beautiful mountain in the world😍",
+    images: ["mountain.jpg"],
+    likes: 2500,
+    saves: 12,
+    comments: 125,
+    shares: 12,
+    creator: { username: "greatochuko", profileImg: "/profileImg.jpg" },
+  },
+];
 
 export default function Feed() {
   const navigate = useNavigate();
@@ -25,7 +58,11 @@ export default function Feed() {
           </p>
         </div>
       </div>
-      <MasonryGrid />
+      <div className={styles.posts}>
+        {posts.map((post, i) => (
+          <Post key={i} post={post} />
+        ))}
+      </div>
     </div>
   );
 }

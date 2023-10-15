@@ -1,7 +1,7 @@
 .sidebar {
   border-left: solid 1px #eee;
-  flex: 0 1 300px;
-  max-width: 400px;
+  flex: 0 1 400px;
+  /* max-width: 400px; */
   padding: 1rem;
 }
 
