@@ -11,7 +11,10 @@ export default function Story({ src, username }) {
     >
       <img src={src} alt={username} />
       <div className={styles.storyContainer}>
-        <h4>@{username}</h4>
+        <div className={styles.userInfo}>
+          <img src="/profileImg.jpg" alt="profile img" />
+          <h4>@{username.slice(0, 7)}...</h4>
+        </div>
       </div>
     </div>
   );

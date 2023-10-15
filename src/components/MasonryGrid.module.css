@@ -3,14 +3,37 @@
   gap: 1rem;
 }
 
-.masonryGrid > div {
+.grid {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   flex-direction: column;
   flex: 1;
 }
 
-.masonryGrid > div img {
+.grid img {
   width: 100%;
   border-radius: 5px;
+  cursor: zoom-in;
+}
+
+.postDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userDetails {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.userDetails img {
+  height: 30px;
+  border-radius: 50%;
+}
+
+.userDetails p {
+  font-size: 0.9rem;
+  color: gray;
 }

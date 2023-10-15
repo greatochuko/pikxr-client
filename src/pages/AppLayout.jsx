@@ -1,16 +1,18 @@
 import { Outlet } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+import Navbar from "../components/Navbar";
 import styles from "./AppLayout.module.css";
 import MainNav from "../components/mainNav";
+import RightSidebar from "../components/Sidebar";
 
 export default function AppLayout() {
   return (
     <div className={styles.appLayout}>
-      <Sidebar />
+      <Navbar />
       <div className={styles.mainArea}>
-        <MainNav />
+        {/* <MainNav /> */}
         <Outlet />
       </div>
+      <RightSidebar />
     </div>
   );
 }
