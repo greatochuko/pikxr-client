@@ -1,4 +1,4 @@
-export async function getPosts() {
+export async function fetchPosts() {
   const res = await fetch("http://localhost:5000/posts");
   return await res.json();
 }

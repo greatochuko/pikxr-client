@@ -20,10 +20,6 @@ export default function MasonryGrid() {
           <img src="/post4.jpg" alt="" />
           <div className={styles.overlay}></div>
         </div>
-        <div className={styles.post}>
-          <img src="/post1.jpg" alt="" />
-          <div className={styles.overlay}></div>
-        </div>
       </div>
       <div className={styles.grid}>
         <img src="post5.jpg" alt="" />

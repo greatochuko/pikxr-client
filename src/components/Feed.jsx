@@ -4,7 +4,7 @@ import Post from "./Post";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../slice/postSlice";
-import { getPosts } from "../services/postServices";
+import { fetchPosts } from "../services/postServices";
 
 export default function Feed() {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export default function Feed() {
 
   useEffect(() => {
     async function getPost() {
-      const data = await getPosts();
+      const data = await fetchPosts();
       dispatch(setPosts(data));
     }
     getPost();
