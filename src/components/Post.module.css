@@ -12,6 +12,8 @@
 .creator {
   display: flex;
   align-items: center;
+  cursor: pointer;
+  width: fit-content;
 }
 
 .creator img {
@@ -43,7 +45,12 @@
 }
 
 .images img:hover {
-  scale: 1.1;
+  scale: 1.05;
+}
+
+/* CAPTION */
+.caption {
+  font-size: 0.9rem;
 }
 
 /* ACTION BUTTONS */

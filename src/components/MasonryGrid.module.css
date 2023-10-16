@@ -1,11 +1,11 @@
 .masonryGrid {
   display: flex;
-  gap: 1rem;
+  gap: 10px;
 }
 
 .grid {
   display: flex;
-  gap: 1.5rem;
+  gap: 10px;
   flex-direction: column;
   flex: 1;
 }
@@ -13,7 +13,9 @@
 .grid img {
   width: 100%;
   border-radius: 5px;
-  cursor: zoom-in;
+  cursor: pointer;
+  height: 100%;
+  object-fit: cover;
 }
 
 .postDetails {

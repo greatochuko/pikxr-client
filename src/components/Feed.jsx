@@ -1,44 +1,25 @@
 import styles from "./Feed.module.css";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Post from "./Post";
-
-const posts = [
-  {
-    caption:
-      "Hi everyone, today i was on the most beautiful mountain in the world😍",
-    images: ["mountain.jpg"],
-    likes: 2500,
-    saves: 12,
-    comments: 125,
-    shares: 12,
-    creator: { username: "greatochuko", profileImg: "/profileImg.jpg" },
-  },
-  {
-    caption:
-      "Hi everyone, today i was on the most beautiful mountain in the world😍",
-    images: ["mountain.jpg"],
-    likes: 2500,
-    saves: 12,
-    comments: 125,
-    shares: 12,
-    creator: { username: "greatochuko", profileImg: "/profileImg.jpg" },
-  },
-  {
-    caption:
-      "Hi everyone, today i was on the most beautiful mountain in the world😍",
-    images: ["mountain.jpg"],
-    likes: 2500,
-    saves: 12,
-    comments: 125,
-    shares: 12,
-    creator: { username: "greatochuko", profileImg: "/profileImg.jpg" },
-  },
-];
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setPosts } from "../slice/postSlice";
+import { getPosts } from "../services/postServices";
 
 export default function Feed() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const sortBy = searchParams.get("sortBy");
+  const { posts } = useSelector((state) => state.post);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    async function getPost() {
+      const data = await getPosts();
+      dispatch(setPosts(data));
+    }
+    getPost();
+  }, [dispatch]);
 
   return (
     <div className={styles.feed}>
@@ -60,8 +41,8 @@ export default function Feed() {
         </div>
       </div>
       <div className={styles.posts}>
-        {posts.map((post, i) => (
-          <Post key={i} post={post} />
+        {posts.map((post) => (
+          <Post key={post._id} post={post} />
         ))}
       </div>
     </div>
