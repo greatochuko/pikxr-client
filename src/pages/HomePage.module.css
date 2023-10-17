@@ -1,6 +1,4 @@
 .homepage {
-  /* padding: 1rem 6rem; */
-  /* background-color: #fafafa; */
   display: flex;
   flex: 1;
 }
@@ -8,6 +6,7 @@
 .mainArea {
   flex: 1;
   overflow-y: scroll;
+  background-color: #f8f8f8;
 }
 
 .mainArea::-webkit-scrollbar {
