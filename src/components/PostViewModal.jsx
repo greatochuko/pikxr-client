@@ -4,6 +4,7 @@ import CommentForm from "./CommentForm.jsx";
 import { useEffect, useState } from "react";
 import { fetchComments } from "../services/commentServices";
 import Comment from "./Comment.jsx";
+import Creator from "./Creator";
 
 export default function PostViewModal() {
   const { post } = useSelector((state) => state.post);
@@ -23,11 +24,7 @@ export default function PostViewModal() {
         <img src={`http://localhost:5000/${post.imageUrl}`} alt="" />
       </div>
       <div className={styles.details}>
-        <div className={styles.creator}>
-          <img src={post.creator.imgUrl} alt={post.creator.username} />
-          <h4>@{post.creator.username}</h4>
-          <div className={styles.options}></div>
-        </div>
+        <Creator post={post} className={styles.creator} />
         <p className={styles.caption}>
           {post.caption.length > 20
             ? post.caption.slice(0, 20) + "..."

@@ -13,8 +13,6 @@
   margin: 1rem 2rem;
 }
 
-
-
 .sideNav {
   flex: 1;
   display: flex;
@@ -30,7 +28,7 @@
 .sideNav ul li a {
   display: flex;
   align-items: center;
-  padding: 10px 1rem;
+  padding: 1rem;
   font-size: 15px;
 }
 
