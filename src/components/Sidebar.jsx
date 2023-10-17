@@ -1,10 +1,8 @@
 import { useSelector } from "react-redux";
 import styles from "./Sidebar.module.css";
-import { Link, useLocation } from "react-router-dom";
 
 export default function Sidebar() {
   const user = useSelector((state) => state.user.user);
-  const { pathname } = useLocation();
 
   return (
     <div className={styles.sidebar}>

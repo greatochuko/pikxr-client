@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import styles from "./CommentForm.module.css";
+import PropTypes from "prop-types";
 
 export default function CommentForm({ className }) {
   const { user } = useSelector((state) => state.user);
@@ -11,3 +12,7 @@ export default function CommentForm({ className }) {
     </form>
   );
 }
+
+CommentForm.propTypes = {
+  className: PropTypes.string,
+};

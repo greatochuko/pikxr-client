@@ -1,4 +1,6 @@
 import styles from "./Creator.module.css";
+import PropTypes from "prop-types";
+
 
 export default function Creator({ post, className }) {
   return (
@@ -8,4 +10,9 @@ export default function Creator({ post, className }) {
       <div className={styles.options}></div>
     </div>
   );
+}
+
+Creator.propTypes = {
+  post: PropTypes.object,
+  className: PropTypes.string
 }

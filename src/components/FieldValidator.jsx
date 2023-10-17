@@ -1,4 +1,5 @@
 import styles from "./FieldValidator.module.css";
+import PropTypes from "prop-types";
 
 export default function FieldValidator({ field, error }) {
   return field ? (
@@ -10,3 +11,8 @@ export default function FieldValidator({ field, error }) {
     </div>
   ) : null;
 }
+
+FieldValidator.propTypes = {
+  field: PropTypes.string,
+  error: PropTypes.string,
+};

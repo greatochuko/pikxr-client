@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export default function Authenticate({ children }) {
   const { user } = useSelector((state) => state.user);
@@ -9,3 +10,7 @@ export default function Authenticate({ children }) {
     return children;
   }
 }
+
+Authenticate.propTypes = {
+  children: PropTypes.element,
+};

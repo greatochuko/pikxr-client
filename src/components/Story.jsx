@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./Story.module.css";
+import PropTypes from "prop-types";
 
 export default function Story({ src, username }) {
   const [isHover, setIsHover] = useState(false);
@@ -13,3 +14,8 @@ export default function Story({ src, username }) {
     </div>
   );
 }
+
+Story.propTypes = {
+  src: PropTypes.string,
+  username: PropTypes.string,
+};

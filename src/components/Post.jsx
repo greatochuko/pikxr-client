@@ -2,10 +2,10 @@ import { togglemodal, setPost } from "../slice/postSlice";
 import CommentForm from "./CommentForm";
 import Creator from "./Creator";
 import styles from "./Post.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 export default function Post({ post }) {
-  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   function openPostViewModal() {
@@ -34,3 +34,7 @@ export default function Post({ post }) {
     </div>
   );
 }
+
+Post.propTypes = {
+  post: PropTypes.object,
+};
