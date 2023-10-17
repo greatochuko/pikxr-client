@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 import styles from "./PostViewModal.module.css";
-import CommentForm from "./CommentForm";
+import CommentForm from "./CommentForm.jsx";
 import { useEffect, useState } from "react";
 import { fetchComments } from "../services/commentServices";
-import Comment from "./Comment";
+import Comment from "./Comment.jsx";
 
 export default function PostViewModal() {
   const { post } = useSelector((state) => state.post);
@@ -19,7 +19,7 @@ export default function PostViewModal() {
 
   return (
     <div className={styles.postViewModal} onClick={(e) => e.stopPropagation()}>
-      <div className={styles.postImgContainer}>
+      <div className={styles.imgContainer}>
         <img src={`http://localhost:5000/${post.imageUrl}`} alt="" />
       </div>
       <div className={styles.details}>

@@ -1,15 +1,17 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./Navbar.module.css";
 import { Link, useLocation } from "react-router-dom";
+import { togglemodal } from "../slice/postSlice";
 
 export default function Navbar() {
   const user = useSelector((state) => state.user.user);
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.sidebar}>
       <div className={styles.logo}>Pikxr</div>
-      
+
       <nav className={styles.sideNav}>
         <ul>
           <li>
@@ -60,6 +62,12 @@ export default function Navbar() {
               )}
               Notifications
             </Link>
+          </li>
+          <li
+            className={styles.createPost}
+            onClick={() => dispatch(togglemodal("createPost"))}
+          >
+            <Link>+ Create new Post</Link>
           </li>
           <li className={styles.settings}>
             <Link

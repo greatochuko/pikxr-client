@@ -1,8 +1,15 @@
+import { togglemodal, setPost } from "../slice/postSlice";
 import styles from "./Post.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Post({ post }) {
   const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  function openPostViewModal() {
+    dispatch(setPost(post));
+    dispatch(togglemodal("viewPost"));
+  }
 
   return (
     <div className={styles.post}>
@@ -11,7 +18,7 @@ export default function Post({ post }) {
         <h4>@{post.creator.username}</h4>
         <div className={styles.options}></div>
       </div>
-      <div className={styles.images}>
+      <div className={styles.images} onClick={openPostViewModal}>
         <img src={`http://localhost:5000/${post.imageUrl}`} />
       </div>
       <div className={styles.actionButtons}>

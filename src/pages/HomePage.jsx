@@ -8,7 +8,7 @@ export default function HomePage() {
   return (
     <main className={styles.homepage}>
       <div className={styles.mainArea}>
-        <MainNav />
+        {/* <MainNav /> */}
         <Stories />
         <Feed />
       </div>
