@@ -32,7 +32,6 @@ export default function CreatePostModal() {
 
   async function handleCreatePost(e) {
     e.preventDefault();
-    console.log(post);
     const formData = new FormData();
     formData.append("caption", post.caption);
     formData.append("image", post.image);
