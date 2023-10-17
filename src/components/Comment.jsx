@@ -1,4 +1,5 @@
 import styles from "./Comment.module.css";
+import PropType from "prop-types";
 
 export default function Comment({ comment }) {
   return (
@@ -11,3 +12,7 @@ export default function Comment({ comment }) {
     </li>
   );
 }
+
+Comment.propTypes = {
+  comment: PropType.object,
+};
