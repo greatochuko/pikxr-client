@@ -30,7 +30,7 @@ export default function Post({ post }) {
           ? post.caption.slice(0, 20) + "..."
           : post.caption}
       </p>
-      <CommentForm />
+      <CommentForm postId={post._id} />
     </div>
   );
 }
