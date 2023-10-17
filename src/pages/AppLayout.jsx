@@ -5,12 +5,18 @@ import { useSelector } from "react-redux";
 import ModalContainer from "../components/ModalContainer";
 
 export default function AppLayout() {
-  const { createPostModal } = useSelector((state) => state.post);
+  const { modalIsOpen, modalType } = useSelector((state) => state.post);
   return (
     <div className={styles.appLayout}>
       <Navbar />
       <Outlet />
-      {createPostModal ? <ModalContainer /> : null}
+      {modalIsOpen ? (
+        modalType === "createPost" ? (
+          <ModalContainer type="createPost" />
+        ) : modalType === "viewPost" ? (
+          <ModalContainer type="viewPost" />
+        ) : null
+      ) : null}
       {/* <RightSidebar /> */}
     </div>
   );

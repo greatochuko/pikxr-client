@@ -1,6 +1,6 @@
 import styles from "./MainNav.module.css";
 import { useDispatch } from "react-redux";
-import { toggleCreatePostModal } from "../slice/postSlice";
+import { togglemodal } from "../slice/postSlice";
 
 export default function MainNav() {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export default function MainNav() {
           </form>
           <button
             className={styles.createPost}
-            onClick={() => dispatch(toggleCreatePostModal())}
+            onClick={() => dispatch(togglemodal("createPost"))}
           >
             + Create new Post
           </button>

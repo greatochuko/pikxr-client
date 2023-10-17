@@ -1,0 +1,64 @@
+.postViewModal {
+  width: 70%;
+  height: min(90%, 600px);
+  animation: show 0.3s forwards;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  overflow: hidden;
+}
+
+/* POST IMAGE */
+
+.imgContainer {
+  max-width: 50%;
+  height: 100%;
+}
+
+.imgContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* POST DETAILS */
+
+.details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.creator {
+  padding: 10px;
+  border-bottom: solid 1px #ddd;
+  width: 100%;
+}
+
+/* CAPTION */
+.caption {
+  padding: 1rem;
+  font-size: 15px;
+}
+
+.caption a {
+  color: blue;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.caption a:hover {
+  text-decoration: underline;
+}
+
+/* COMMENTS */
+
+.comments {
+  overflow-y: scroll;
+  flex: 1;
+}
+
+/* COMMENT FORM */
+.commentForm {
+  margin: 10px;
+}

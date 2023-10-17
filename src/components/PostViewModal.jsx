@@ -1,13 +1,17 @@
 import { useSelector } from "react-redux";
-// import styles from "./PostViewModal.module.css";
+import styles from "./PostViewModal.module.css";
 import CommentForm from "./CommentForm";
 import { useEffect, useState } from "react";
 import { fetchComments } from "../services/commentServices";
-import Comment from "./Comment";
+import Comment from "./Comment.jsx";
+import Creator from "./Creator";
 
 export default function PostViewModal() {
   const { post } = useSelector((state) => state.post);
   const [comments, setComments] = useState([]);
+  const [caption, setCaption] = useState(
+    post.caption.length > 50 ? post.caption.slice(0, 50) + "..." : post.caption
+  );
 
   useEffect(() => {
     async function getComments() {
@@ -17,21 +21,30 @@ export default function PostViewModal() {
     getComments();
   }, [post._id]);
 
+  function toggleSeeMore() {
+    caption.includes("...")
+      ? setCaption(post.caption)
+      : setCaption(
+          post.caption.length > 50
+            ? post.caption.slice(0, 50) + "..."
+            : post.caption
+        );
+  }
+
   return (
     <div className={styles.postViewModal} onClick={(e) => e.stopPropagation()}>
-      <div className={styles.postImgContainer}>
+      <div className={styles.imgContainer}>
         <img src={`http://localhost:5000/${post.imageUrl}`} alt="" />
       </div>
       <div className={styles.details}>
-        <div className={styles.creator}>
-          <img src={post.creator.imgUrl} alt={post.creator.username} />
-          <h4>@{post.creator.username}</h4>
-          <div className={styles.options}></div>
-        </div>
+        <Creator post={post} className={styles.creator} />
         <p className={styles.caption}>
-          {post.caption.length > 20
-            ? post.caption.slice(0, 20) + "..."
-            : post.caption}
+          {caption}
+          {caption.includes("...") ? (
+            <a onClick={toggleSeeMore}>See more</a>
+          ) : (
+            <a onClick={toggleSeeMore}>See less</a>
+          )}
         </p>
         <div className={styles.comments}>
           <ul>
@@ -40,7 +53,11 @@ export default function PostViewModal() {
             ))}
           </ul>
         </div>
-        <CommentForm postId={post._id} setComments={setComments} />
+        <CommentForm
+          className={styles.commentForm}
+          postId={post._id}
+          setComments={setComments}
+        />
       </div>
     </div>
   );
