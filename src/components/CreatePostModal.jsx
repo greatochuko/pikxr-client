@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./CreatePostModal.module.css";
 import { setPosts, toggleCreatePostModal } from "../slice/postSlice";
 import { useState } from "react";
-import { createPost, getPosts } from "../services/postServices";
+import { createPost, fetchPosts } from "../services/postServices";
 
 export default function CreatePostModal() {
   const dispatch = useDispatch();

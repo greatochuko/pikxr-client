@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "./Post.module.css";
 import { useSelector } from "react-redux";
 
