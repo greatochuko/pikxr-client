@@ -1,8 +1,8 @@
 .comment {
   display: flex;
   gap: 1rem;
-  border-bottom: solid 1px #eee;
   padding: 10px 0;
+  padding: 1rem;
 }
 
 .comment img {
@@ -12,17 +12,20 @@
 }
 
 .details {
+  border-bottom: solid 1px #eee;
   flex: 1;
+  padding-bottom: 10px;
 }
 
 .details h4 {
-  color: #333;
+  /* color: #333; */
   /* font-weight: 500; */
   font-size: 0.9rem;
   margin-bottom: 6px;
+  font-weight: 600;
 }
 
 .details p {
-  font-size: 0.9rem;
-  color: #666;
+  font-size: 14px;
+  color: #333;
 }
