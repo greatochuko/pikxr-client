@@ -21,7 +21,7 @@ export default function Stories() {
       </div>
       <div className={styles.storiesList}>
         <Story />
-        {stories.map((story, i) => (
+        {stories.map((story) => (
           <Story story={story} key={story._id} />
         ))}
       </div>
