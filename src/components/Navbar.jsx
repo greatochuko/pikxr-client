@@ -16,11 +16,7 @@ export default function Navbar() {
         <ul>
           <li>
             <Link to="/" className={pathname === "/" ? styles.active : ""}>
-              {pathname === "/" ? (
-                <img src="/home-filled.svg" alt="feed" />
-              ) : (
-                <img src="/home.svg" alt="feed" />
-              )}
+              <i className="fa-solid fa-house"></i>
               Feed
             </Link>
           </li>
@@ -29,11 +25,7 @@ export default function Navbar() {
               to="/search"
               className={pathname === "/search" ? styles.active : ""}
             >
-              {pathname === "/search" ? (
-                <img src="/compass-filled.png" alt="explore" />
-              ) : (
-                <img src="/compass.png" alt="feed" />
-              )}
+              <i className="fa-solid fa-magnifying-glass"></i>
               Search
             </Link>
           </li>
@@ -42,11 +34,7 @@ export default function Navbar() {
               to="/explore"
               className={pathname === "/explore" ? styles.active : ""}
             >
-              {pathname === "/explore" ? (
-                <img src="/compass-filled.png" alt="explore" />
-              ) : (
-                <img src="/compass.png" alt="feed" />
-              )}
+              <i className="fa-solid fa-compass"></i>
               Explore
             </Link>
           </li>
@@ -55,11 +43,7 @@ export default function Navbar() {
               to="/notifications"
               className={pathname === "/notifications" ? styles.active : ""}
             >
-              {pathname === "/notifications" ? (
-                <img src="/notifications-filled.png" alt="feed" />
-              ) : (
-                <img src="/notifications.png" alt="feed" />
-              )}
+              <i className="fa-solid fa-bell"></i>
               Notifications
             </Link>
           </li>
@@ -67,28 +51,22 @@ export default function Navbar() {
             className={styles.createPost}
             onClick={() => dispatch(togglemodal("createPost"))}
           >
-            <Link>+ Create new Post</Link>
+            <a>
+              <i className="fa-solid fa-circle-plus"></i>Create new Post
+            </a>
           </li>
           <li className={styles.settings}>
             <Link
               to="/settings"
               className={pathname === "/settings" ? styles.active : ""}
             >
-              {pathname === "/settings" ? (
-                <img src="/settings-filled.svg" alt="feed" />
-              ) : (
-                <img src="/settings.svg" alt="feed" />
-              )}
+              <i className="fa-solid fa-gear"></i>
               Settings
             </Link>
           </li>
           <li onClick={() => dispatch(togglemodal("logout"))}>
             <a className={modalType === "logout" ? styles.active : ""}>
-              {modalType === "logout" ? (
-                <img src="/logout-filled.png" alt="feed" />
-              ) : (
-                <img src="/logout.png" alt="feed" />
-              )}
+              <i className="fa-solid fa-right-from-bracket"></i>
               Logout
             </a>
           </li>

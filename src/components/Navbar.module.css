@@ -16,7 +16,7 @@
 .sideNav {
   flex: 1;
   display: flex;
-  margin: 1rem 0;
+  /* margin: 1rem 0; */
 }
 
 .sideNav ul {
@@ -28,9 +28,11 @@
 .sideNav ul li a {
   display: flex;
   align-items: center;
-  padding: 1rem;
-  font-size: 15px;
+  padding: 1rem 0;
+  padding-left: 2rem;
+  font-size: 16px;
   cursor: pointer;
+  color: #444;
 }
 
 .sideNav ul li a:hover {
@@ -40,11 +42,12 @@
 .sideNav ul li a.active {
   border-right: 2px solid rgb(0, 140, 255);
   color: rgb(0, 140, 255);
+  color: #333;
+  font-weight: bold;
 }
 
-.sideNav ul li a img {
-  width: 22px;
-  height: 22px;
+.sideNav ul li a i {
+  font-size: 1.3rem;
   margin-right: 10px;
 }
 
