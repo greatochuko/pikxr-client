@@ -9,6 +9,8 @@ export default function MainNav() {
     <>
       <nav className={styles.mainNav}>
         <ul>
+          <div className={styles.logo}>Pikxr</div>
+
           <form>
             <input type="text" placeholder="Search" />
           </form>

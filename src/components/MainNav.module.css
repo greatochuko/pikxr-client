@@ -1,6 +1,7 @@
 .mainNav {
-  padding: 10px 2rem;
-  position: sticky;
+  padding: 10px 3rem;
+  position: fixed;
+  width: 100%;
   top: 0;
   /* box-shadow: 2px 0 5px 2px #eee; */
   border-bottom: solid 1px #ddd;
@@ -18,11 +19,13 @@
 .mainNav form {
   flex: 0 1 300px;
   display: flex;
+  margin-right: auto;
+  margin-left: 5rem;
 }
 
 .mainNav form input {
   padding: 8px;
-  border-radius: 9999px;
+  border-radius: 10px;
   background-color: #eee;
   border: none;
   outline: none;

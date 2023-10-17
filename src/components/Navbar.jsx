@@ -10,8 +10,6 @@ export default function Navbar() {
 
   return (
     <div className={styles.sidebar}>
-      <div className={styles.logo}>Pikxr</div>
-
       <nav className={styles.sideNav}>
         <ul>
           <li>
