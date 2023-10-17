@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./CreatePostModal.module.css";
-import { setPosts, toggleCreatePostModal } from "../slice/postSlice";
+import { setPosts } from "../slice/postSlice";
 import { useState } from "react";
 import { createPost, fetchPosts } from "../services/postServices";
 
@@ -9,11 +9,6 @@ export default function CreatePostModal() {
   const [post, setPost] = useState({ caption: "", image: "" });
   const [img, setImg] = useState("");
   const { user } = useSelector((state) => state.user);
-
-  function closeModal(e) {
-    e.preventDefault();
-    dispatch(toggleCreatePostModal());
-  }
 
   function handleChange(e) {
     e.preventDefault();
