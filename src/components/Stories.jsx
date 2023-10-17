@@ -20,6 +20,7 @@ export default function Stories() {
         <a href="">Watch all</a>
       </div>
       <div className={styles.storiesList}>
+        <Story />
         {stories.map((story, i) => (
           <Story story={story} key={story._id} />
         ))}
