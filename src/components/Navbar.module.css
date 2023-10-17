@@ -15,7 +15,7 @@
 .sideNav {
   flex: 1;
   display: flex;
-  /* margin: 1rem 0; */
+  margin: 10px 0;
 }
 
 .sideNav ul {
@@ -39,9 +39,7 @@
 }
 
 .sideNav ul li a.active {
-  border-right: 2px solid rgb(0, 140, 255);
-  color: rgb(0, 140, 255);
-  color: #333;
+  color: #222;
   font-weight: bold;
 }
 
