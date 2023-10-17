@@ -1,14 +1,18 @@
+import { useEffect, useState } from "react";
 import styles from "./Stories.module.css";
 import Story from "./Story";
+import { fetchStories } from "../services/storyServices";
 
 export default function Stories() {
-  const stories = [
-    { src: "/story.jpg", username: "greatochuko" },
-    { src: "/story-2.jpg", username: "greatochuko" },
-    { src: "/story-2.jpg", username: "greatochuko" },
-    { src: "/story.jpg", username: "greatochuko" },
-    { src: "/story-2.jpg", username: "greatochuko" },
-  ];
+  const [stories, setStories] = useState([]);
+  useEffect(() => {
+    async function getStories() {
+      const data = await fetchStories();
+      setStories(data);
+    }
+    getStories();
+  }, []);
+
   return (
     <div className={styles.stories}>
       <div className={styles.header}>
@@ -17,7 +21,7 @@ export default function Stories() {
       </div>
       <div className={styles.storiesList}>
         {stories.map((story, i) => (
-          <Story src={story.src} username={story.username} key={i} />
+          <Story story={story} key={story._id} />
         ))}
       </div>
     </div>
