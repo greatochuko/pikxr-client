@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import styles from "./PostViewModal.module.css";
+// import styles from "./PostViewModal.module.css";
 import CommentForm from "./CommentForm";
 import { useEffect, useState } from "react";
 import { fetchComments } from "../services/commentServices";

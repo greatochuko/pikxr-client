@@ -1,14 +1,21 @@
 export async function login(email, password) {
+  let username;
+  if (!email.includes("@")) {
+    username = email;
+  }
   try {
     const res = await fetch("http://localhost:5000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password }),
+      body: username
+        ? JSON.stringify({ username, password })
+        : JSON.stringify({ email, password }),
     });
     const data = await res.json();
-    localStorage.setItem("user", JSON.stringify(data));
+
+    localStorage.setItem("token", JSON.stringify(data.token));
     return data;
   } catch (err) {
     return err;

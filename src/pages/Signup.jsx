@@ -37,14 +37,12 @@ export default function Signup() {
     if (cannotSubmit) return;
 
     const data = await signup(username, fullname, email, password);
-    console.log(data);
-    localStorage.setItem("user", JSON.stringify(data.user));
     localStorage.setItem("token", data.token);
     dispatch(loginUser(data.id));
     navigate("/");
   }
 
-  if (user) {
+  if (user.username) {
     return <Navigate to={"/"} replace={true} />;
   }
 

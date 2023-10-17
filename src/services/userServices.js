@@ -1,5 +1,10 @@
-export async function getUser(id) {
-  const res = await fetch(`http://localhost:5000/user/${id}`);
-  const data = res.json();
+export async function fetchUser(token) {
+  const res = await fetch(`http://localhost:5000/user/`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = await res.json();
   return data;
 }
