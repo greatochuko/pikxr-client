@@ -38,7 +38,7 @@ export default function CreatePostModal() {
     formData.append("image", post.image);
     formData.append("creator", user.id);
     await createPost(formData);
-    const data = await getPosts();
+    const data = await fetchPosts();
     dispatch(setPosts(data));
   }
 
