@@ -39,47 +39,45 @@ export default function CreatePostModal() {
     formData.append("image", post.image);
     formData.append("creator", user.id);
     await createPost(formData);
-    const data = await getPosts();
+    const data = await fetchPosts();
     dispatch(setPosts(data));
   }
 
   return (
-    <div className={styles.modalContainer} onClick={closeModal}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <h2 className={styles.header}>Create new post</h2>
-        <form onSubmit={handleCreatePost}>
-          <div
-            className={`${styles.imgPreview} ${img ? styles.imageLoaded : ""}`}
-          >
-            <>
-              <input
-                type="file"
-                name="image"
-                id="image"
-                onChange={handleChange}
-                accept=".png, .jpg, .jpeg"
-              />
-              <label htmlFor="image">
-                <p>{img ? "Change img" : "Click to upload photo"}</p>
-              </label>
-            </>
-            <img src={img} alt="" />
-          </div>
-          <div className={styles.user}>
-            <img src="/profileImg.jpg" alt="" />
-            <p>@greatochuko</p>
-          </div>
-          <textarea
-            name="caption"
-            id="caption"
-            cols="30"
-            rows="10"
-            placeholder="Write a caption"
-            onChange={handleChange}
-          ></textarea>
-          <input type="submit" value="Post" />
-        </form>
-      </div>
+    <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+      <h2 className={styles.header}>Create new post</h2>
+      <form onSubmit={handleCreatePost}>
+        <div
+          className={`${styles.imgPreview} ${img ? styles.imageLoaded : ""}`}
+        >
+          <>
+            <input
+              type="file"
+              name="image"
+              id="image"
+              onChange={handleChange}
+              accept=".png, .jpg, .jpeg"
+            />
+            <label htmlFor="image">
+              <p>{img ? "Change img" : "Click to upload photo"}</p>
+            </label>
+          </>
+          <img src={img} alt="" />
+        </div>
+        <div className={styles.user}>
+          <img src="/profileImg.jpg" alt="" />
+          <p>@greatochuko</p>
+        </div>
+        <textarea
+          name="caption"
+          id="caption"
+          cols="30"
+          rows="10"
+          placeholder="Write a caption"
+          onChange={handleChange}
+        ></textarea>
+        <input type="submit" value="Post" />
+      </form>
     </div>
   );
 }

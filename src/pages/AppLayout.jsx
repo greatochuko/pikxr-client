@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import styles from "./AppLayout.module.css";
 import { useSelector } from "react-redux";
-import CreatePostModal from "../components/CreatePostModal";
+import ModalContainer from "../components/ModalContainer";
 
 export default function AppLayout() {
   const { createPostModal } = useSelector((state) => state.post);
@@ -10,7 +10,7 @@ export default function AppLayout() {
     <div className={styles.appLayout}>
       <Navbar />
       <Outlet />
-      {createPostModal ? <CreatePostModal /> : null}
+      {createPostModal ? <ModalContainer /> : null}
       {/* <RightSidebar /> */}
     </div>
   );
