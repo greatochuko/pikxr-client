@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import styles from "./Auth.module.css";
@@ -28,7 +28,7 @@ export default function Login() {
     navigate("/");
   }
 
-  if (user) {
+  if (user._id) {
     return <Navigate to={"/"} replace={true} />;
   }
 

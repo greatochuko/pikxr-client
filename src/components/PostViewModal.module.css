@@ -57,3 +57,8 @@
   overflow-y: scroll;
   flex: 1;
 }
+
+/* COMMENT FORM */
+.commentForm {
+  margin: 10px;
+}

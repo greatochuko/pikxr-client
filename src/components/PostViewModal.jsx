@@ -53,7 +53,11 @@ export default function PostViewModal() {
             ))}
           </ul>
         </div>
-        <CommentForm postId={post._id} setComments={setComments} />
+        <CommentForm
+          className={styles.commentForm}
+          postId={post._id}
+          setComments={setComments}
+        />
       </div>
     </div>
   );

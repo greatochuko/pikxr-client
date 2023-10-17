@@ -1,4 +1,5 @@
 import { togglemodal, setPost } from "../slice/postSlice";
+import CommentForm from "./CommentForm";
 import Creator from "./Creator";
 import styles from "./Post.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,11 +30,7 @@ export default function Post({ post }) {
           ? post.caption.slice(0, 20) + "..."
           : post.caption}
       </p>
-      <form className={styles.commentForm}>
-        <img src="/profileImg.jpg" alt={`${user.fullname} Profile Image`} />
-        <input type="text" placeholder="Comment" />
-        <button type="submit">Post</button>
-      </form>
+      <CommentForm />
     </div>
   );
 }

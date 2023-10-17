@@ -1,3 +1,14 @@
-export default function CommentForm() {
-  return <div>CommentForm</div>;
+import { useSelector } from "react-redux";
+import styles from "./CommentForm.module.css";
+
+export default function CommentForm({ className }) {
+  const { user } = useSelector((state) => state.user);
+  console.log(user);
+  return (
+    <form className={styles.commentForm + " " + className}>
+      <img src={user.imgUrl} alt={`${user.fullname} Profile Image`} />
+      <input type="text" placeholder="Comment" />
+      <button type="submit">Post</button>
+    </form>
+  );
 }
