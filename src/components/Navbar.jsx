@@ -4,8 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 import { togglemodal } from "../slice/postSlice";
 
 export default function Navbar() {
-  const user = useSelector((state) => state.user.user);
   const { pathname } = useLocation();
+  const { modalType } = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
   return (
@@ -82,18 +82,15 @@ export default function Navbar() {
               Settings
             </Link>
           </li>
-          <li>
-            <Link
-              to="#logout"
-              className={pathname.includes("#logout") ? styles.active : ""}
-            >
-              {pathname.includes("#logout") ? (
+          <li onClick={() => dispatch(togglemodal("logout"))}>
+            <a className={modalType === "logout" ? styles.active : ""}>
+              {modalType === "logout" ? (
                 <img src="/logout-filled.png" alt="feed" />
               ) : (
                 <img src="/logout.png" alt="feed" />
               )}
               Logout
-            </Link>
+            </a>
           </li>
         </ul>
       </nav>

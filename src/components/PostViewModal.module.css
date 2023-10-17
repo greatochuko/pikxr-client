@@ -8,6 +8,14 @@
   overflow: hidden;
 }
 
+@keyframes show {
+  0% {
+  }
+  100% {
+    transform: scale(0.96);
+  }
+}
+
 /* POST IMAGE */
 
 .imgContainer {

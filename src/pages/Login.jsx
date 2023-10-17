@@ -12,7 +12,7 @@ export default function Login() {
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
 
-  const user = useSelector((state) => state.user.user);
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ export default function Login() {
     navigate("/");
   }
 
-  if (user.username) {
+  if (user?.username) {
     return <Navigate to={"/"} replace={true} />;
   }
 
@@ -40,9 +40,9 @@ export default function Login() {
       <div className={styles.img}></div>
       <div className={styles.authContainer}>
         <div className={styles.header}>
-          <h1 className="title">Register for Pikxr</h1>
+          <h1 className="title">Login to Pikxr</h1>
           <p className={styles.signup}>
-            Have an account? <Link to={"/login"}>Login</Link>
+            Don&apos;t have an account? <Link to={"/signup"}>Signup</Link>
           </p>
         </div>
         <form onSubmit={handleLogin}>
@@ -52,7 +52,7 @@ export default function Login() {
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
+              placeholder="Email or Username"
               autoComplete="off"
             />
           </div>

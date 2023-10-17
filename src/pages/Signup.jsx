@@ -42,7 +42,7 @@ export default function Signup() {
     navigate("/");
   }
 
-  if (user.username) {
+  if (user?.username) {
     return <Navigate to={"/"} replace={true} />;
   }
 

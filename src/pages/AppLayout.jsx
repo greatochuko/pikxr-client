@@ -10,14 +10,7 @@ export default function AppLayout() {
     <div className={styles.appLayout}>
       <Navbar />
       <Outlet />
-      {modalIsOpen ? (
-        modalType === "createPost" ? (
-          <ModalContainer type="createPost" />
-        ) : modalType === "viewPost" ? (
-          <ModalContainer type="viewPost" />
-        ) : null
-      ) : null}
-      {/* <RightSidebar /> */}
+      {modalIsOpen ? <ModalContainer type={modalType} /> : null}
     </div>
   );
 }

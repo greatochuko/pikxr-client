@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser } from "../../../server/controllers/userController";
 import { fetchUser } from "../services/userServices";
 
 const token = JSON.parse(localStorage.getItem("token"));
@@ -16,6 +15,7 @@ const userSlice = createSlice({
       state.user = action.payload;
     },
     logoutUser: (state) => {
+      localStorage.removeItem("token");
       state.user = null;
     },
   },

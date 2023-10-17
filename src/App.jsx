@@ -12,39 +12,27 @@ import Settings from "./pages/Settings";
 
 const router = createBrowserRouter([
   {
-    element: <AppLayout />,
+    element: (
+      <Authenticate>
+        <AppLayout />
+      </Authenticate>
+    ),
     children: [
       {
         path: "/",
-        element: (
-          <Authenticate>
-            <HomePage />
-          </Authenticate>
-        ),
+        element: <HomePage />,
       },
       {
         path: "/explore",
-        element: (
-          <Authenticate>
-            <Explore />
-          </Authenticate>
-        ),
+        element: <Explore />,
       },
       {
         path: "/notifications",
-        element: (
-          <Authenticate>
-            <Notifications />
-          </Authenticate>
-        ),
+        element: <Notifications />,
       },
       {
         path: "/settings",
-        element: (
-          <Authenticate>
-            <Settings />
-          </Authenticate>
-        ),
+        element: <Settings />,
       },
     ],
   },
@@ -56,6 +44,7 @@ function App() {
   return (
     <Provider store={store}>
       <RouterProvider router={router} />
+      {/* <h1>asljk</h1> */}
     </Provider>
   );
 }
