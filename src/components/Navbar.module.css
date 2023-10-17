@@ -1,7 +1,6 @@
 .sidebar {
   width: max(200px, 18%);
   background-color: #fff;
-  height: 100%;
   display: flex;
   flex-direction: column;
   z-index: 1;
