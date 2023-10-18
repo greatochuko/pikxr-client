@@ -1,3 +1,5 @@
+@import "../index.css";
+
 .modal {
   width: min(400px, 80%);
   height: 180px;
@@ -58,11 +60,11 @@
 }
 
 .buttons button.logout {
-  background-color: #d2042d;
-  border-color: #d2042d;
+  background-color: var(--RED-200);
+  border-color: var(--RED-200);
   color: #fff;
 }
 
 .buttons button.logout:hover {
-  background-color: #af0426;
+  background-color: var(--RED-100);
 }
