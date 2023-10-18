@@ -1,8 +1,10 @@
 .creator {
   display: flex;
   align-items: center;
-  cursor: pointer;
-  width: fit-content;
+}
+
+.creator a {
+  display: flex;
 }
 
 .creator img {
@@ -11,12 +13,29 @@
   border-radius: 50%;
 }
 
-.creator h4 {
-  font-size: 0.9rem;
+.creator .text {
   margin-left: 8px;
+}
+
+.creator .text p {
+  color: #666;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.creator .text h4 {
+  font-size: 0.9rem;
   font-weight: 600;
 }
 
 .creator .options {
   margin-left: auto;
+  background-color: transparent;
+  padding: 0 10px;
+  border: none;
+}
+
+.options i {
+  font-size: 1.5rem;
+  color: #333;
 }
