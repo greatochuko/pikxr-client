@@ -1,3 +1,5 @@
+@import "../index.css";
+
 .commentForm {
   display: flex;
   position: relative;
@@ -29,6 +31,12 @@
   padding: 5px 1rem;
   border-radius: 9999px;
   border: none;
-  background-color: #333;
+  background-color: red;
+  background-color: var(--BLUE-200);
   color: #fff;
+  transition: all 0.15s;
+}
+
+.commentForm button:hover {
+  background-color: var(--BLUE-100);
 }

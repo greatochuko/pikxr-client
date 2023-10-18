@@ -53,7 +53,10 @@ export default function CreatePostModal() {
               ref={imageInputRef}
             />
             <label htmlFor="image">
-              <p>{imgPreviewSrc ? "Change img" : "Click to upload photo"}</p>
+              <p>
+                <i className="fa-regular fa-images"></i>
+                {imgPreviewSrc ? "Change img" : "Click to upload photo"}
+              </p>
             </label>
           </>
           <img src={imgPreviewSrc} alt="" />

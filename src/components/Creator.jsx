@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import OptionsButton from "./OptionsButton";
 
-export default function Creator({ post, className, children }) {
+export default function Creator({ post, className }) {
   return (
     <div className={styles.creator + " " + className}>
       <Link>
@@ -23,5 +23,4 @@ export default function Creator({ post, className, children }) {
 Creator.propTypes = {
   post: PropTypes.object,
   className: PropTypes.string,
-  children: PropTypes.element,
 };

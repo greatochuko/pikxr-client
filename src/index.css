@@ -5,6 +5,13 @@
   font-family: open sans;
 }
 
+:root {
+  --BLACK-100: #212529;
+  --BLACK-200: #343a40;
+  --BLUE-100: hsl(212, 92%, 40%);
+  --BLUE-200: #147df5;
+}
+
 body {
   background-color: #f9f9f9;
 }

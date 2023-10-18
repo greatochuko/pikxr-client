@@ -1,8 +1,11 @@
+@import "../index.css";
+
 .feed {
   display: flex;
   flex-direction: column;
   width: 70%;
   margin: auto;
+  margin-bottom: 2rem;
 }
 
 .header {
@@ -10,6 +13,10 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+}
+
+.header h3 {
+  color: var(--BLACK-200);
 }
 
 .sortBy {
