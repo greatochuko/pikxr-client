@@ -1,6 +1,7 @@
 import styles from "./Creator.module.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import OptionsButton from "./OptionsButton";
 
 export default function Creator({ post, className, children }) {
   return (
@@ -13,15 +14,7 @@ export default function Creator({ post, className, children }) {
         </div>
       </Link>
       <button className={styles.options}>
-        <i className="fa-solid fa-ellipsis-vertical"></i>
-        <ul className={styles.optionList}>
-          <li>
-            <Link> Delete Post</Link>
-          </li>
-          <li>
-            <Link>Goto Post</Link>
-          </li>
-        </ul>
+        <OptionsButton top={10} right={10} size={24} />
       </button>
     </div>
   );
