@@ -6,16 +6,14 @@ import { createPost, fetchPosts } from "../services/postServices";
 
 export default function CreatePostModal() {
   const dispatch = useDispatch();
-  const [post, setPost] = useState({ caption: "", image: "" });
+  const [image, setImage] = useState(null);
+  const [caption, setCaption] = useState("");
   const [img, setImg] = useState("");
   const { user } = useSelector((state) => state.user);
 
   function handleChange(e) {
     e.preventDefault();
-    setPost((curr) => ({
-      ...curr,
-      [e.target.name]: e.target.files ? e.target?.files[0] : e.target.value,
-    }));
+    setImage(e.target?.files[0]);
     if (e.target.files) {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(e.target.files[0]);
@@ -28,8 +26,8 @@ export default function CreatePostModal() {
   async function handleCreatePost(e) {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("caption", post.caption);
-    formData.append("image", post.image);
+    formData.append("caption", caption);
+    formData.append("image", image);
     formData.append("creator", user._id);
     await createPost(formData);
     const data = await fetchPosts();
@@ -67,7 +65,8 @@ export default function CreatePostModal() {
           cols="30"
           rows="10"
           placeholder="Write a caption"
-          onChange={handleChange}
+          value={caption}
+          onChange={(e) => setCaption(e.target.value)}
         ></textarea>
         <input type="submit" value="Post" />
       </form>
