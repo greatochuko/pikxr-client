@@ -38,10 +38,22 @@ export default function Post({ post }) {
         <img src={`http://localhost:5000/${post.imageUrl}`} />
       </div>
       <div className={styles.actionButtons}>
-        <button>{post.likes} likes</button>
-        <button>{post.comments} comments</button>
-        <button>{post.shares} shares</button>
-        <button>{post.saves} saves</button>
+        <button>
+          <i className="fa-regular fa-heart"></i>
+          {post.likes}{" "}
+        </button>
+        <button>
+          <i className="fa-regular fa-comment"></i>
+          {post.comments}
+        </button>
+        <button>
+          <i className="fa-solid fa-share-nodes"></i>
+          {post.shares}
+        </button>
+        <button>
+          <i className="fa-regular fa-bookmark"></i>
+          {post.saves}
+        </button>
       </div>
       <CommentForm postId={post._id} />
     </div>

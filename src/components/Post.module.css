@@ -13,6 +13,7 @@
 .images {
   border-radius: 5px;
   overflow: hidden;
+  max-height: 300px;
 }
 .images img {
   width: 100%;
@@ -47,6 +48,7 @@
 .actionButtons {
   display: flex;
   justify-content: space-between;
+  padding: 0 10px;
 }
 
 .actionButtons button {
@@ -54,4 +56,22 @@
   border: none;
   color: #333;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+}
+
+.actionButtons button i {
+  font-size: 1rem;
+  transition: transform 0.1s;
+}
+
+.actionButtons button:hover i {
+  transform: scale(1.2);
+}
+
+.actionButtons button:active i {
+  transform: scale(1.1);
 }
