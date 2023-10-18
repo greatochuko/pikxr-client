@@ -1,25 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./CreatePostModal.module.css";
 import { setPosts } from "../slice/postSlice";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { createPost, fetchPosts } from "../services/postServices";
+import { resizeImage } from "../utils/imageResize";
 
 export default function CreatePostModal() {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
+  const imageInputRef = useRef();
   const [caption, setCaption] = useState("");
-  const [img, setImg] = useState("");
+  const [imgPreviewSrc, setImgPreviewSrc] = useState("");
   const { user } = useSelector((state) => state.user);
 
   function handleChange(e) {
     e.preventDefault();
-    setImage(e.target?.files[0]);
-    if (e.target.files) {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(e.target.files[0]);
-      fileReader.onload = function (event) {
-        setImg(event.target.result);
-      };
+    if (e.target.files[0]) {
+      resizeImage(imageInputRef, (file, src) => {
+        setImage(file);
+        setImgPreviewSrc(src);
+      });
     }
   }
 
@@ -39,7 +39,9 @@ export default function CreatePostModal() {
       <h2 className={styles.header}>Create new post</h2>
       <form onSubmit={handleCreatePost}>
         <div
-          className={`${styles.imgPreview} ${img ? styles.imageLoaded : ""}`}
+          className={`${styles.imgPreview} ${
+            imgPreviewSrc ? styles.imageLoaded : ""
+          }`}
         >
           <>
             <input
@@ -48,12 +50,13 @@ export default function CreatePostModal() {
               id="image"
               onChange={handleChange}
               accept=".png, .jpg, .jpeg"
+              ref={imageInputRef}
             />
             <label htmlFor="image">
-              <p>{img ? "Change img" : "Click to upload photo"}</p>
+              <p>{imgPreviewSrc ? "Change img" : "Click to upload photo"}</p>
             </label>
           </>
-          <img src={img} alt="" />
+          <img src={imgPreviewSrc} alt="" />
         </div>
         <div className={styles.user}>
           <img src="/profileImg.jpg" alt="" />

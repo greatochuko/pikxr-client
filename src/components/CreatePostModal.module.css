@@ -110,6 +110,7 @@
   height: 100px;
   outline: none;
   border: solid 1px #ccc;
+  resize: none;
 }
 
 .modal input[type="submit"] {

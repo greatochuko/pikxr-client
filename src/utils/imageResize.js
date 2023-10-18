@@ -11,8 +11,7 @@ function dataUrlToBlob(imgSrc) {
   return blob;
 }
 
-export async function resizeImage(fileInputRef, callback) {
-  let smallImgSrc = "safd";
+export function resizeImage(fileInputRef, callback) {
   const img = document.createElement("img");
   const fileReader = new FileReader();
   fileReader.readAsDataURL(fileInputRef.current.files[0]);
@@ -27,10 +26,12 @@ export async function resizeImage(fileInputRef, callback) {
       canvas.height = e.target.height * scaleSize;
       const ctx = canvas.getContext("2d");
       ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
-      smallImgSrc = ctx.canvas.toDataURL();
+      const smallImgSrc = ctx.canvas.toDataURL();
       const blob = dataUrlToBlob(smallImgSrc);
 
-      const file = new File([blob], "blob.jpg", { type: "image/jpeg" });
+      const file = new File([blob], fileInputRef.current.files[0].name, {
+        type: "image/jpeg",
+      });
 
       callback(file, smallImgSrc);
     };
