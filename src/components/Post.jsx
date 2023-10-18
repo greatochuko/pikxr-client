@@ -1,5 +1,4 @@
 import { togglemodal, setPost } from "../slice/postSlice";
-import CommentForm from "./CommentForm";
 import Creator from "./Creator";
 import styles from "./Post.module.css";
 import { useDispatch } from "react-redux";
@@ -42,7 +41,7 @@ export default function Post({ post }) {
           <i className="fa-regular fa-heart"></i>
           {post.likes}{" "}
         </button>
-        <button>
+        <button onClick={openPostViewModal}>
           <i className="fa-regular fa-comment"></i>
           {post.comments}
         </button>
@@ -55,7 +54,6 @@ export default function Post({ post }) {
           {post.saves}
         </button>
       </div>
-      <CommentForm postId={post._id} />
     </div>
   );
 }

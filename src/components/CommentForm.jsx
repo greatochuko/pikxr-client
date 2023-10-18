@@ -26,6 +26,7 @@ export default function CommentForm({ className, postId, setComments = null }) {
         value={comment}
         onChange={(e) => setComment(e.target.value)}
         placeholder="Comment"
+        autoFocus
       />
       <button type="submit">Post</button>
     </form>
