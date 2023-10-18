@@ -1,3 +1,5 @@
+@import "../index.css";
+
 .post {
   background-color: #fff;
   padding: 10px;
@@ -67,6 +69,10 @@
 .actionButtons button i {
   font-size: 1rem;
   transition: transform 0.1s;
+}
+
+.actionButtons button i.liked {
+  color: var(--RED-200);
 }
 
 .actionButtons button:hover i {

@@ -43,7 +43,7 @@ export default function Feed() {
       {posts.length ? (
         <div className={styles.posts}>
           {posts.map((post) => (
-            <Post key={post._id} post={post} />
+            <Post key={post._id} currentPost={post} />
           ))}
         </div>
       ) : (

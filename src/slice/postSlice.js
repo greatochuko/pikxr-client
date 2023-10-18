@@ -14,11 +14,11 @@ const postSlice = createSlice({
       state.posts = action.payload;
       state.modalIsOpen = false;
     },
-    setPost: (state, action) => {
+    setModalPost: (state, action) => {
       state.post = action.payload;
     },
   },
 });
 
-export const { togglemodal, setPosts, setPost } = postSlice.actions;
+export const { togglemodal, setPosts, setModalPost } = postSlice.actions;
 export default postSlice.reducer;
