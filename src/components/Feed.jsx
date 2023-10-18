@@ -40,11 +40,15 @@ export default function Feed() {
           </p>
         </div>
       </div>
-      <div className={styles.posts}>
-        {posts.map((post) => (
-          <Post key={post._id} post={post} />
-        ))}
-      </div>
+      {posts.length ? (
+        <div className={styles.posts}>
+          {posts.map((post) => (
+            <Post key={post._id} post={post} />
+          ))}
+        </div>
+      ) : (
+        <div className={styles.empty}>Your feed is empty</div>
+      )}
     </div>
   );
 }

@@ -33,3 +33,14 @@
   flex-direction: column;
   gap: 1rem;
 }
+
+/* EMPTY FEED */
+
+.empty {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #ccc;
+}

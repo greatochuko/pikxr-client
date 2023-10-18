@@ -1,5 +1,6 @@
 import styles from "./Comment.module.css";
 import PropType from "prop-types";
+import OptionsButton from "./OptionsButton";
 
 export default function Comment({ comment }) {
   return (
@@ -9,6 +10,7 @@ export default function Comment({ comment }) {
         <h4>{comment.user.fullname}</h4>
         <p>{comment.comment}</p>
       </div>
+      <OptionsButton top={10} right={10} size={16} />
     </li>
   );
 }
