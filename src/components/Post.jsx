@@ -87,5 +87,5 @@ export default function Post({ currentPost }) {
 }
 
 Post.propTypes = {
-  post: PropTypes.object,
+  currentPost: PropTypes.object,
 };
