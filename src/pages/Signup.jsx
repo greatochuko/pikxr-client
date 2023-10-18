@@ -8,6 +8,7 @@ import FieldValidator from "../components/FieldValidator";
 import useValidateEmail from "../hooks/useValidateEmail";
 import useValidateUsername from "../hooks/useValidateUsername";
 import useValidatePassword from "../hooks/useValidatePassword";
+import { fetchUser } from "../services/userServices";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -36,9 +37,11 @@ export default function Signup() {
     e.preventDefault();
     if (cannotSubmit) return;
 
-    const data = await signup(username, fullname, email, password);
-    localStorage.setItem("token", data.token);
-    dispatch(loginUser(data.id));
+    const resData = await signup(username, fullname, email, password);
+    localStorage.setItem("token", resData.token);
+
+    const data = await fetchUser(resData.token);
+    dispatch(loginUser(data));
     navigate("/");
   }
 

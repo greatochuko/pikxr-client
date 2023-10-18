@@ -20,7 +20,7 @@ export function resizeImage(fileInputRef, callback) {
 
     img.onload = (e) => {
       const canvas = document.createElement("canvas");
-      const MAX_WIDTH = 300;
+      const MAX_WIDTH = 600;
       const scaleSize = MAX_WIDTH / e.target.width;
       canvas.width = MAX_WIDTH;
       canvas.height = e.target.height * scaleSize;

@@ -7,11 +7,7 @@ export default function Sidebar() {
   return (
     <div className={styles.sidebar}>
       <div className={styles.userInfo}>
-        <img
-          src="http://localhost:5000/profileImg.jpg"
-          alt="profile picture"
-          className="profileImg"
-        />
+        <img src={user.imgUrl} alt="profile picture" className="profileImg" />
         <h3 className={styles.name}>{user.fullname}</h3>
         <p className={styles.username}>@{user.username}</p>
         <ul className={styles.userStats}>

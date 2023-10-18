@@ -6,7 +6,7 @@ export default function Comment({ comment }) {
     <li className={styles.comment}>
       <img src={comment.user.imgUrl} alt="" />
       <div className={styles.details}>
-        <h4>{comment.user.username}</h4>
+        <h4>{comment.user.fullname}</h4>
         <p>{comment.comment}</p>
       </div>
     </li>
