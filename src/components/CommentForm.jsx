@@ -34,6 +34,6 @@ export default function CommentForm({ className, postId, setComments = null }) {
 
 CommentForm.propTypes = {
   className: PropTypes.string,
-  postId: PropTypes.object,
+  postId: PropTypes.string,
   setComments: PropTypes.func,
 };
