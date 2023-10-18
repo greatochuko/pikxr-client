@@ -27,6 +27,20 @@
 /* CAPTION */
 .caption {
   font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6rem;
+}
+
+/* SEE MORE BUTTON */
+.seeMoreBtn {
+  background-color: transparent;
+  border: none;
+  color: blue;
+  margin-left: 5px;
+}
+
+.seeMoreBtn:hover {
+  text-decoration: underline;
 }
 
 /* ACTION BUTTONS */

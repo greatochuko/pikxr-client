@@ -7,16 +7,13 @@ export default function OptionsButton({ top, right, size }) {
       className={styles.optionsButton}
       style={{ top: `${top}px`, right: `${right}px` }}
     >
-      <i
-        className="fa-solid fa-ellipsis-vertical"
-        style={{ fontSize: `${size}px` }}
-      />
+      <i className="fa-solid fa-ellipsis" style={{ fontSize: `${size}px` }} />
     </button>
   );
 }
 
 OptionsButton.propTypes = {
-  top: propTypes.string,
-  right: propTypes.string,
-  size: propTypes.string,
+  top: propTypes.number,
+  right: propTypes.number,
+  size: propTypes.number,
 };

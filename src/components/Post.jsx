@@ -4,9 +4,19 @@ import Creator from "./Creator";
 import styles from "./Post.module.css";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 export default function Post({ post }) {
   const dispatch = useDispatch();
+  const [seeMore, setSeeMore] = useState(false);
+
+  const postCaption = seeMore
+    ? post.caption
+    : `${post.caption.slice(0, 100)}...`;
+
+  function toggleSeeMore() {
+    setSeeMore((curr) => !curr);
+  }
 
   function openPostViewModal() {
     dispatch(setPost(post));
@@ -16,6 +26,14 @@ export default function Post({ post }) {
   return (
     <div className={styles.post}>
       <Creator post={post} />
+      <p className={styles.caption}>
+        {postCaption}
+        {post.caption.length > 100 ? (
+          <button className={styles.seeMoreBtn} onClick={toggleSeeMore}>
+            {seeMore ? "Less" : "More"}
+          </button>
+        ) : null}
+      </p>
       <div className={styles.images} onClick={openPostViewModal}>
         <img src={`http://localhost:5000/${post.imageUrl}`} />
       </div>
@@ -25,11 +43,6 @@ export default function Post({ post }) {
         <button>{post.shares} shares</button>
         <button>{post.saves} saves</button>
       </div>
-      <p className={styles.caption}>
-        {post.caption.length > 20
-          ? post.caption.slice(0, 20) + "..."
-          : post.caption}
-      </p>
       <CommentForm postId={post._id} />
     </div>
   );
