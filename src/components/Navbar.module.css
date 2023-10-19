@@ -1,17 +1,12 @@
 @import "../index.css";
 
 .sidebar {
-  width: max(200px, 18%);
+  min-width: max(200px, 18%);
   background-color: #fff;
   display: flex;
   flex-direction: column;
   z-index: 1;
   border-right: solid 1px #eee;
-}
-
-.logo {
-  font-size: 1.5rem;
-  margin: 1rem 2rem;
 }
 
 .sideNav {
