@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchPosts } from "../services/postServices";
 
 const initialState = {
   modalIsOpen: false,
   modalType: "",
-  posts: [],
+  posts: await fetchPosts(),
   post: {},
   story: {},
 };

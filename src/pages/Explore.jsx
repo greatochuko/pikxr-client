@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import MasonryGrid from "../components/MasonryGrid";
 import styles from "./Explore.module.css";
 import { generateMasonryArray } from "../utils/createMansoryArray";
+import { useSelector } from "react-redux";
 
 const resData = [
   { img: "post1.jpg" },
@@ -18,13 +19,15 @@ const resData = [
 export default function Explore() {
   const exploreRef = useRef(null);
   const [columns, setColumns] = useState();
+  const { posts } = useSelector((state) => state.post);
+  console.log(posts);
 
   const explore = exploreRef.current;
 
   const MIN_WIDTH = 350;
   let data;
   if (columns) {
-    data = generateMasonryArray(columns, resData);
+    data = generateMasonryArray(columns, posts);
   }
   useEffect(() => {
     const handleResize = () => {

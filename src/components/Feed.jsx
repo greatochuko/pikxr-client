@@ -1,25 +1,13 @@
 import styles from "./Feed.module.css";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Post from "./Post";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setPosts } from "../slice/postSlice";
-import { fetchPosts } from "../services/postServices";
+import { useSelector } from "react-redux";
 
 export default function Feed() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const sortBy = searchParams.get("sortBy");
   const { posts } = useSelector((state) => state.post);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    async function getPost() {
-      const data = await fetchPosts();
-      dispatch(setPosts(data));
-    }
-    getPost();
-  }, [dispatch]);
 
   return (
     <div className={styles.feed}>
