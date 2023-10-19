@@ -3,8 +3,15 @@ import Story from "./Story";
 import { useSelector } from "react-redux";
 
 export default function Stories() {
-  const { stories } = useSelector((state) => state.story);
+  const { stories: reduxStories } = useSelector((state) => state.story);
   const { user } = useSelector((state) => state.user);
+  const stories = reduxStories
+    .map((a) => a)
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+
   let userHasStory;
   stories.forEach((story) => {
     if (story.creator._id === user._id) return (userHasStory = true);
