@@ -17,13 +17,13 @@
   margin-left: 8px;
 }
 
-.creator .text p {
+.creator p {
   color: #666;
   font-weight: 500;
   font-size: 0.8rem;
 }
 
-.creator .text h4 {
+.creator h4 {
   font-size: 0.9rem;
   font-weight: 600;
   display: flex;

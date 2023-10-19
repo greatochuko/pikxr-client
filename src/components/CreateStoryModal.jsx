@@ -9,7 +9,7 @@ import styles from "./StoriesModal.module.css";
 import { setStories } from "../slice/storySlice";
 import { togglemodal } from "../slice/postSlice";
 
-export default function StoriesModal() {
+export default function CreateStoryModal() {
   const [image, setImage] = useState(null);
   const imageInputRef = useRef();
   const [caption, setCaption] = useState("");
@@ -83,6 +83,6 @@ export default function StoriesModal() {
   );
 }
 
-StoriesModal.propTypes = {
+CreateStoryModal.propTypes = {
   setStories: propTypes.func,
 };
