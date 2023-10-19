@@ -5,6 +5,7 @@ import CreatePostModal from "./CreatePostModal";
 import PostViewModal from "./PostViewModal";
 import PropTypes from "prop-types";
 import LogoutModal from "./LogoutModal";
+import StoriesModal from "./StoriesModal";
 
 export default function ModalContainer({ type }) {
   const dispatch = useDispatch();
@@ -22,6 +23,8 @@ export default function ModalContainer({ type }) {
         <PostViewModal />
       ) : type === "logout" ? (
         <LogoutModal />
+      ) : type === "createStory" ? (
+        <StoriesModal />
       ) : null}
     </div>
   );

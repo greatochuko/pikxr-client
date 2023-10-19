@@ -1,16 +1,18 @@
-import { useState } from "react";
 import styles from "./Story.module.css";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { togglemodal } from "../slice/postSlice";
 
 export default function Story({ story }) {
-  const [isHover, setIsHover] = useState(false);
+  const dispatch = useDispatch();
+
+  function openStoriesModal() {
+    dispatch(togglemodal("createStory"));
+  }
+
   if (story) {
     return (
-      <div
-        className={`${styles.story} ${isHover ? styles.hover : ""}`}
-        onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
-      >
+      <div className={`${styles.story}`}>
         <img
           src={`http://localhost:5000/${story.imgUrl} `}
           alt={story.imgUrl}
@@ -24,12 +26,8 @@ export default function Story({ story }) {
     );
   }
   return (
-    <div
-      className={`${styles.story} ${styles.add} ${isHover ? styles.hover : ""}`}
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-    >
-      <button className={styles.addStory}>
+    <div className={`${styles.story} ${styles.add}`}>
+      <button className={styles.addStory} onClick={openStoriesModal}>
         <span>+</span>
         <p>Add Story</p>
       </button>
