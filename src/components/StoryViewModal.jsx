@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./StoryViewModal.module.css";
 import Creator from "./Creator";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { togglemodal } from "../slice/postSlice";
 
 export default function StoryViewModal() {
