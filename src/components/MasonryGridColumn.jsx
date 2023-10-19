@@ -1,5 +1,6 @@
 import styles from "./MasonryGridColumn.module.css";
 import MasonryGridPost from "./MasonryGridPost";
+import propTypes from "prop-types";
 
 export default function MasonryGridColumn({ posts }) {
   return (
@@ -10,3 +11,7 @@ export default function MasonryGridColumn({ posts }) {
     </div>
   );
 }
+
+MasonryGridColumn.propTypes = {
+  posts: propTypes.object,
+};

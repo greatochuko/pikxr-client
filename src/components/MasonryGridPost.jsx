@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import styles from "./MasonryGridPost.module.css";
 import { setModalPost, togglemodal } from "../slice/postSlice";
+import propTypes from "prop-types";
 
 export default function MasonryGridPost({ post }) {
   const dispatch = useDispatch();
@@ -27,3 +28,7 @@ export default function MasonryGridPost({ post }) {
     </div>
   );
 }
+
+MasonryGridPost.propTypes = {
+  post: propTypes.object,
+};
