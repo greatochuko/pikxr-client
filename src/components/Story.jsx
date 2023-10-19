@@ -1,7 +1,7 @@
 import styles from "./Story.module.css";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { togglemodal } from "../slice/postSlice";
+import { setModalStory, togglemodal } from "../slice/postSlice";
 
 export default function Story({ story }) {
   const dispatch = useDispatch();
@@ -10,9 +10,14 @@ export default function Story({ story }) {
     dispatch(togglemodal("createStory"));
   }
 
+  function openStoryViewModal() {
+    dispatch(setModalStory(story));
+    dispatch(togglemodal("viewStory"));
+  }
+
   if (story) {
     return (
-      <div className={`${styles.story}`}>
+      <div className={`${styles.story}`} onClick={openStoryViewModal}>
         <img
           src={`http://localhost:5000/stories/${story.imageUrl} `}
           alt={story.imageUrl}

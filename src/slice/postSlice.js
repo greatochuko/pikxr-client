@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { modalIsOpen: false, modalType: "", posts: [], post: {} };
+const initialState = {
+  modalIsOpen: false,
+  modalType: "",
+  posts: [],
+  post: {},
+  story: {},
+};
 
 const postSlice = createSlice({
   name: "post",
@@ -17,8 +23,12 @@ const postSlice = createSlice({
     setModalPost: (state, action) => {
       state.post = action.payload;
     },
+    setModalStory: (state, action) => {
+      state.story = action.payload;
+    },
   },
 });
 
-export const { togglemodal, setPosts, setModalPost } = postSlice.actions;
+export const { togglemodal, setPosts, setModalPost, setModalStory } =
+  postSlice.actions;
 export default postSlice.reducer;

@@ -4,20 +4,21 @@ import { Link } from "react-router-dom";
 import OptionsButton from "./OptionsButton";
 import { getDuration } from "../utils/getDuration";
 
-export default function Creator({ post, className }) {
-  const duration = getDuration(post.createdAt);
+export default function Creator({ post, story, className }) {
+  const data = post || story;
+  const duration = getDuration(data.createdAt);
 
   return (
     <div className={styles.creator + " " + className}>
       <Link>
-        <img src={post.creator.imageUrl} alt={post.creator.username} />
+        <img src={data.creator.imageUrl} alt={data.creator.username} />
         <div className={styles.text}>
           <h4>
-            {post.creator.fullname}
+            {data.creator.fullname}
             <span>{duration}</span>
           </h4>
 
-          <p>@{post.creator.username}</p>
+          <p>@{data.creator.username}</p>
         </div>
       </Link>
       <OptionsButton top={10} right={10} size={20} />
@@ -27,5 +28,6 @@ export default function Creator({ post, className }) {
 
 Creator.propTypes = {
   post: PropTypes.object,
+  story: PropTypes.object,
   className: PropTypes.string,
 };
