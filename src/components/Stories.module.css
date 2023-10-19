@@ -10,13 +10,16 @@
   color: #333;
 }
 
-.header a {
+.header button {
   font-size: 0.8rem;
   color: #aaa;
   font-weight: 500;
+  border: none;
+  background-color: transparent;
+  transition: color 0.15s;
 }
 
-.header a:hover {
+.header button:hover {
   color: #333;
 }
 

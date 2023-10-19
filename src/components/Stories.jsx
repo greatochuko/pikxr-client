@@ -1,27 +1,29 @@
+import { setModalStory, togglemodal } from "../slice/postSlice";
 import styles from "./Stories.module.css";
 import Story from "./Story";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Stories() {
-  const { stories: reduxStories } = useSelector((state) => state.story);
+  const { stories } = useSelector((state) => state.story);
   const { user } = useSelector((state) => state.user);
-  const stories = reduxStories
-    .map((a) => a)
-    .sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
 
-  let userHasStory;
+  const dispatch = useDispatch();
+
+  let userHasStory = false;
   stories.forEach((story) => {
     if (story.creator._id === user._id) return (userHasStory = true);
   });
+
+  function openStoryViewModal() {
+    dispatch(setModalStory(stories[0]));
+    dispatch(togglemodal("viewStory"));
+  }
 
   return (
     <div className={styles.stories}>
       <div className={styles.header}>
         <h3>Stories</h3>
-        <a href="">Watch all</a>
+        <button onClick={openStoryViewModal}>Watch all</button>
       </div>
       <div className={styles.storiesList}>
         {!userHasStory ? <Story /> : null}
