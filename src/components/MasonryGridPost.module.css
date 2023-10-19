@@ -20,6 +20,19 @@
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
   transition: opacity 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.overlay span {
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.overlay span i {
+  margin-right: 5px;
 }
 
 .post:hover .overlay {

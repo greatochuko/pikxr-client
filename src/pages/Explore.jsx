@@ -4,18 +4,6 @@ import styles from "./Explore.module.css";
 import { generateMasonryArray } from "../utils/createMansoryArray";
 import { useSelector } from "react-redux";
 
-const resData = [
-  { img: "post1.jpg" },
-  { img: "post2.jpg" },
-  { img: "post1.jpg" },
-  { img: "post5.jpg" },
-  { img: "post4.jpg" },
-  { img: "post6.jpg" },
-  { img: "post7.jpg" },
-  { img: "post8.jpg" },
-  { img: "post9.jpg" },
-];
-
 export default function Explore() {
   const exploreRef = useRef(null);
   const [columns, setColumns] = useState();
