@@ -1,17 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState } from "react";
-import { resizeImage } from "../utils/imageResize";
+import propTypes from "prop-types";
 
-import styles from "./StoriesModal.module.css";
+import { resizeImage } from "../utils/imageResize";
 import { createStory, fetchStories } from "../services/storyServices";
 
-export default function StoriesModal({ setStories }) {
-  const dispatch = useDispatch();
+import styles from "./StoriesModal.module.css";
+import { setStories } from "../slice/storySlice";
+import { togglemodal } from "../slice/postSlice";
+
+export default function StoriesModal() {
   const [image, setImage] = useState(null);
   const imageInputRef = useRef();
   const [caption, setCaption] = useState("");
   const [imgPreviewSrc, setImgPreviewSrc] = useState("");
   const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   function handleChange(e) {
     e.preventDefault();
@@ -34,8 +38,9 @@ export default function StoriesModal({ setStories }) {
     if (resData.error) {
       return;
     }
-    // const data = await fetchStories();
-    // setStories(data);
+    const data = await fetchStories();
+    dispatch(setStories(data));
+    dispatch(togglemodal());
   }
 
   return (
@@ -77,3 +82,7 @@ export default function StoriesModal({ setStories }) {
     </div>
   );
 }
+
+StoriesModal.propTypes = {
+  setStories: propTypes.func,
+};

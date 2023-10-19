@@ -20,7 +20,7 @@ export default function CommentForm({ className, postId, setComments = null }) {
       className={styles.commentForm + " " + className}
       onSubmit={handlePostComment}
     >
-      <img src={user.imgUrl} alt="" />
+      <img src={user.imageUrl} alt="" />
       <input
         type="text"
         value={comment}

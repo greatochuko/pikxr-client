@@ -10,7 +10,7 @@ export default function Creator({ post, className }) {
   return (
     <div className={styles.creator + " " + className}>
       <Link>
-        <img src={post.creator.imgUrl} alt={post.creator.username} />
+        <img src={post.creator.imageUrl} alt={post.creator.username} />
         <div className={styles.text}>
           <h4>
             {post.creator.fullname}

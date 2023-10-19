@@ -14,12 +14,15 @@ export default function Story({ story }) {
     return (
       <div className={`${styles.story}`}>
         <img
-          src={`http://localhost:5000/${story.imgUrl} `}
-          alt={story.imgUrl}
+          src={`http://localhost:5000/stories/${story.imageUrl} `}
+          alt={story.imageUrl}
         />
         <div className={styles.creatorDetails}>
-          <img src={story.user.imgUrl} alt={story.user.username} />
-          <h4>@{story.user.username}</h4>
+          <img
+            src={`http://localhost:5000/${story.creator.imageUrl}`}
+            alt={story.creator.username}
+          />
+          <h4>@{story.creator.username}</h4>
         </div>
         <div className={styles.overlay}></div>
       </div>

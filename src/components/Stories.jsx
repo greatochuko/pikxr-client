@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react";
 import styles from "./Stories.module.css";
 import Story from "./Story";
-import { fetchStories } from "../services/storyServices";
+import { useSelector } from "react-redux";
 
 export default function Stories() {
-  const [stories, setStories] = useState([]);
-  useEffect(() => {
-    async function getStories() {
-      const data = await fetchStories();
-      setStories(data);
-    }
-    getStories();
-  }, []);
+  const { stories } = useSelector((state) => state.story);
+  const { user } = useSelector((state) => state.user);
+  let userHasStory;
+  stories.forEach((story) => {
+    if (story.creator._id === user._id) return (userHasStory = true);
+  });
 
   return (
     <div className={styles.stories}>
@@ -20,7 +17,7 @@ export default function Stories() {
         <a href="">Watch all</a>
       </div>
       <div className={styles.storiesList}>
-        <Story />
+        {!userHasStory ? <Story /> : null}
         {stories.map((story) => (
           <Story story={story} key={story._id} />
         ))}

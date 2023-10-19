@@ -5,7 +5,7 @@ import OptionsButton from "./OptionsButton";
 export default function Comment({ comment }) {
   return (
     <li className={styles.comment}>
-      <img src={comment.user.imgUrl} alt="" />
+      <img src={comment.user.imageUrl} alt="" />
       <div className={styles.details}>
         <h4>{comment.user.fullname}</h4>
         <p>{comment.comment}</p>
