@@ -4,7 +4,12 @@ import styles from "./Post.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { likePost, unLikePost } from "../services/postServices";
+import {
+  likePost,
+  savePost,
+  unLikePost,
+  unSavePost,
+} from "../services/postServices";
 
 export default function Post({ currentPost }) {
   const { user } = useSelector((state) => state.user);
@@ -12,6 +17,7 @@ export default function Post({ currentPost }) {
   const [seeMore, setSeeMore] = useState(false);
   const [post, setPost] = useState(currentPost);
   const [isLiked, setIsLiked] = useState(user.likedPosts.includes(post._id));
+  const [isSaved, setIsSaved] = useState(user.savedPosts.includes(post._id));
 
   const dispatch = useDispatch();
 
@@ -42,6 +48,24 @@ export default function Post({ currentPost }) {
         return;
       }
       setIsLiked(false);
+      setPost(data);
+    }
+  }
+
+  async function toggleSave() {
+    if (!isSaved) {
+      const data = await savePost(post._id, user._id);
+      if (data.error) {
+        return;
+      }
+      setIsSaved(true);
+      setPost(data);
+    } else {
+      const data = await unSavePost(post._id, user._id);
+      if (data.error) {
+        return;
+      }
+      setIsSaved(false);
       setPost(data);
     }
   }
@@ -77,8 +101,12 @@ export default function Post({ currentPost }) {
           <i className="fa-solid fa-share-nodes"></i>
           {post.shares}
         </button>
-        <button>
-          <i className="fa-regular fa-bookmark"></i>
+        <button onClick={toggleSave}>
+          <i
+            className={`fa-${
+              isSaved ? "solid " + styles.saved : "regular"
+            } fa-bookmark`}
+          ></i>
           {post.saves}
         </button>
       </div>
