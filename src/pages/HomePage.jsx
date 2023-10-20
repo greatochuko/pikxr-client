@@ -6,11 +6,8 @@ import RightSidebar from "../components/RightSidebar";
 export default function HomePage() {
   return (
     <main className={styles.homepage}>
-      <div className={styles.mainArea}>
-        <Stories />
-        <Feed />
-      </div>
-      <RightSidebar />
+      <Stories />
+      <Feed />
     </main>
   );
 }

@@ -1,0 +1,47 @@
+.navbar {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  position: sticky;
+  top: 0;
+  padding: 10px 1.5rem;
+  align-items: center;
+  z-index: 100;
+  background-color: white;
+}
+
+.logo {
+  width: 100px;
+}
+
+.logo img {
+  width: 80px;
+}
+
+.navbar ul {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  gap: 2rem;
+  font-size: 1.2rem;
+}
+
+.navbar ul li a {
+  color: gray;
+}
+
+.navbar ul li.active a {
+  color: black;
+}
+
+.profile {
+  width: 100px;
+  display: flex;
+}
+
+.profile img {
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  border-radius: 50%;
+}

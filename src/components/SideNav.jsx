@@ -47,10 +47,10 @@ export default function SideNav() {
           </li>
           <li>
             <Link
-              to="/search"
+              to="/profile"
               className={pathname === "/profile" ? styles.active : ""}
             >
-              <i className="fa-solid fa-magnifying-glass"></i>
+              <i className="fa-solid fa-circle-user"></i>
               Profile
             </Link>
           </li>

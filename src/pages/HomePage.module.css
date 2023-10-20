@@ -1,14 +1,4 @@
 .homepage {
-  display: flex;
+  /* display: flex; */
   flex: 1;
-}
-
-.mainArea {
-  flex: 1;
-  overflow-y: scroll;
-  background-color: #f8f8f8;
-}
-
-.mainArea::-webkit-scrollbar {
-  display: none;
 }
