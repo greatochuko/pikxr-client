@@ -1,6 +1,6 @@
 .homepage {
-  padding-top: 3rem;
+  padding: 3rem 15vw;
   flex: 1;
   overflow-y: scroll;
-  height: 100dvh;
+  height: 100vh;
 }

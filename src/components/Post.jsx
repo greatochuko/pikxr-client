@@ -86,7 +86,7 @@ export default function Post({ currentPost }) {
         </button>
         <button onClick={openPostViewModal}>
           <i className="fa-regular fa-comment"></i>
-          {post.comments}
+          {post.comments?.length}
         </button>
         <button>
           <i className="fa-solid fa-share-nodes"></i>

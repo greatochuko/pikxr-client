@@ -1,10 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { togglemodal } from "../slice/postSlice";
 
 export default function NavBar() {
   const { pathname } = useLocation();
   const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const modalType = "";
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
@@ -26,9 +30,19 @@ export default function NavBar() {
             <i className="fa-solid fa-magnifying-glass"></i>
           </Link>
         </li>
+        <li
+          className={styles.createPost}
+          onClick={() => dispatch(togglemodal("createPost"))}
+        >
+          <a>
+            <i className="fa-solid fa-circle-plus"></i>
+          </a>
+        </li>
       </ul>
       <div className={styles.profile}>
-        <img src={"http://localhost:5000/" + user.imageUrl} alt="" />
+        <Link to={"/profile"}>
+          <img src={"http://localhost:5000/" + user.imageUrl} alt="" />
+        </Link>
       </div>
     </nav>
   );
