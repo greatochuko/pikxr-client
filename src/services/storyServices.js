@@ -5,7 +5,7 @@ export async function fetchStories() {
 }
 
 export async function createStory(formData) {
-  const res = await fetch("http://localhost:5000/story/new", {
+  const res = await fetch("http://localhost:5000/stories", {
     method: "POST",
     body: formData,
   });

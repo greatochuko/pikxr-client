@@ -82,7 +82,7 @@ export default function Post({ currentPost }) {
         ) : null}
       </p>
       <div className={styles.images} onClick={openPostViewModal}>
-        <img src={`http://localhost:5000/${post.imageUrl}`} />
+        <img src={`http://localhost:5000/posts/${post.imageUrl}`} />
       </div>
       <div className={styles.actionButtons}>
         <button onClick={toggleLike}>

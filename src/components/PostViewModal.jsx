@@ -34,7 +34,7 @@ export default function PostViewModal() {
   return (
     <div className={styles.postViewModal} onClick={(e) => e.stopPropagation()}>
       <div className={styles.imgContainer}>
-        <img src={`http://localhost:5000/${post.imageUrl}`} alt="" />
+        <img src={`http://localhost:5000/posts/${post.imageUrl}`} alt="" />
       </div>
       <div className={styles.details}>
         <Creator post={post} className={styles.creator} />
