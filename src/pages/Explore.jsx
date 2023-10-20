@@ -8,7 +8,6 @@ export default function Explore() {
   const exploreRef = useRef(null);
   const [columns, setColumns] = useState();
   const { posts } = useSelector((state) => state.post);
-  console.log(posts);
 
   const explore = exploreRef.current;
 

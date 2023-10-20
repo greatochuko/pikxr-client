@@ -13,7 +13,7 @@ export default function MasonryGridPost({ post }) {
 
   return (
     <div className={styles.post} onClick={openPostViewModal}>
-      <img src={`http://localhost:5000/${post.imageUrl}`} alt="" />
+      <img src={`http://localhost:5000/posts/${post.imageUrl}`} alt="" />
       <div className={styles.overlay}>
         <span>
           <i className="fa-solid fa-heart"></i>
@@ -22,7 +22,7 @@ export default function MasonryGridPost({ post }) {
 
         <span>
           <i className="fa-solid fa-comment"></i>
-          {post.comments}
+          {post.comments?.length}
         </span>
       </div>
     </div>

@@ -8,12 +8,11 @@ export default function NavBar() {
   const { pathname } = useLocation();
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const modalType = "";
   return (
     <nav className={styles.navbar}>
-      <div className={styles.logo}>
+      <Link to={"/"} className={styles.logo}>
         <img src="logo.png" alt="pikxr logo" />
-      </div>
+      </Link>
       <ul>
         <li className={pathname === "/" ? styles.active : ""}>
           <Link to={"/"}>
@@ -37,6 +36,14 @@ export default function NavBar() {
           <a>
             <i className="fa-solid fa-circle-plus"></i>
           </a>
+        </li>
+        <li>
+          <Link
+            to="/notifications"
+            className={pathname === "/notifications" ? styles.active : ""}
+          >
+            <i className="fa-solid fa-bell"></i>
+          </Link>
         </li>
       </ul>
       <div className={styles.profile}>

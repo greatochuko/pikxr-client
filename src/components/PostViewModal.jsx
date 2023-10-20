@@ -1,25 +1,16 @@
 import { useSelector } from "react-redux";
 import styles from "./PostViewModal.module.css";
 import CommentForm from "./CommentForm";
-import { useEffect, useState } from "react";
-import { fetchComments } from "../services/commentServices";
+import { useState } from "react";
 import Comment from "./Comment.jsx";
 import Creator from "./Creator";
 
 export default function PostViewModal() {
   const { post } = useSelector((state) => state.post);
-  const [comments, setComments] = useState([]);
   const [caption, setCaption] = useState(
     post.caption.length > 50 ? post.caption.slice(0, 50) + "..." : post.caption
   );
-
-  useEffect(() => {
-    async function getComments() {
-      const data = await fetchComments(post._id);
-      setComments(data);
-    }
-    getComments();
-  }, [post._id]);
+  const comments = post.comments;
 
   function toggleSeeMore() {
     caption.includes("...")
@@ -53,11 +44,7 @@ export default function PostViewModal() {
             ))}
           </ul>
         </div>
-        <CommentForm
-          className={styles.commentForm}
-          postId={post._id}
-          setComments={setComments}
-        />
+        <CommentForm className={styles.commentForm} postId={post._id} />
       </div>
     </div>
   );
