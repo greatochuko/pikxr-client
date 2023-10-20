@@ -2,7 +2,7 @@
   width: 100%;
   overflow: hidden;
   display: flex;
-  position: sticky;
+  position: fixed;
   top: 0;
   padding: 10px 1.5rem;
   align-items: center;

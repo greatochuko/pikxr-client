@@ -2,89 +2,37 @@
 
 .post {
   background-color: #fff;
-  padding: 10px;
-  border-radius: 5px;
+  aspect-ratio: 3/4;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  position: relative;
-  box-shadow: 0 0 5px #eee;
-  transition: all 0.3s;
+  transition: 0.3s;
 }
 
-/* IMAGES */
-.images {
-  border-radius: 5px;
+.post .images {
   overflow: hidden;
-  aspect-ratio: 16/10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex: 1;
 }
-.images img {
+
+.post .images img {
+  height: 100%;
   width: 100%;
-  transition: scale 0.3s;
-  cursor: pointer;
-}
-
-.images img:hover {
-  scale: 1.02;
-}
-
-/* CAPTION */
-.caption {
-  font-size: 0.9rem;
-  color: #666;
-  line-height: 1.6rem;
-}
-
-/* SEE MORE BUTTON */
-.seeMoreBtn {
-  background-color: transparent;
-  border: none;
-  color: blue;
-  margin-left: 5px;
-}
-
-.seeMoreBtn:hover {
-  text-decoration: underline;
+  object-fit: cover;
 }
 
 /* ACTION BUTTONS */
 .actionButtons {
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
 }
 
 .actionButtons button {
-  background-color: transparent;
+  background-color: #fff;
   border: none;
+  padding: 10px;
   color: #333;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 10px;
   font-size: 0.9rem;
-  padding: 5px 10px;
 }
 
 .actionButtons button i {
-  font-size: 1rem;
-  transition: transform 0.1s;
-}
-
-.actionButtons button i.liked {
-  color: var(--RED-200);
-}
-.actionButtons button i.saved {
-  color: var(--BLUE-200);
-}
-
-.actionButtons button:hover i {
-  transform: scale(1.2);
-}
-
-.actionButtons button:active i {
-  transform: scale(1.1);
+  margin-right: 10px;
 }

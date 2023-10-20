@@ -1,5 +1,6 @@
 .stories {
-  width: 70%;
+  width: min(90%, 1000px);
+
   margin: 1rem auto;
 }
 

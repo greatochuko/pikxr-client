@@ -10,8 +10,8 @@ export default function AppLayout() {
   const { modalIsOpen, modalType } = useSelector((state) => state.post);
   return (
     <div className={styles.appLayout}>
-      {/* <MainNav />
-      <SideNav /> */}
+      {/* <MainNav /> */}
+      {/* <SideNav /> */}
       <NavBar />
       <Outlet />
       {modalIsOpen ? <ModalContainer type={modalType} /> : null}

@@ -1,4 +1,6 @@
 .homepage {
-  /* display: flex; */
+  padding-top: 3rem;
   flex: 1;
+  overflow-y: scroll;
+  height: 100dvh;
 }

@@ -72,15 +72,6 @@ export default function Post({ currentPost }) {
 
   return (
     <div className={styles.post}>
-      <Creator post={post} />
-      <p className={styles.caption}>
-        {postCaption}
-        {post.caption.length > 100 ? (
-          <button className={styles.seeMoreBtn} onClick={toggleSeeMore}>
-            {seeMore ? "Less" : "More"}
-          </button>
-        ) : null}
-      </p>
       <div className={styles.images} onClick={openPostViewModal}>
         <img src={`http://localhost:5000/posts/${post.imageUrl}`} />
       </div>
@@ -110,6 +101,7 @@ export default function Post({ currentPost }) {
           {post.saves}
         </button>
       </div>
+      <Creator post={post} />
     </div>
   );
 }

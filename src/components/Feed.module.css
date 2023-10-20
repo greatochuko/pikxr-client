@@ -3,7 +3,7 @@
 .feed {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: min(90%, 1000px);
   margin: auto;
   margin-bottom: 2rem;
 }
