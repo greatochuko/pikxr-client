@@ -13,5 +13,5 @@ export default function MasonryGridColumn({ posts }) {
 }
 
 MasonryGridColumn.propTypes = {
-  posts: propTypes.object,
+  posts: propTypes.array,
 };

@@ -1,20 +1,33 @@
 import styles from "./Story.module.css";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setModalStory, togglemodal } from "../slice/postSlice";
 
-export default function Story({ story }) {
+export default function Story({ story, type }) {
   const dispatch = useDispatch();
+  const { stories } = useSelector((state) => state.story);
+  const { user } = useSelector((state) => state.user);
 
   function openStoriesModal() {
     dispatch(togglemodal("createStory"));
   }
 
   function openStoryViewModal() {
-    dispatch(setModalStory(story));
+    dispatch(setModalStory(story || stories[0]));
     dispatch(togglemodal("viewStory"));
   }
 
+  if (type === "watch") {
+    return (
+      <div
+        className={styles.story + " " + styles.watch}
+        onClick={openStoryViewModal}
+      >
+        <i className="fa-solid fa-play"></i>
+        <h4 className={styles.username}>Watch all</h4>
+      </div>
+    );
+  }
   if (story) {
     return (
       <div className={`${styles.story}`} onClick={openStoryViewModal}>
@@ -22,28 +35,28 @@ export default function Story({ story }) {
           src={`http://localhost:5000/stories/${story.imageUrl} `}
           alt={story.imageUrl}
         />
-        <div className={styles.creatorDetails}>
-          <img
-            src={`http://localhost:5000/${story.creator.imageUrl}`}
-            alt={story.creator.username}
-          />
-          <h4>@{story.creator.username}</h4>
-        </div>
-        <div className={styles.overlay}></div>
+        <h4 className={styles.username}>@{story.creator.username}</h4>
       </div>
     );
   }
   return (
-    <div className={`${styles.story} ${styles.add}`}>
-      <button className={styles.addStory} onClick={openStoriesModal}>
-        <span>+</span>
-        <p>Add Story</p>
+    <div
+      className={styles.story + " " + styles.addStory}
+      onClick={openStoriesModal}
+    >
+      <img
+        src={`http://localhost:5000/${user.imageUrl} `}
+        alt={user.imageUrl}
+      />
+      <button>
+        <i className="fa-solid fa-circle-plus"></i>
       </button>
-      <div className={styles.overlay}></div>
+      <h4 className={styles.username}>Your Story</h4>
     </div>
   );
 }
 
 Story.propTypes = {
   story: PropTypes.object,
+  type: PropTypes.string,
 };

@@ -1,19 +1,21 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./CommentForm.module.css";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { postComment } from "../services/commentServices";
+import { setModalPost } from "../slice/postSlice";
 
-export default function CommentForm({ className, postId, setComments = null }) {
+export default function CommentForm({ className, postId }) {
   const { user } = useSelector((state) => state.user);
   const [comment, setComment] = useState("");
+  const dispatch = useDispatch();
 
   async function handlePostComment(e) {
     e.preventDefault();
     setComment("");
     const data = await postComment(comment, user._id, postId);
 
-    setComments && setComments(data);
+    dispatch(setModalPost(data));
   }
   return (
     <form
@@ -36,5 +38,4 @@ export default function CommentForm({ className, postId, setComments = null }) {
 CommentForm.propTypes = {
   className: PropTypes.string,
   postId: PropTypes.string,
-  setComments: PropTypes.func,
 };

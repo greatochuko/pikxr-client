@@ -82,3 +82,19 @@
   text-shadow: 0 0 2px gray;
   color: white;
 }
+
+/* CAPTION */
+
+.caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 1rem;
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.2)
+  );
+  color: white;
+  text-align: center;
+}

@@ -9,6 +9,8 @@ import Authenticate from "./components/Authenticate";
 import Explore from "./pages/Explore";
 import Notifications from "./pages/Notifications";
 import Settings from "./pages/Settings";
+import PageNotFound from "./pages/PageNotFound";
+import Profile from "./pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -34,10 +36,15 @@ const router = createBrowserRouter([
         path: "/settings",
         element: <Settings />,
       },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
     ],
   },
   { path: "/login", element: <Login /> },
   { path: "/signup", element: <Signup /> },
+  { path: "*", element: <PageNotFound /> },
 ]);
 
 function App() {

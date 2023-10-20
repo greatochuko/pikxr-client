@@ -1,30 +1,23 @@
 .story {
-  height: 180px;
-  min-width: 120px;
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  /* overflow: hidden; */
   position: relative;
-  /* box-shadow: 0 0 2px 1px blue; */
-  overflow: hidden;
+  padding: 2px;
+  border: solid 2px blue;
+  cursor: pointer;
 }
 
-.story:hover img {
-  scale: 1.05;
+.story.watch {
+  border-color: #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.story:hover .overlay {
-  opacity: 1;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  transition: 0.3s;
+.story.watch i {
+  color: #444;
 }
 
 .story img {
@@ -32,72 +25,49 @@
   width: 100%;
   object-fit: cover;
   transition: scale 0.3s;
-}
-
-/* CREATOR DETAILS */
-
-.creatorDetails {
-  position: absolute;
-  bottom: 5px;
-  left: 10px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  z-index: 1;
-}
-
-.creatorDetails img {
-  width: 30px;
-  height: 30px;
   border-radius: 50%;
-  border: solid #fff 1px;
 }
 
-.creatorDetails h4 {
-  font-size: 0.8rem;
+.story:hover img {
+  scale: 1.05;
+}
+
+.story .username {
+  position: absolute;
+  bottom: -1.5rem;
+  font-weight: 600;
+  font-size: 13px;
+  transform: translateX(-50%);
+  left: 50%;
+  color: #555;
   white-space: nowrap;
-  color: #eee;
-  font-weight: 500;
-  text-shadow: 0 0 5px gray;
 }
 
 /* ADD STORY */
 
-.story.add {
-  background-color: #555;
-  display: flex;
+.story.addStory {
+  border-color: #bbb;
+  position: relative;
 }
 
-.addStory {
-  flex: 1;
+.addStory button {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 28px;
+  height: 28px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  border: none;
-  background-color: transparent;
-  z-index: 1;
-  cursor: pointer;
-}
-
-.addStory span {
   background-color: #fff;
-  display: block;
-  width: 40px;
-  height: 40px;
+  border: none;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  margin-bottom: 5px;
 }
 
-.addStory p {
-  color: #fff;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.addStory input {
-  display: none;
+.addStory i {
+  color: var(--BLUE-200);
+  width: 20px;
+  font-size: 1.5rem;
+  padding: 1px;
+  margin-left: 1px;
+  margin-bottom: 1px;
 }

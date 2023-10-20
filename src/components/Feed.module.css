@@ -1,10 +1,4 @@
-@import "../index.css";
-
 .feed {
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-  margin: auto;
   margin-bottom: 2rem;
 }
 
@@ -36,9 +30,9 @@
 
 /* POSTS */
 .posts {
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 /* EMPTY FEED */

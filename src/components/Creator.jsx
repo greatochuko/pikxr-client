@@ -21,7 +21,7 @@ export default function Creator({ post, story, className }) {
           <p>@{data.creator.username}</p>
         </div>
       </Link>
-      <OptionsButton top={10} right={10} size={20} />
+      <OptionsButton top={1} right={10} size={20} />
     </div>
   );
 }

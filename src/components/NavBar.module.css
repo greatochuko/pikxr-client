@@ -1,0 +1,59 @@
+.navbar {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  top: 0;
+  padding: 5px 1.5rem;
+  align-items: center;
+  z-index: 100;
+  background-color: white;
+}
+
+.logo {
+  width: 100px;
+}
+
+.logo img {
+  width: 80px;
+}
+
+.navbar > ul {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  gap: 2rem;
+  font-size: 1.2rem;
+}
+
+.navbar > ul li a {
+  color: gray;
+  padding: 10px;
+  display: block;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.navbar > ul :is(li, li.active) a:hover {
+  color: var(--BLUE-200);
+}
+
+.navbar > ul li.active a {
+  color: black;
+}
+
+/* PROFILE */
+
+.profile {
+  width: 100px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.profile img {
+  width: 40px;
+  height: 40px;
+  margin-left: 2rem;
+  border-radius: 50%;
+}

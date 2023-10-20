@@ -13,5 +13,5 @@ export default function MasonryGrid({ data }) {
 }
 
 MasonryGrid.propTypes = {
-  data: propTypes.object,
+  data: propTypes.array,
 };
