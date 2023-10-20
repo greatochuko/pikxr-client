@@ -30,6 +30,7 @@ export default function Stories() {
         {stories.map((story) => (
           <Story story={story} key={story._id} />
         ))}
+        <Story type={"watch"} />
       </div>
     </div>
   );
