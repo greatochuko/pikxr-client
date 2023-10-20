@@ -36,6 +36,7 @@ export default function StoryViewModal() {
         src={`http://localhost:5000/stories/${currentStory.imageUrl}`}
         alt=""
       />
+      <p className={styles.caption}>{story.caption}</p>
       <div className={styles.overlay}></div>
     </div>
   );
