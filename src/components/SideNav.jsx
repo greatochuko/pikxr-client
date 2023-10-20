@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./Navbar.module.css";
+import styles from "./SideNav.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { togglemodal } from "../slice/postSlice";
 
-export default function Navbar() {
+export default function SideNav() {
   const { pathname } = useLocation();
   const { modalType } = useSelector((state) => state.post);
   const dispatch = useDispatch();
@@ -18,15 +18,7 @@ export default function Navbar() {
               Feed
             </Link>
           </li>
-          <li>
-            <Link
-              to="/search"
-              className={pathname === "/search" ? styles.active : ""}
-            >
-              <i className="fa-solid fa-magnifying-glass"></i>
-              Search
-            </Link>
-          </li>
+
           <li>
             <Link
               to="/explore"
@@ -52,6 +44,15 @@ export default function Navbar() {
             <a>
               <i className="fa-solid fa-circle-plus"></i>Create new Post
             </a>
+          </li>
+          <li>
+            <Link
+              to="/search"
+              className={pathname === "/profile" ? styles.active : ""}
+            >
+              <i className="fa-solid fa-magnifying-glass"></i>
+              Profile
+            </Link>
           </li>
           <li className={styles.settings}>
             <Link

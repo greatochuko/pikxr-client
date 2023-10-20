@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import SideNav from "../components/SideNav";
 import MainNav from "../components/MainNav";
 import styles from "./AppLayout.module.css";
 import { useSelector } from "react-redux";
@@ -10,7 +10,7 @@ export default function AppLayout() {
   return (
     <div className={styles.appLayout}>
       <MainNav />
-      <Navbar />
+      <SideNav />
       <Outlet />
       {modalIsOpen ? <ModalContainer type={modalType} /> : null}
     </div>

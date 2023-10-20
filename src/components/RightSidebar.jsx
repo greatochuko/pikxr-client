@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import styles from "./Sidebar.module.css";
+import styles from "./RightSidebar.module.css";
 
-export default function Sidebar() {
+export default function RightSidebar() {
   const user = useSelector((state) => state.user.user);
 
   return (
