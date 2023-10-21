@@ -4,7 +4,7 @@ import { fetchUser } from "../services/userServices";
 const token = JSON.parse(localStorage.getItem("token"));
 
 const initialState = {
-  user: (await fetchUser(token)) || null,
+  user: token ? await fetchUser() : null,
 };
 
 const userSlice = createSlice({
