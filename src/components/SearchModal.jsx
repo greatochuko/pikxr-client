@@ -23,6 +23,10 @@ export default function SearchModal() {
     return () => controller.abort();
   }, [query]);
 
+  function handleFollow(e) {
+    e.preventDefault();
+  }
+
   return (
     <div
       className={styles.modal}
@@ -36,6 +40,7 @@ export default function SearchModal() {
           placeholder="Search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          autoFocus
         />
         <i className="fa-solid fa-magnifying-glass"></i>
       </form>
@@ -47,9 +52,14 @@ export default function SearchModal() {
               <div className={styles.resultDetails}>
                 <h3>{result.fullname}</h3>
                 <p>
-                  @{result.username} - <span>{result.followers} Followers</span>
+                  @{result.username} -
+                  <span>
+                    {result.followers.length}
+                    {result.followers.length > 1 ? " Followers" : " Follower"}
+                  </span>
                 </p>
               </div>
+              <button onClick={handleFollow}>Follow </button>
             </Link>
           </li>
         ))}

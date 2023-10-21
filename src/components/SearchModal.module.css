@@ -90,3 +90,18 @@
   color: #333;
   font-weight: 600;
 }
+
+.result button {
+  margin-left: auto;
+  font-size: 0.9rem;
+  padding: 7px 12px;
+  border-radius: 5px;
+  border: solid 1px #ccc;
+  background-color: #eee;
+  transition: background-color 0.15s;
+  align-self: center;
+}
+
+.result button:hover {
+  background-color: #ddd;
+}

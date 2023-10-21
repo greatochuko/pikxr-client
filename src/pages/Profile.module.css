@@ -71,6 +71,21 @@
   flex-direction: column;
   align-items: center;
   color: gray;
+  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.userStats li:first-child {
+  cursor: default;
+}
+
+.userStats li:first-child:hover {
+  color: gray;
+}
+
+.userStats li:hover {
+  color: #333;
 }
 
 .userStats li span {
