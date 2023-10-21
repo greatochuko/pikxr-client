@@ -12,8 +12,10 @@ export default function Profile() {
   const [user, setUser] = useState(null);
   const [modalType, setModalType] = useState(null);
 
-  function closeModalContainer() {
+  async function closeModalContainer() {
     setModalType(null);
+    const data = await fetchUserProfile(username);
+    setUser(data);
   }
 
   useEffect(() => {
@@ -23,8 +25,6 @@ export default function Profile() {
     }
     getUser();
   }, [username]);
-
-  const user2 = null;
 
   if (user)
     return (

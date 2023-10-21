@@ -11,7 +11,7 @@ export default function CreatePostModal({ closeModalContainer }) {
   const [image, setImage] = useState(null);
   const imageInputRef = useRef();
   const [caption, setCaption] = useState("");
-  const [imgPreviewSrc, setImgPreviewSrc] = useState("");
+  const [imgPreviewSrc, setImgPreviewSrc] = useState(null);
   const { user } = useSelector((state) => state.user);
 
   function handleChange(e) {
@@ -37,7 +37,7 @@ export default function CreatePostModal({ closeModalContainer }) {
   }
 
   return (
-    <div className={styles.modal}>
+    <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
       <h2 className={styles.header}>Create new post</h2>
       <form onSubmit={handleCreatePost}>
         <div
@@ -45,23 +45,21 @@ export default function CreatePostModal({ closeModalContainer }) {
             imgPreviewSrc ? styles.imageLoaded : ""
           }`}
         >
-          <>
-            <input
-              type="file"
-              name="image"
-              id="image"
-              onChange={handleChange}
-              accept=".png, .jpg, .jpeg"
-              ref={imageInputRef}
-            />
-            <label htmlFor="image">
-              <p>
-                <i className="fa-regular fa-images"></i>
-                {imgPreviewSrc ? "Change img" : "Click to upload photo"}
-              </p>
-            </label>
-          </>
-          <img src={imgPreviewSrc} alt="" />
+          <input
+            type="file"
+            name="image"
+            id="image"
+            onChange={handleChange}
+            accept=".png, .jpg, .jpeg"
+            ref={imageInputRef}
+          />
+          <label htmlFor="image">
+            <p>
+              <i className="fa-regular fa-images"></i>
+              {imgPreviewSrc ? "Change img" : "Click to upload photo"}
+            </p>
+          </label>
+          {imgPreviewSrc && <img src={imgPreviewSrc} alt="" />}
         </div>
         <div className={styles.user}>
           <img src="/profileImg.jpg" alt="" />

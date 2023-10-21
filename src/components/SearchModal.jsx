@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { searchUsers } from "../services/searchServices";
-import { Link } from "react-router-dom";
 
 import styles from "./SearchModal.module.css";
+import SearchResult from "./SearchResult";
 
 export default function SearchModal() {
   const [searchResults, setSearchResults] = useState([]);
@@ -23,10 +23,6 @@ export default function SearchModal() {
     return () => controller.abort();
   }, [query]);
 
-  function handleFollow(e) {
-    e.preventDefault();
-  }
-
   return (
     <div
       className={styles.modal}
@@ -46,22 +42,7 @@ export default function SearchModal() {
       </form>
       <ul className={styles.searchResults}>
         {searchResults.map((result) => (
-          <li className={styles.result} key={result._id}>
-            <Link to={"/profile/" + result.username}>
-              <img src={"http://localhost:5000/" + result.imageUrl} alt="" />
-              <div className={styles.resultDetails}>
-                <h3>{result.fullname}</h3>
-                <p>
-                  @{result.username} -
-                  <span>
-                    {result.followers.length}
-                    {result.followers.length > 1 ? " Followers" : " Follower"}
-                  </span>
-                </p>
-              </div>
-              <button onClick={handleFollow}>Follow </button>
-            </Link>
-          </li>
+          <SearchResult key={result._id} result={result} />
         ))}
       </ul>
     </div>
