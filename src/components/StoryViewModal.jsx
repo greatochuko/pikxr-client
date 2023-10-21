@@ -2,26 +2,26 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./StoryViewModal.module.css";
 import Creator from "./Creator";
 import { useEffect, useState } from "react";
-import { togglemodal } from "../slice/postSlice";
+import propTypes from "prop-types";
 
-export default function StoryViewModal() {
-  const { story } = useSelector((state) => state.post);
+export default function StoryViewModal({ story, closeModalContainer }) {
   const { stories } = useSelector((state) => state.story);
-  const [currentIndex, setCurrentIndex] = useState(stories.indexOf(story));
-  const currentStory = stories[currentIndex];
+  const currentStoryIndex = story ? stories.indexOf(story) : 0;
 
-  const dispatch = useDispatch();
+  const [currentIndex, setCurrentIndex] = useState(currentStoryIndex);
+
+  const currentStory = stories[currentIndex];
 
   useEffect(() => {
     const timeout = setInterval(() => {
       if (stories.length - 1 <= currentIndex) {
-        dispatch(togglemodal());
+        closeModalContainer();
         return;
       }
       setCurrentIndex((curr) => curr + 1);
     }, 6000);
     return () => clearInterval(timeout);
-  }, [currentIndex, stories, dispatch]);
+  }, [currentIndex, stories, closeModalContainer]);
 
   return (
     <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
@@ -36,8 +36,13 @@ export default function StoryViewModal() {
         src={`http://localhost:5000/stories/${currentStory.imageUrl}`}
         alt=""
       />
-      <p className={styles.caption}>{story.caption}</p>
+      <p className={styles.caption}>{currentStory.caption}</p>
       <div className={styles.overlay}></div>
     </div>
   );
 }
+
+StoryViewModal.propTypes = {
+  story: propTypes.object,
+  closeModalContainer: propTypes.func,
+};

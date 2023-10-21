@@ -4,8 +4,9 @@ import { setPosts } from "../slice/postSlice";
 import { useRef, useState } from "react";
 import { createPost, fetchPosts } from "../services/postServices";
 import { resizeImage } from "../utils/imageResize";
+import propTypes from "prop-types";
 
-export default function CreatePostModal() {
+export default function CreatePostModal({ closeModalContainer }) {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const imageInputRef = useRef();
@@ -32,6 +33,7 @@ export default function CreatePostModal() {
     await createPost(formData);
     const data = await fetchPosts();
     dispatch(setPosts(data));
+    closeModalContainer();
   }
 
   return (
@@ -79,3 +81,7 @@ export default function CreatePostModal() {
     </div>
   );
 }
+
+CreatePostModal.propTypes = {
+  closeModalContainer: propTypes.func,
+};

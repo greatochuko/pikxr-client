@@ -1,28 +1,25 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styles from "./CommentForm.module.css";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import { useState } from "react";
 import { postComment } from "../services/commentServices";
-import { setModalPost } from "../slice/postSlice";
 
-export default function CommentForm({ className, postId }) {
+export default function CommentForm({ className, postId, setCurrentPost }) {
   const { user } = useSelector((state) => state.user);
   const [comment, setComment] = useState("");
-  const dispatch = useDispatch();
 
   async function handlePostComment(e) {
     e.preventDefault();
     setComment("");
     const data = await postComment(comment, user._id, postId);
-
-    dispatch(setModalPost(data));
+    setCurrentPost(data);
   }
   return (
     <form
       className={styles.commentForm + " " + className}
       onSubmit={handlePostComment}
     >
-      <img src={user.imageUrl} alt="" />
+      <img src={"http://localhost:5000/" + user.imageUrl} alt="" />
       <input
         type="text"
         value={comment}
@@ -36,6 +33,7 @@ export default function CommentForm({ className, postId }) {
 }
 
 CommentForm.propTypes = {
-  className: PropTypes.string,
-  postId: PropTypes.string,
+  className: propTypes.string,
+  postId: propTypes.string,
+  setCurrentPost: propTypes.func,
 };

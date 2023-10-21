@@ -6,6 +6,7 @@ import propTypes from "prop-types";
 export default function ProfilePostGrid({ type }) {
   const { posts } = useSelector((state) => state.post);
   const { user } = useSelector((state) => state.user);
+
   let filteredPosts = posts;
 
   if (type === "posts") {

@@ -7,9 +7,8 @@ import { createStory, fetchStories } from "../services/storyServices";
 
 import styles from "./StoriesModal.module.css";
 import { setStories } from "../slice/storySlice";
-import { togglemodal } from "../slice/postSlice";
 
-export default function CreateStoryModal() {
+export default function CreateStoryModal({ closeModalContainer }) {
   const [image, setImage] = useState(null);
   const imageInputRef = useRef();
   const [caption, setCaption] = useState("");
@@ -40,7 +39,7 @@ export default function CreateStoryModal() {
     }
     const data = await fetchStories();
     dispatch(setStories(data));
-    dispatch(togglemodal());
+    closeModalContainer();
   }
 
   return (
@@ -85,4 +84,5 @@ export default function CreateStoryModal() {
 
 CreateStoryModal.propTypes = {
   setStories: propTypes.func,
+  closeModalContainer: propTypes.func,
 };

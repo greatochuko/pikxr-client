@@ -11,7 +11,10 @@ export default function Creator({ post, story, className }) {
   return (
     <div className={styles.creator + " " + className}>
       <Link>
-        <img src={data.creator.imageUrl} alt={data.creator.username} />
+        <img
+          src={"http://localhost:5000/" + data.creator.imageUrl}
+          alt={data.creator.username}
+        />
         <div className={styles.text}>
           <h4>
             {data.creator.fullname}

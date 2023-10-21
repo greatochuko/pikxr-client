@@ -17,7 +17,7 @@
   width: 80px;
 }
 
-.navbar > ul {
+.navbar ul {
   display: flex;
   flex: 1;
   justify-content: center;
@@ -25,7 +25,7 @@
   font-size: 1.2rem;
 }
 
-.navbar > ul li a {
+.navbar li a {
   color: gray;
   padding: 10px;
   display: block;
@@ -33,27 +33,32 @@
   cursor: pointer;
 }
 
-.navbar > ul :is(li, li.active) a:hover {
+.navbar :is(li, li.active) a:hover {
   color: var(--BLUE-200);
 }
 
-.navbar > ul li.active a {
+.navbar li.active a {
   color: black;
 }
 
 /* PROFILE */
 
 .profile {
-  width: 100px;
   width: fit-content;
   display: flex;
   align-items: center;
   position: relative;
 }
 
+.profile a {
+  padding: 0;
+  width: fit-content;
+  margin-left: 1rem;
+  font-size: 1.2rem;
+}
+
 .profile img {
   width: 40px;
   height: 40px;
-  margin-left: 2rem;
   border-radius: 50%;
 }

@@ -1,34 +1,39 @@
-import { useSelector } from "react-redux";
 import styles from "./PostViewModal.module.css";
 import CommentForm from "./CommentForm";
 import { useState } from "react";
 import Comment from "./Comment.jsx";
 import Creator from "./Creator";
+import propTypes from "prop-types";
 
-export default function PostViewModal() {
-  const { post } = useSelector((state) => state.post);
+export default function PostViewModal({ post }) {
+  const [currentPost, setCurrentPost] = useState(post);
   const [caption, setCaption] = useState(
-    post.caption.length > 50 ? post.caption.slice(0, 50) + "..." : post.caption
+    currentPost.caption.length > 50
+      ? currentPost.caption.slice(0, 50) + "..."
+      : currentPost.caption
   );
-  const comments = post.comments;
+  const comments = currentPost.comments;
 
   function toggleSeeMore() {
     caption.includes("...")
-      ? setCaption(post.caption)
+      ? setCaption(currentPost.caption)
       : setCaption(
-          post.caption.length > 50
-            ? post.caption.slice(0, 50) + "..."
-            : post.caption
+          currentPost.caption.length > 50
+            ? currentPost.caption.slice(0, 50) + "..."
+            : currentPost.caption
         );
   }
 
   return (
     <div className={styles.postViewModal} onClick={(e) => e.stopPropagation()}>
       <div className={styles.imgContainer}>
-        <img src={`http://localhost:5000/posts/${post.imageUrl}`} alt="" />
+        <img
+          src={`http://localhost:5000/posts/${currentPost.imageUrl}`}
+          alt=""
+        />
       </div>
       <div className={styles.details}>
-        <Creator post={post} className={styles.creator} />
+        <Creator post={currentPost} className={styles.creator} />
         <p className={styles.caption}>
           {caption}
           {caption.includes("...") ? (
@@ -44,8 +49,16 @@ export default function PostViewModal() {
             ))}
           </ul>
         </div>
-        <CommentForm className={styles.commentForm} postId={post._id} />
+        <CommentForm
+          className={styles.commentForm}
+          postId={currentPost._id}
+          setCurrentPost={setCurrentPost}
+        />
       </div>
     </div>
   );
 }
+
+PostViewModal.propTypes = {
+  post: propTypes.object,
+};

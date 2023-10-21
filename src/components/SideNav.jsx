@@ -1,12 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styles from "./SideNav.module.css";
 import { Link, useLocation } from "react-router-dom";
-import { togglemodal } from "../slice/postSlice";
 
 export default function SideNav() {
   const { pathname } = useLocation();
   const { modalType } = useSelector((state) => state.post);
-  const dispatch = useDispatch();
 
   return (
     <div className={styles.sidebar}>
@@ -37,10 +35,7 @@ export default function SideNav() {
               Notifications
             </Link>
           </li>
-          <li
-            className={styles.createPost}
-            onClick={() => dispatch(togglemodal("createPost"))}
-          >
+          <li className={styles.createPost}>
             <a>
               <i className="fa-solid fa-circle-plus"></i>Create new Post
             </a>
@@ -63,7 +58,7 @@ export default function SideNav() {
               Settings
             </Link>
           </li>
-          <li onClick={() => dispatch(togglemodal("logout"))}>
+          <li>
             <a className={modalType === "logout" ? styles.active : ""}>
               <i className="fa-solid fa-right-from-bracket"></i>
               Logout

@@ -1,39 +1,33 @@
-import { useDispatch } from "react-redux";
-import { togglemodal } from "../slice/postSlice";
 import styles from "./ModalContainer.module.css";
 import CreatePostModal from "./CreatePostModal";
 import PostViewModal from "./PostViewModal";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import LogoutModal from "./LogoutModal";
 import CreateStoryModal from "./CreateStoryModal";
 import StoryViewModal from "./StoryViewModal";
 import SearchModal from "./SearchModal";
 
-export default function ModalContainer({ type, closeModalContainer }) {
-  const dispatch = useDispatch();
-
-  // function closeModal(e) {
-  //   e.preventDefault();
-  //   dispatch(togglemodal());
-  // }
-
-  function closeModal(e) {
-    e.preventDefault();
-    closeModalContainer();
-  }
-
+export default function ModalContainer({
+  type,
+  closeModalContainer,
+  post,
+  story,
+}) {
   return (
-    <div className={styles.modalContainer} onClick={closeModal}>
+    <div className={styles.modalContainer} onClick={closeModalContainer}>
       {type === "createPost" ? (
-        <CreatePostModal />
+        <CreatePostModal closeModalContainer={closeModalContainer} />
       ) : type === "viewPost" ? (
-        <PostViewModal />
+        <PostViewModal post={post} />
       ) : type === "logout" ? (
         <LogoutModal />
       ) : type === "createStory" ? (
-        <CreateStoryModal />
+        <CreateStoryModal closeModalContainer={closeModalContainer} />
       ) : type === "viewStory" ? (
-        <StoryViewModal />
+        <StoryViewModal
+          story={story}
+          closeModalContainer={closeModalContainer}
+        />
       ) : type === "search" ? (
         <SearchModal />
       ) : null}
@@ -42,6 +36,8 @@ export default function ModalContainer({ type, closeModalContainer }) {
 }
 
 ModalContainer.propTypes = {
-  type: PropTypes.string,
-  closeModal: PropTypes.func,
+  type: propTypes.string,
+  closeModalContainer: propTypes.func,
+  post: propTypes.object,
+  story: propTypes.object,
 };

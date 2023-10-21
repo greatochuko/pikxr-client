@@ -1,17 +1,18 @@
 import { Link, useLocation } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { togglemodal } from "../slice/postSlice";
 import { useState } from "react";
 import ModalContainer from "./ModalContainer";
 
 export default function NavBar() {
-  const [modalIsOpen, setModalIsOpen] = useState();
+  const [modalType, setModalType] = useState(null);
 
   const { pathname } = useLocation();
   const { user } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+
+  function closeModalContainer() {
+    setModalType(null);
+  }
 
   return (
     <>
@@ -31,13 +32,13 @@ export default function NavBar() {
             </Link>
           </li>
           <li>
-            <a onClick={() => setModalIsOpen(true)}>
+            <a onClick={() => setModalType("search")}>
               <i className="fa-solid fa-magnifying-glass"></i>
             </a>
           </li>
           <li
             className={styles.createPost}
-            onClick={() => dispatch(togglemodal("createPost"))}
+            onClick={() => setModalType("createPost")}
           >
             <a>
               <i className="fa-solid fa-circle-plus"></i>
@@ -53,13 +54,21 @@ export default function NavBar() {
           </li>
         </ul>
         <div className={styles.profile}>
+          <li className={styles.logout} onClick={() => setModalType("logout")}>
+            <a>
+              <i className="fa-solid fa-right-from-bracket"></i>
+            </a>
+          </li>
           <Link to={"/profile/" + user.username}>
             <img src={"http://localhost:5000/" + user.imageUrl} alt="" />
           </Link>
         </div>
       </nav>
-      {modalIsOpen ? (
-        <ModalContainer type={"search"} closeModalContainer={setModalIsOpen} />
+      {modalType ? (
+        <ModalContainer
+          type={modalType}
+          closeModalContainer={closeModalContainer}
+        />
       ) : null}
     </>
   );
