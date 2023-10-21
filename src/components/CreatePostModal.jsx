@@ -35,7 +35,7 @@ export default function CreatePostModal() {
   }
 
   return (
-    <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+    <div className={styles.modal}>
       <h2 className={styles.header}>Create new post</h2>
       <form onSubmit={handleCreatePost}>
         <div

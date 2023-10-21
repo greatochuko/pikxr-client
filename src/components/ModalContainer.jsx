@@ -7,13 +7,19 @@ import PropTypes from "prop-types";
 import LogoutModal from "./LogoutModal";
 import CreateStoryModal from "./CreateStoryModal";
 import StoryViewModal from "./StoryViewModal";
+import SearchModal from "./SearchModal";
 
-export default function ModalContainer({ type }) {
+export default function ModalContainer({ type, closeModalContainer }) {
   const dispatch = useDispatch();
+
+  // function closeModal(e) {
+  //   e.preventDefault();
+  //   dispatch(togglemodal());
+  // }
 
   function closeModal(e) {
     e.preventDefault();
-    dispatch(togglemodal());
+    closeModalContainer();
   }
 
   return (
@@ -28,6 +34,8 @@ export default function ModalContainer({ type }) {
         <CreateStoryModal />
       ) : type === "viewStory" ? (
         <StoryViewModal />
+      ) : type === "search" ? (
+        <SearchModal />
       ) : null}
     </div>
   );
@@ -35,4 +43,5 @@ export default function ModalContainer({ type }) {
 
 ModalContainer.propTypes = {
   type: PropTypes.string,
+  closeModal: PropTypes.func,
 };
