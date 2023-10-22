@@ -26,12 +26,12 @@ export default function Login() {
       setError(resData.error);
       return;
     }
-    const data = await fetchUser(resData.token);
+    const data = await fetchUser();
     dispatch(loginUser(data));
     navigate("/");
   }
 
-  if (user?.username) {
+  if (user?._id) {
     return <Navigate to={"/"} replace={true} />;
   }
 

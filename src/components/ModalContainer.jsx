@@ -14,6 +14,7 @@ export default function ModalContainer({
   post,
   story,
   username,
+  stories,
 }) {
   return (
     <div className={styles.modalContainer} onClick={closeModalContainer}>
@@ -29,9 +30,10 @@ export default function ModalContainer({
         <StoryViewModal
           story={story}
           closeModalContainer={closeModalContainer}
+          stories={stories}
         />
       ) : type === "search" ? (
-        <SearchModal />
+        <SearchModal closeModalContainer={closeModalContainer} />
       ) : type === "followers" ? (
         <FollowersModal
           username={username}
@@ -54,5 +56,6 @@ ModalContainer.propTypes = {
   closeModalContainer: propTypes.func,
   post: propTypes.object,
   story: propTypes.object,
+  stories: propTypes.array,
   username: propTypes.string,
 };

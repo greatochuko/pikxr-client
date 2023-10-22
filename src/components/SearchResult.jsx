@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { fetchUnFollowUser, fetchfollowUser } from "../services/userServices";
 
-export default function SearchResult({ result }) {
+export default function SearchResult({ result, closeModalContainer }) {
   const { user } = useSelector((state) => state.user);
   const [isFollowing, setIsFollowing] = useState(
     user.following.includes(result._id)
@@ -19,13 +19,17 @@ export default function SearchResult({ result }) {
   }
 
   return (
-    <li className={styles.result} key={result._id}>
+    <li
+      className={styles.result}
+      key={result._id}
+      onClick={() => closeModalContainer()}
+    >
       <Link to={"/profile/" + result.username}>
-        <img src={"http://localhost:5000/" + result.imageUrl} alt="" />
+        <img src={"http://localhost:5000/users/" + result.imageUrl} alt="" />
         <div className={styles.resultDetails}>
           <h3>{result.fullname}</h3>
           <p>
-            @{result.username} -
+            @{result.username} {" - "}
             <span>
               {result.followers.length}
               {result.followers.length > 1 ? " Followers" : " Follower"}
@@ -44,4 +48,5 @@ export default function SearchResult({ result }) {
 
 SearchResult.propTypes = {
   result: propTypes.object,
+  closeModalContainer: propTypes.func,
 };

@@ -8,7 +8,6 @@ import ModalContainer from "../components/ModalContainer";
 export default function Profile() {
   const { username } = useParams();
 
-  const [activeTab, setActiveTab] = useState("posts");
   const [user, setUser] = useState(null);
   const [modalType, setModalType] = useState(null);
 
@@ -37,7 +36,7 @@ export default function Profile() {
               className={styles.coverPhoto}
             />
             <img
-              src={"http://localhost:5000/" + user.imageUrl}
+              src={"http://localhost:5000/users/" + user.imageUrl}
               alt="profile picture"
               className={styles.profileImage}
             />
@@ -60,31 +59,7 @@ export default function Profile() {
               </ul>
               <p className={styles.about}>{user.about}</p>
             </div>
-            <div className={styles.posts}>
-              <div className={styles.header}>
-                <ul>
-                  <li
-                    onClick={() => setActiveTab("posts")}
-                    className={activeTab === "posts" ? styles.active : ""}
-                  >
-                    Posts
-                  </li>
-                  <li
-                    onClick={() => setActiveTab("liked")}
-                    className={activeTab === "liked" ? styles.active : ""}
-                  >
-                    Liked
-                  </li>
-                  <li
-                    onClick={() => setActiveTab("saved")}
-                    className={activeTab === "saved" ? styles.active : ""}
-                  >
-                    Saved
-                  </li>
-                </ul>
-              </div>
-              <ProfilePostGrid type={activeTab} />
-            </div>
+            <ProfilePostGrid username={username} user={user} />
           </div>
         </main>
         {modalType && (

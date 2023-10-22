@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import ModalContainer from "./ModalContainer";
 import { useState } from "react";
 
-export default function Story({ story, type }) {
+export default function Story({ stories, story, type }) {
   const { user } = useSelector((state) => state.user);
 
   const [modalType, setModalType] = useState(null);
@@ -39,7 +39,7 @@ export default function Story({ story, type }) {
           onClick={() => setModalType("createStory")}
         >
           <img
-            src={`http://localhost:5000/${user.imageUrl} `}
+            src={`http://localhost:5000/users/${user.imageUrl} `}
             alt={user.imageUrl}
           />
           <button>
@@ -53,6 +53,7 @@ export default function Story({ story, type }) {
           type={modalType}
           closeModalContainer={closeModalContainer}
           story={story}
+          stories={stories}
         />
       ) : null}
     </>

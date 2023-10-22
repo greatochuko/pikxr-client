@@ -60,7 +60,7 @@ export default function NavBar() {
             </a>
           </li>
           <Link to={"/profile/" + user.username}>
-            <img src={"http://localhost:5000/" + user.imageUrl} alt="" />
+            <img src={"http://localhost:5000/users/" + user.imageUrl} alt="" />
           </Link>
         </div>
       </nav>

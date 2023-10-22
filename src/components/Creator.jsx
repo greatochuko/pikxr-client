@@ -7,12 +7,13 @@ import { getDuration } from "../utils/getDuration";
 export default function Creator({ post, story, className }) {
   const data = post || story;
   const duration = getDuration(data.createdAt);
+  const username = data.creator.username;
 
   return (
     <div className={styles.creator + " " + className}>
-      <Link>
+      <Link to={"/profile/" + username}>
         <img
-          src={"http://localhost:5000/" + data.creator.imageUrl}
+          src={"http://localhost:5000/users/" + data.creator.imageUrl}
           alt={data.creator.username}
         />
         <div className={styles.text}>
