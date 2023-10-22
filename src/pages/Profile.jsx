@@ -49,7 +49,7 @@ export default function Profile() {
               <p className={styles.email}>{user.email}</p>
               <ul className={styles.userStats}>
                 <li>
-                  <span>{user.posts}</span>Posts
+                  <span>{user.posts?.length || 0}</span>Posts
                 </li>
                 <li onClick={() => setModalType("followers")}>
                   <span>{user.followers.length}</span>Followers

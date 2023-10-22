@@ -19,6 +19,7 @@
 .profileImages .profileImage {
   width: 16vh;
   height: 16vh;
+  object-fit: cover;
   border-radius: 50%;
   position: absolute;
   bottom: -8vh;

@@ -21,13 +21,12 @@ export default function Login() {
   async function handleLogin(e) {
     e.preventDefault();
     setError("");
-    const resData = await login(email, password);
-    if (resData.error) {
-      setError(resData.error);
+    const data = await login(email, password);
+    if (data.error) {
+      setError(data.error);
       return;
     }
-    const data = await fetchUser(resData.token);
-    dispatch(loginUser(data));
+    dispatch(loginUser(data.user));
     navigate("/");
   }
 

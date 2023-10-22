@@ -37,11 +37,10 @@ export default function Signup() {
     e.preventDefault();
     if (cannotSubmit) return;
 
-    const resData = await signup(username, fullname, email, password);
-    localStorage.setItem("token", resData.token);
+    const data = await signup(username, fullname, email, password);
+    localStorage.setItem("token", data.token);
 
-    const data = await fetchUser(resData.token);
-    dispatch(loginUser(data));
+    dispatch(loginUser(data.user));
     navigate("/");
   }
 

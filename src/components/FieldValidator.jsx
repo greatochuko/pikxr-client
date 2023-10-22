@@ -14,5 +14,5 @@ export default function FieldValidator({ field, error }) {
 
 FieldValidator.propTypes = {
   field: PropTypes.string,
-  error: PropTypes.string,
+  error: PropTypes.object,
 };

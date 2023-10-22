@@ -39,8 +39,8 @@ export default function Story({ story, type }) {
           onClick={() => setModalType("createStory")}
         >
           <img
-            src={`http://localhost:5000/${user.imageUrl} `}
-            alt={user.imageUrl}
+            src={`http://localhost:5000/users/${user.imageUrl} `}
+            alt={"user image"}
           />
           <button>
             <i className="fa-solid fa-circle-plus"></i>
