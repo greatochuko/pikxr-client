@@ -38,7 +38,7 @@
 }
 
 .navbar li.active a {
-  color: black;
+  color: var(--BLUE-200);
 }
 
 /* PROFILE */

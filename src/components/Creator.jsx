@@ -12,7 +12,7 @@ export default function Creator({ post, story, className }) {
     <div className={styles.creator + " " + className}>
       <Link>
         <img
-          src={"http://localhost:5000/" + data.creator.imageUrl}
+          src={"http://localhost:5000/users/" + data.creator.imageUrl}
           alt={data.creator.username}
         />
         <div className={styles.text}>

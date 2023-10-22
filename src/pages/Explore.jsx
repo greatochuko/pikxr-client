@@ -9,6 +9,8 @@ export default function Explore() {
   const [columns, setColumns] = useState();
   const { posts } = useSelector((state) => state.post);
 
+  console.log(columns);
+
   const explore = exploreRef.current;
 
   const MIN_WIDTH = 350;
@@ -18,12 +20,12 @@ export default function Explore() {
   }
   useEffect(() => {
     const handleResize = () => {
-      if (columns === Math.floor(exploreRef.current.clientWidth / MIN_WIDTH))
+      if (columns === Math.ceil(exploreRef.current.clientWidth / MIN_WIDTH))
         return;
-      setColumns(Math.floor(exploreRef.current.clientWidth / MIN_WIDTH));
+      setColumns(Math.ceil(exploreRef.current.clientWidth / MIN_WIDTH));
     };
     if (!columns) {
-      setColumns(Math.floor(exploreRef.current.clientWidth / MIN_WIDTH));
+      setColumns(Math.ceil(exploreRef.current.clientWidth / MIN_WIDTH));
     }
 
     // Add the event listener when the component mounts

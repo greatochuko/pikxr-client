@@ -37,7 +37,7 @@ export default function Profile() {
               className={styles.coverPhoto}
             />
             <img
-              src={"http://localhost:5000/" + user.imageUrl}
+              src={"http://localhost:5000/users/" + user.imageUrl}
               alt="profile picture"
               className={styles.profileImage}
             />

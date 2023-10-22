@@ -1,8 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
-import styles from "./NavBar.module.css";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import ModalContainer from "./ModalContainer";
+
+import styles from "./NavBar.module.css";
 
 export default function NavBar() {
   const [modalType, setModalType] = useState(null);
@@ -60,7 +61,7 @@ export default function NavBar() {
             </a>
           </li>
           <Link to={"/profile/" + user.username}>
-            <img src={"http://localhost:5000/" + user.imageUrl} alt="" />
+            <img src={"http://localhost:5000/users/" + user.imageUrl} alt="" />
           </Link>
         </div>
       </nav>
