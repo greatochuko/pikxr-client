@@ -1,8 +1,4 @@
-export default function resizeCoverPhoto(
-  imageFile,
-  setPreviewImageUrl,
-  callback
-) {
+function resizePhoto(imageFile, maxWidth, setPreviewImageUrl, callback) {
   if (!imageFile) return;
   const fileReader = new FileReader();
   fileReader.readAsDataURL(imageFile);
@@ -12,9 +8,8 @@ export default function resizeCoverPhoto(
     img.src = fileReaderEv.target.result;
     img.onload = (imgEvent) => {
       const canvas = document.createElement("canvas");
-      const MAX_WIDTH = 1500;
-      const ASPECT_RATIO = MAX_WIDTH / img.width;
-      canvas.width = MAX_WIDTH;
+      const ASPECT_RATIO = maxWidth / img.width;
+      canvas.width = maxWidth;
       canvas.height = img.height * ASPECT_RATIO;
       const ctx = canvas.getContext("2d");
       ctx.drawImage(imgEvent.target, 0, 0, canvas.width, canvas.height);
@@ -27,4 +22,11 @@ export default function resizeCoverPhoto(
       }, "image/png");
     };
   };
+}
+
+export function resizeCoverPhoto(imageFile, setPreviewImageUrl, callback) {
+  resizePhoto(imageFile, 1500, setPreviewImageUrl, callback);
+}
+export function resizeProfilePhoto(imageFile, setPreviewImageUrl, callback) {
+  resizePhoto(imageFile, 200, setPreviewImageUrl, callback);
 }

@@ -1,13 +1,24 @@
 import styles from "./Profile.module.css";
+
 import { useEffect, useRef, useState } from "react";
-import ProfilePostGrid from "../components/ProfilePostGrid";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import ProfilePostGrid from "../components/ProfilePostGrid";
+import ModalContainer from "../components/ModalContainer";
+
 import {
   fetchUploadCoverPhoto,
+  fetchUploadProfilePhoto,
   fetchUserProfile,
 } from "../services/userServices";
-import ModalContainer from "../components/ModalContainer";
-import resizeCoverPhoto from "../utils/resizeCoverPhoto";
+
+import {
+  resizeCoverPhoto,
+  resizeProfilePhoto,
+} from "../utils/resizeCoverPhoto";
+
+import { loginUser } from "../slice/userSlice";
 
 export default function Profile() {
   const { username } = useParams();
@@ -15,9 +26,13 @@ export default function Profile() {
   const [activeTab, setActiveTab] = useState("posts");
   const [user, setUser] = useState(null);
   const [modalType, setModalType] = useState(null);
-  const [previewImageUrl, setPreviewImageUrl] = useState(null);
+  const [previewProfilePhotoUrl, setPreviewProfilePhotoUrl] = useState(null);
+  const [previewCoverPhotoUrl, setPreviewCoverPhotoUrl] = useState(null);
 
   const coverPhotoRef = useRef(null);
+  const profilePhotoRef = useRef(null);
+
+  const dispatch = useDispatch();
 
   async function closeModalContainer() {
     setModalType(null);
@@ -28,7 +43,7 @@ export default function Profile() {
   function handleChangeCoverPhoto() {
     resizeCoverPhoto(
       coverPhotoRef.current.files[0],
-      setPreviewImageUrl,
+      setPreviewCoverPhotoUrl,
       async (newImage) => {
         const formData = new FormData();
         formData.append("coverPhoto", newImage);
@@ -36,6 +51,25 @@ export default function Profile() {
         const data = await fetchUploadCoverPhoto(formData, newImage.name);
         if (data.error)
           console.log("Error, unable to upload image please try again later");
+      }
+    );
+  }
+
+  function handleChangeProfilePhoto() {
+    resizeProfilePhoto(
+      profilePhotoRef.current.files[0],
+      setPreviewProfilePhotoUrl,
+      async (newImage) => {
+        const formData = new FormData();
+        formData.append("coverPhoto", newImage);
+        formData.append("fileName", newImage.name);
+        const data = await fetchUploadProfilePhoto(formData, newImage.name);
+        if (data.error) {
+          console.log("Error, unable to upload image please try again later");
+          return;
+        }
+        setUser(data);
+        dispatch(loginUser(data));
       }
     );
   }
@@ -53,27 +87,43 @@ export default function Profile() {
       <>
         <main className={styles.profile}>
           <div className={styles.profileImages}>
-            <label htmlFor="coverPhoto">Change Photo</label>
-            <input
-              type="file"
-              name="coverPhoto"
-              id="coverPhoto"
-              ref={coverPhotoRef}
-              onChange={handleChangeCoverPhoto}
-            />
-            <img
-              src={
-                previewImageUrl ||
-                "http://localhost:5000/users/" + user.coverPhotoUrl
-              }
-              alt="cover photo"
-              className={styles.coverPhoto}
-            />
-            <img
-              src={"http://localhost:5000/users/" + user.imageUrl}
-              alt="profile picture"
-              className={styles.profileImage}
-            />
+            <div className={styles.coverPhoto}>
+              <label htmlFor="coverPhoto">Change Photo</label>
+              <input
+                type="file"
+                name="coverPhoto"
+                id="coverPhoto"
+                ref={coverPhotoRef}
+                onChange={handleChangeCoverPhoto}
+              />
+              <img
+                src={
+                  previewCoverPhotoUrl ||
+                  "http://localhost:5000/users/" + user.coverPhotoUrl
+                }
+                alt="cover photo"
+              />
+            </div>
+
+            <div className={styles.profileImage}>
+              <img
+                src={
+                  previewProfilePhotoUrl ||
+                  "http://localhost:5000/users/" + user.imageUrl
+                }
+                alt="profile picture"
+              />
+              <label htmlFor="profilePhoto">
+                <i className="fa-regular fa-images"></i>
+              </label>
+              <input
+                type="file"
+                name="profilePhoto"
+                id="profilePhoto"
+                ref={profilePhotoRef}
+                onChange={handleChangeProfilePhoto}
+              />
+            </div>
           </div>
           <div className={styles.main}>
             <div className={styles.userInfo}>

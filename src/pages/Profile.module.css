@@ -13,17 +13,28 @@
 .profileImages .coverPhoto {
   width: 100%;
   height: 100%;
+}
+
+.profileImages .coverPhoto img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
 .profileImages .profileImage {
   width: 16vh;
   height: 16vh;
-  object-fit: cover;
   border-radius: 50%;
   position: absolute;
   bottom: -8vh;
   left: 150px;
+  overflow: hidden;
+}
+
+.profileImages .profileImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .profileImages label {
@@ -33,12 +44,14 @@
   transition: 0.3s;
   cursor: pointer;
   opacity: 0;
+  top: 0;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   background-color: rgba(0, 0, 0, 0.4);
+  font-size: 1.5rem;
 }
 
 .profileImages label:hover {

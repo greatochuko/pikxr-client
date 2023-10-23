@@ -79,3 +79,16 @@ export async function fetchUploadCoverPhoto(formData) {
   const data = await res.json();
   return data;
 }
+
+export async function fetchUploadProfilePhoto(formData) {
+  const token = localStorage.getItem("token");
+  const res = await fetch("http://localhost:5000/user/updateprofilephoto", {
+    method: "POST",
+    body: formData,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await res.json();
+  return data;
+}
