@@ -1,5 +1,5 @@
 export async function fetchUser() {
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = localStorage.getItem("token");
   const res = await fetch(`http://localhost:5000/user`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -11,7 +11,7 @@ export async function fetchUser() {
 }
 
 export async function fetchUserProfile(username) {
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = localStorage.getItem("token");
 
   const URL = "http://localhost:5000/user/" + username;
   const res = await fetch(URL, {
@@ -25,8 +25,7 @@ export async function fetchUserProfile(username) {
 }
 
 export async function fetchUserFollowers(username) {
-  const token = JSON.parse(localStorage.getItem("token"));
-
+  const token = localStorage.getItem("token");
   const URL = "http://localhost:5000/user/followers/" + username;
   const res = await fetch(URL, {
     headers: {
@@ -39,8 +38,7 @@ export async function fetchUserFollowers(username) {
 }
 
 export async function fetchfollowUser(userId, userToFollowId) {
-  const token = JSON.parse(localStorage.getItem("token"));
-
+  const token = localStorage.getItem("token");
   const URL = "http://localhost:5000/user/follow";
   const res = await fetch(URL, {
     method: "POST",
@@ -55,8 +53,7 @@ export async function fetchfollowUser(userId, userToFollowId) {
 }
 
 export async function fetchUnFollowUser(userId, userToUnFollowId) {
-  const token = JSON.parse(localStorage.getItem("token"));
-
+  const token = localStorage.getItem("token");
   const URL = "http://localhost:5000/user/unfollow";
   const res = await fetch(URL, {
     method: "POST",

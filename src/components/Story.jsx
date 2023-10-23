@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import ModalContainer from "./ModalContainer";
 import { useState } from "react";
 
-export default function Story({ stories, story, type }) {
+export default function Story({ story, type }) {
   const { user } = useSelector((state) => state.user);
 
   const [modalType, setModalType] = useState(null);
@@ -40,7 +40,7 @@ export default function Story({ stories, story, type }) {
         >
           <img
             src={`http://localhost:5000/users/${user.imageUrl} `}
-            alt={user.imageUrl}
+            alt={"user image"}
           />
           <button>
             <i className="fa-solid fa-circle-plus"></i>
@@ -53,7 +53,6 @@ export default function Story({ stories, story, type }) {
           type={modalType}
           closeModalContainer={closeModalContainer}
           story={story}
-          stories={stories}
         />
       ) : null}
     </>

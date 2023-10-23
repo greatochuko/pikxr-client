@@ -1,8 +1,8 @@
 import styles from "./Feed.module.css";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Post from "./Post";
-import { useEffect, useState } from "react";
 import { fetchPosts } from "../services/postServices";
+import { useEffect, useState } from "react";
 
 export default function Feed() {
   const navigate = useNavigate();
@@ -12,10 +12,13 @@ export default function Feed() {
 
   useEffect(() => {
     async function refreshPosts() {
-      setPosts(await fetchPosts());
+      const data = await fetchPosts();
+
+      setPosts(data);
     }
     refreshPosts();
   }, []);
+
   if (posts)
     return (
       <div className={styles.feed}>

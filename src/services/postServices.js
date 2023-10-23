@@ -1,51 +1,77 @@
 export async function fetchPosts() {
-  const res = await fetch("http://localhost:5000/posts");
-  return await res.json();
+  const token = localStorage.getItem("token");
+  const res = await fetch("http://localhost:5000/posts", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await res.json();
+  return data;
 }
 
 export async function createPost(formData) {
+  const token = localStorage.getItem("token");
   const res = await fetch("http://localhost:5000/posts", {
     method: "POST",
     body: formData,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
   return await res.json();
 }
 
-export async function likePost(postId, userId) {
+export async function likePost(postId, targetUserId) {
+  const token = localStorage.getItem("token");
   const res = await fetch("http://localhost:5000/post/like", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ userId, postId }),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ targetUserId, postId }),
   });
   const data = await res.json();
   return data;
 }
 
-export async function unLikePost(postId, userId) {
+export async function unLikePost(postId, targetUserId) {
+  const token = localStorage.getItem("token");
   const res = await fetch("http://localhost:5000/post/unlike", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ userId, postId }),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ targetUserId, postId }),
   });
   const data = await res.json();
   return data;
 }
 
-export async function savePost(postId, userId) {
+export async function savePost(postId) {
+  const token = localStorage.getItem("token");
   const res = await fetch("http://localhost:5000/post/save", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ userId, postId }),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ postId }),
   });
   const data = await res.json();
   return data;
 }
 
-export async function unSavePost(postId, userId) {
+export async function unSavePost(postId) {
+  const token = localStorage.getItem("token");
   const res = await fetch("http://localhost:5000/post/unsave", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ userId, postId }),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ postId }),
   });
   const data = await res.json();
   return data;

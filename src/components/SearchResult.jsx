@@ -19,17 +19,13 @@ export default function SearchResult({ result, closeModalContainer }) {
   }
 
   return (
-    <li
-      className={styles.result}
-      key={result._id}
-      onClick={() => closeModalContainer()}
-    >
-      <Link to={"/profile/" + result.username}>
+    <li className={styles.result} key={result._id}>
+      <Link to={"/profile/" + result.username} onClick={closeModalContainer}>
         <img src={"http://localhost:5000/users/" + result.imageUrl} alt="" />
         <div className={styles.resultDetails}>
           <h3>{result.fullname}</h3>
           <p>
-            @{result.username} {" - "}
+            @{result.username + " - "}
             <span>
               {result.followers.length}
               {result.followers.length > 1 ? " Followers" : " Follower"}
@@ -48,5 +44,4 @@ export default function SearchResult({ result, closeModalContainer }) {
 
 SearchResult.propTypes = {
   result: propTypes.object,
-  closeModalContainer: propTypes.func,
 };

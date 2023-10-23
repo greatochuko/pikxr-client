@@ -1,8 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
-import styles from "./NavBar.module.css";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import ModalContainer from "./ModalContainer";
+
+import styles from "./NavBar.module.css";
 
 export default function NavBar() {
   const [modalType, setModalType] = useState(null);

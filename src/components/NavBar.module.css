@@ -38,7 +38,11 @@
 }
 
 .navbar li.active a {
-  color: black;
+  color: var(--BLUE-200);
+}
+
+.navbar li.logout a:hover {
+  color: brown;
 }
 
 /* PROFILE */

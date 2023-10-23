@@ -8,6 +8,7 @@ import ModalContainer from "../components/ModalContainer";
 export default function Profile() {
   const { username } = useParams();
 
+  const [activeTab, setActiveTab] = useState("posts");
   const [user, setUser] = useState(null);
   const [modalType, setModalType] = useState(null);
 
@@ -48,7 +49,7 @@ export default function Profile() {
               <p className={styles.email}>{user.email}</p>
               <ul className={styles.userStats}>
                 <li>
-                  <span>{user.posts}</span>Posts
+                  <span>{user.posts?.length || 0}</span>Posts
                 </li>
                 <li onClick={() => setModalType("followers")}>
                   <span>{user.followers.length}</span>Followers
@@ -59,7 +60,31 @@ export default function Profile() {
               </ul>
               <p className={styles.about}>{user.about}</p>
             </div>
-            <ProfilePostGrid username={username} user={user} />
+            <div className={styles.posts}>
+              <div className={styles.header}>
+                <ul>
+                  <li
+                    onClick={() => setActiveTab("posts")}
+                    className={activeTab === "posts" ? styles.active : ""}
+                  >
+                    Posts
+                  </li>
+                  <li
+                    onClick={() => setActiveTab("liked")}
+                    className={activeTab === "liked" ? styles.active : ""}
+                  >
+                    Liked
+                  </li>
+                  <li
+                    onClick={() => setActiveTab("saved")}
+                    className={activeTab === "saved" ? styles.active : ""}
+                  >
+                    Saved
+                  </li>
+                </ul>
+              </div>
+              <ProfilePostGrid type={activeTab} user={user} />
+            </div>
           </div>
         </main>
         {modalType && (
