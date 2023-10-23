@@ -1,9 +1,13 @@
 import styles from "./Profile.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProfilePostGrid from "../components/ProfilePostGrid";
 import { useParams } from "react-router-dom";
-import { fetchUserProfile } from "../services/userServices";
+import {
+  fetchUploadCoverPhoto,
+  fetchUserProfile,
+} from "../services/userServices";
 import ModalContainer from "../components/ModalContainer";
+import resizeCoverPhoto from "../utils/resizeCoverPhoto";
 
 export default function Profile() {
   const { username } = useParams();
@@ -11,11 +15,29 @@ export default function Profile() {
   const [activeTab, setActiveTab] = useState("posts");
   const [user, setUser] = useState(null);
   const [modalType, setModalType] = useState(null);
+  const [previewImageUrl, setPreviewImageUrl] = useState(null);
+
+  const coverPhotoRef = useRef(null);
 
   async function closeModalContainer() {
     setModalType(null);
     const data = await fetchUserProfile(username);
     setUser(data);
+  }
+
+  function handleChangeCoverPhoto() {
+    resizeCoverPhoto(
+      coverPhotoRef.current.files[0],
+      setPreviewImageUrl,
+      async (newImage) => {
+        const formData = new FormData();
+        formData.append("coverPhoto", newImage);
+        formData.append("fileName", newImage.name);
+        const data = await fetchUploadCoverPhoto(formData, newImage.name);
+        if (data.error)
+          console.log("Error, unable to upload image please try again later");
+      }
+    );
   }
 
   useEffect(() => {
@@ -31,8 +53,19 @@ export default function Profile() {
       <>
         <main className={styles.profile}>
           <div className={styles.profileImages}>
+            <label htmlFor="coverPhoto">Change Photo</label>
+            <input
+              type="file"
+              name="coverPhoto"
+              id="coverPhoto"
+              ref={coverPhotoRef}
+              onChange={handleChangeCoverPhoto}
+            />
             <img
-              src="/cover-photo.png"
+              src={
+                previewImageUrl ||
+                "http://localhost:5000/users/" + user.coverPhotoUrl
+              }
               alt="cover photo"
               className={styles.coverPhoto}
             />
