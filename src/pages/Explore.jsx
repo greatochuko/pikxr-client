@@ -2,14 +2,21 @@ import { useEffect, useRef, useState } from "react";
 import MasonryGrid from "../components/MasonryGrid";
 import styles from "./Explore.module.css";
 import { generateMasonryArray } from "../utils/createMansoryArray";
-import { useSelector } from "react-redux";
+import { fetchPosts } from "../services/postServices";
 
 export default function Explore() {
   const exploreRef = useRef(null);
   const [columns, setColumns] = useState();
-  const { posts } = useSelector((state) => state.post);
+  const [posts, setPosts] = useState(null);
 
-  console.log(columns);
+  useEffect(() => {
+    async function refreshPosts() {
+      const data = await fetchPosts();
+
+      setPosts(data);
+    }
+    refreshPosts();
+  }, []);
 
   const explore = exploreRef.current;
 
@@ -24,7 +31,7 @@ export default function Explore() {
         return;
       setColumns(Math.ceil(exploreRef.current.clientWidth / MIN_WIDTH));
     };
-    if (!columns) {
+    if (!columns && posts) {
       setColumns(Math.ceil(exploreRef.current.clientWidth / MIN_WIDTH));
     }
 
@@ -35,11 +42,12 @@ export default function Explore() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [explore, columns]);
+  }, [explore, posts, columns]);
 
-  return (
-    <main className={styles.explore} ref={exploreRef}>
-      {data && <MasonryGrid data={data} />}
-    </main>
-  );
+  if (posts)
+    return (
+      <main className={styles.explore} ref={exploreRef}>
+        {data && <MasonryGrid data={data} />}
+      </main>
+    );
 }

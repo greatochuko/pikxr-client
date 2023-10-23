@@ -28,6 +28,7 @@ export default function CreateStoryModal({ closeModalContainer }) {
 
   async function handleCreateStory(e) {
     e.preventDefault();
+    if (!image) return;
     const formData = new FormData();
     formData.append("caption", caption);
     formData.append("storyImage", image);

@@ -41,6 +41,10 @@
   color: var(--BLUE-200);
 }
 
+.navbar li.logout a:hover {
+  color: brown;
+}
+
 /* PROFILE */
 
 .profile {

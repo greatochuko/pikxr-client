@@ -4,7 +4,7 @@ import { searchUsers } from "../services/searchServices";
 import styles from "./SearchModal.module.css";
 import SearchResult from "./SearchResult";
 
-export default function SearchModal() {
+export default function SearchModal({ closeModalContainer }) {
   const [searchResults, setSearchResults] = useState([]);
   const [query, setQuery] = useState("");
 
@@ -42,7 +42,11 @@ export default function SearchModal() {
       </form>
       <ul className={styles.searchResults}>
         {searchResults.map((result) => (
-          <SearchResult key={result._id} result={result} />
+          <SearchResult
+            key={result._id}
+            result={result}
+            closeModalContainer={closeModalContainer}
+          />
         ))}
       </ul>
     </div>

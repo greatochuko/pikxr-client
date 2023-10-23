@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styles from "./StoryViewModal.module.css";
 import Creator from "./Creator";
 import { useEffect, useState } from "react";

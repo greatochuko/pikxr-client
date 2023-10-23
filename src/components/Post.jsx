@@ -2,7 +2,7 @@ import Creator from "./Creator";
 import styles from "./Post.module.css";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   likePost,
   savePost,
@@ -10,13 +10,14 @@ import {
   unSavePost,
 } from "../services/postServices";
 import ModalContainer from "./ModalContainer";
+import { fetchUser } from "../services/userServices";
 
 export default function Post({ currentPost }) {
   const { user } = useSelector((state) => state.user);
 
   const [post, setPost] = useState(currentPost);
-  const [isLiked, setIsLiked] = useState(user.likedPosts.includes(post._id));
-  const [isSaved, setIsSaved] = useState(user.savedPosts.includes(post._id));
+  const [isLiked, setIsLiked] = useState(post.likes.includes(user._id));
+  const [isSaved, setIsSaved] = useState(post.saves.includes(user._id));
   const [modalType, setModalType] = useState(null);
 
   function closeModalContainer() {
@@ -24,39 +25,37 @@ export default function Post({ currentPost }) {
   }
 
   async function toggleLike() {
+    let data;
     if (!isLiked) {
-      const data = await likePost(post._id, user._id);
+      data = await likePost(post._id, post.creator._id);
       if (data.error) {
         return;
       }
-      setIsLiked(true);
-      setPost(data);
     } else {
-      const data = await unLikePost(post._id, user._id);
+      data = await unLikePost(post._id, post.creator._id);
       if (data.error) {
         return;
       }
-      setIsLiked(false);
-      setPost(data);
     }
+    setPost(data);
+    setIsLiked((curr) => !curr);
   }
 
   async function toggleSave() {
+    let data;
     if (!isSaved) {
-      const data = await savePost(post._id, user._id);
+      data = await savePost(post._id);
       if (data.error) {
         return;
       }
-      setIsSaved(true);
-      setPost(data);
     } else {
-      const data = await unSavePost(post._id, user._id);
+      data = await unSavePost(post._id);
       if (data.error) {
         return;
       }
-      setIsSaved(false);
-      setPost(data);
     }
+    setPost(data);
+    setIsSaved((curr) => !curr);
   }
 
   return (
@@ -72,7 +71,7 @@ export default function Post({ currentPost }) {
                 isLiked ? "solid " + styles.liked : "regular"
               } fa-heart `}
             ></i>
-            {post.likes}
+            {post.likes.length}
           </button>
           <button onClick={() => setModalType("viewPost")}>
             <i className="fa-regular fa-comment"></i>
@@ -88,7 +87,7 @@ export default function Post({ currentPost }) {
                 isSaved ? "solid " + styles.saved : "regular"
               } fa-bookmark`}
             ></i>
-            {post.saves}
+            {post.saves.length}
           </button>
         </div>
         <Creator post={post} />

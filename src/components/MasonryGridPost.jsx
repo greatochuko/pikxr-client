@@ -3,11 +3,16 @@ import propTypes from "prop-types";
 import ModalContainer from "./ModalContainer";
 import { useState } from "react";
 
-export default function MasonryGridPost({ post }) {
+export default function MasonryGridPost({ post: explorePost }) {
   const [modalType, setModalType] = useState(null);
+  const [post, setPost] = useState(explorePost);
 
   function closeModalContainer() {
     setModalType(null);
+  }
+
+  function updateMasonryGridPost(data) {
+    setPost(data);
   }
 
   return (
@@ -17,12 +22,12 @@ export default function MasonryGridPost({ post }) {
         <div className={styles.overlay}>
           <span>
             <i className="fa-solid fa-heart"></i>
-            {post.likes}
+            {post.likes.length}
           </span>
 
           <span>
             <i className="fa-solid fa-comment"></i>
-            {post.comments?.length}
+            {post.comments.length}
           </span>
         </div>
       </div>
@@ -31,6 +36,7 @@ export default function MasonryGridPost({ post }) {
           type={modalType}
           closeModalContainer={closeModalContainer}
           post={post}
+          updateMasonryGridPost={updateMasonryGridPost}
         />
       ) : null}
     </>

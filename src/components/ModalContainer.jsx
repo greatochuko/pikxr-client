@@ -14,13 +14,17 @@ export default function ModalContainer({
   post,
   story,
   username,
+  updateMasonryGridPost,
 }) {
   return (
     <div className={styles.modalContainer} onClick={closeModalContainer}>
       {type === "createPost" ? (
         <CreatePostModal closeModalContainer={closeModalContainer} />
       ) : type === "viewPost" ? (
-        <PostViewModal post={post} />
+        <PostViewModal
+          post={post}
+          updateMasonryGridPost={updateMasonryGridPost}
+        />
       ) : type === "logout" ? (
         <LogoutModal />
       ) : type === "createStory" ? (
@@ -31,7 +35,7 @@ export default function ModalContainer({
           closeModalContainer={closeModalContainer}
         />
       ) : type === "search" ? (
-        <SearchModal />
+        <SearchModal closeModalContainer={closeModalContainer} />
       ) : type === "followers" ? (
         <FollowersModal
           username={username}
@@ -52,6 +56,7 @@ export default function ModalContainer({
 ModalContainer.propTypes = {
   type: propTypes.string,
   closeModalContainer: propTypes.func,
+  updateMasonryGridPost: propTypes.func,
   post: propTypes.object,
   story: propTypes.object,
   username: propTypes.string,

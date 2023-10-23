@@ -3,9 +3,8 @@ import styles from "./ProfilePostGrid.module.css";
 import ProfilePost from "./ProfilePost";
 import propTypes from "prop-types";
 
-export default function ProfilePostGrid({ type }) {
+export default function ProfilePostGrid({ type, user }) {
   const { posts } = useSelector((state) => state.post);
-  const { user } = useSelector((state) => state.user);
 
   let filteredPosts = posts;
 
@@ -28,4 +27,5 @@ export default function ProfilePostGrid({ type }) {
 
 ProfilePostGrid.propTypes = {
   type: propTypes.string,
+  user: propTypes.object,
 };

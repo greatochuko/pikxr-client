@@ -23,7 +23,7 @@ export default function ProfilePost({ post }) {
           <div className={styles.postStats}>
             <p>
               <i className="fa-solid fa-heart"></i>
-              {post.likes}
+              {post.likes.length}
             </p>
             <p>
               <i className="fa-solid fa-comment"></i>

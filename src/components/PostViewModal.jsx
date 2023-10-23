@@ -5,7 +5,7 @@ import Comment from "./Comment.jsx";
 import Creator from "./Creator";
 import propTypes from "prop-types";
 
-export default function PostViewModal({ post }) {
+export default function PostViewModal({ post, updateMasonryGridPost }) {
   const [currentPost, setCurrentPost] = useState(post);
   const [caption, setCaption] = useState(
     currentPost.caption.length > 50
@@ -52,7 +52,8 @@ export default function PostViewModal({ post }) {
         <CommentForm
           className={styles.commentForm}
           postId={currentPost._id}
-          setCurrentPost={setCurrentPost}
+          setCurrentPost={updateMasonryGridPost || setCurrentPost}
+          creatorId={currentPost.creator._id}
         />
       </div>
     </div>
@@ -61,4 +62,5 @@ export default function PostViewModal({ post }) {
 
 PostViewModal.propTypes = {
   post: propTypes.object,
+  updateMasonryGridPost: propTypes.func,
 };

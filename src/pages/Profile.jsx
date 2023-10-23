@@ -83,7 +83,7 @@ export default function Profile() {
                   </li>
                 </ul>
               </div>
-              <ProfilePostGrid type={activeTab} />
+              <ProfilePostGrid type={activeTab} user={user} />
             </div>
           </div>
         </main>

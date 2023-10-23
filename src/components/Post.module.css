@@ -25,13 +25,18 @@
 }
 
 .actionButtons button {
-  background-color: #fff;
+  background-color: transparent;
   border: none;
   padding: 10px;
   color: #333;
   font-size: 0.9rem;
+  transition: scale 0.15s;
 }
 
 .actionButtons button i {
   margin-right: 10px;
+}
+
+.actionButtons button:hover {
+  scale: 1.1;
 }
