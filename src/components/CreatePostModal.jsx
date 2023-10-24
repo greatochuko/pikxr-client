@@ -93,4 +93,8 @@ export default function CreatePostModal({
 
 CreatePostModal.propTypes = {
   closeModalContainer: propTypes.func,
+  setCurrentPost: propTypes.func,
+  postImgSrc: propTypes.string,
+  postImgCaption: propTypes.string,
+  postId: propTypes.string,
 };

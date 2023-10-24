@@ -3,17 +3,15 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import OptionsButton from "./OptionsButton";
 import { getDuration } from "../utils/getDuration";
-import { useState } from "react";
-import ModalContainer from "./ModalContainer";
 
-export default function Creator({ post, story, className, setCurrentPost }) {
+export default function Creator({ post, story, className, setType }) {
   const data = post || story;
   const duration = getDuration(data.createdAt);
-  const [type, setType] = useState(null);
 
   function openEditPostModal() {
     setType("editPost");
   }
+
   function openDeletePostModal() {
     setType("deletePost");
   }
@@ -40,14 +38,6 @@ export default function Creator({ post, story, className, setCurrentPost }) {
           openDeletePostModal={openDeletePostModal}
         />
       </div>
-      {type && (
-        <ModalContainer
-          closeModalContainer={() => setType(null)}
-          type={type}
-          post={post}
-          setCurrentPost={setCurrentPost}
-        />
-      )}
     </>
   );
 }
@@ -56,4 +46,5 @@ Creator.propTypes = {
   post: PropTypes.object,
   story: PropTypes.object,
   className: PropTypes.string,
+  setType: PropTypes.func,
 };

@@ -89,13 +89,15 @@ export default function Post({ currentPost }) {
             {post.saves.length}
           </button>
         </div>
-        <Creator setCurrentPost={setPost} post={post} />
+        <Creator post={post} type={modalType} setType={setModalType} />
       </div>
       {modalType ? (
         <ModalContainer
+          setCurrentPost={setPost}
           type={modalType}
           closeModalContainer={closeModalContainer}
           post={post}
+          setType={setModalType}
         />
       ) : null}
     </>

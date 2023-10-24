@@ -5,7 +5,11 @@ import Comment from "./Comment.jsx";
 import Creator from "./Creator";
 import propTypes from "prop-types";
 
-export default function PostViewModal({ post, updateMasonryGridPost }) {
+export default function PostViewModal({
+  post,
+  updateMasonryGridPost,
+  setType,
+}) {
   const [currentPost, setCurrentPost] = useState(post);
   const [caption, setCaption] = useState(
     currentPost.caption.length > 50
@@ -33,7 +37,11 @@ export default function PostViewModal({ post, updateMasonryGridPost }) {
         />
       </div>
       <div className={styles.details}>
-        <Creator post={currentPost} className={styles.creator} />
+        <Creator
+          post={currentPost}
+          className={styles.creator}
+          setType={setType}
+        />
         <p className={styles.caption}>
           {caption}
           {caption.includes("...") ? (
@@ -63,4 +71,5 @@ export default function PostViewModal({ post, updateMasonryGridPost }) {
 PostViewModal.propTypes = {
   post: propTypes.object,
   updateMasonryGridPost: propTypes.func,
+  setType: propTypes.func,
 };
