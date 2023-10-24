@@ -2,16 +2,22 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./CreatePostModal.module.css";
 import { setPosts } from "../slice/postSlice";
 import { useRef, useState } from "react";
-import { createPost, fetchPosts } from "../services/postServices";
+import { createPost, fetchPosts, updatePost } from "../services/postServices";
 import { resizeImage } from "../utils/imageResize";
 import propTypes from "prop-types";
 
-export default function CreatePostModal({ closeModalContainer }) {
+export default function CreatePostModal({
+  closeModalContainer,
+  postImgSrc,
+  postImgCaption,
+  postId,
+  setCurrentPost,
+}) {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const imageInputRef = useRef();
-  const [caption, setCaption] = useState("");
-  const [imgPreviewSrc, setImgPreviewSrc] = useState(null);
+  const [caption, setCaption] = useState(postImgCaption);
+  const [imgPreviewSrc, setImgPreviewSrc] = useState(postImgSrc);
   const { user } = useSelector((state) => state.user);
 
   function handleChange(e) {
@@ -30,6 +36,11 @@ export default function CreatePostModal({ closeModalContainer }) {
     formData.append("caption", caption);
     formData.append("image", image);
     formData.append("creator", user._id);
+    if (postImgCaption || postImgSrc) {
+      const data = await updatePost(postId, formData);
+      setCurrentPost(data);
+      return;
+    }
     await createPost(formData);
     const data = await fetchPosts();
     dispatch(setPosts(data));

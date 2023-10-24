@@ -2,7 +2,7 @@ import Creator from "./Creator";
 import styles from "./Post.module.css";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   likePost,
   savePost,
@@ -10,7 +10,6 @@ import {
   unSavePost,
 } from "../services/postServices";
 import ModalContainer from "./ModalContainer";
-import { fetchUser } from "../services/userServices";
 
 export default function Post({ currentPost }) {
   const { user } = useSelector((state) => state.user);
@@ -90,7 +89,7 @@ export default function Post({ currentPost }) {
             {post.saves.length}
           </button>
         </div>
-        <Creator post={post} />
+        <Creator setCurrentPost={setPost} post={post} />
       </div>
       {modalType ? (
         <ModalContainer

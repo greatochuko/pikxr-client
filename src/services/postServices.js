@@ -76,3 +76,16 @@ export async function unSavePost(postId) {
   const data = await res.json();
   return data;
 }
+
+export async function updatePost(postId, formData) {
+  const token = localStorage.getItem("token");
+  const res = await fetch("http://localhost:5000/post/" + postId, {
+    method: "PATCH",
+    body: formData,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await res.json();
+  return data;
+}

@@ -15,11 +15,20 @@ export default function ModalContainer({
   story,
   username,
   updateMasonryGridPost,
+  setCurrentPost,
 }) {
   return (
     <div className={styles.modalContainer} onClick={closeModalContainer}>
       {type === "createPost" ? (
         <CreatePostModal closeModalContainer={closeModalContainer} />
+      ) : type === "editPost" ? (
+        <CreatePostModal
+          closeModalContainer={closeModalContainer}
+          postImgSrc={`http://localhost:5000/posts/${post.imageUrl}`}
+          postImgCaption={post.caption}
+          postId={post._id}
+          setCurrentPost={setCurrentPost}
+        />
       ) : type === "viewPost" ? (
         <PostViewModal
           post={post}

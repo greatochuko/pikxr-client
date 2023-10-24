@@ -1,14 +1,24 @@
 import styles from "./OptionsButton.module.css";
 import propTypes from "prop-types";
 
-export default function OptionsButton({ top, right, size }) {
+export default function OptionsButton({
+  openEditPostModal,
+  openDeletePostModal,
+}) {
   return (
-    <button
-      className={styles.optionsButton}
-      style={{ top: `${top}px`, right: `${right}px` }}
-    >
-      <i className="fa-solid fa-ellipsis" style={{ fontSize: `${size}px` }} />
-    </button>
+    <>
+      <div className={styles.options}>
+        <button className={styles.optionsButton} onClick={openEditPostModal}>
+          <i className="fa-solid fa-pen-to-square"></i>
+        </button>
+        <button
+          className={styles.optionsButton + " " + styles.delete}
+          onClick={openDeletePostModal}
+        >
+          <i className="fa-solid fa-trash-can"></i>
+        </button>
+      </div>
+    </>
   );
 }
 

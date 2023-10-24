@@ -1,3 +1,9 @@
+.options {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
 .optionsButton {
   background-color: transparent;
   border: none;
@@ -7,7 +13,6 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  position: absolute;
   transition: 0.3s;
   color: #333;
   background-color: #eee;
@@ -15,6 +20,11 @@
 
 .optionsButton:hover {
   background-color: #ccc;
+  color: var(--BLUE-200);
+}
+
+.optionsButton.delete:hover {
+  color: var(--RED-200);
 }
 
 .optionsButton:active {
