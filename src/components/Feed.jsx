@@ -13,7 +13,7 @@ export default function Feed() {
   const sortBy = searchParams.get("sortBy");
   const { posts } = useSelector((state) => state.post);
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function refreshPosts() {
