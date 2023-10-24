@@ -19,7 +19,7 @@ export default function useValidateUsername(username) {
         });
       } catch (err) {
         if (controller.signal.aborted) {
-          console.log("The user aborted the request");
+          return;
         }
       }
     }

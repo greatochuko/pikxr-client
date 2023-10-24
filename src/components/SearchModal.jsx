@@ -1,19 +1,32 @@
 import { useEffect, useState } from "react";
 import { searchUsers } from "../services/searchServices";
 
+import propTypes from "prop-types";
+
 import styles from "./SearchModal.module.css";
 import SearchResult from "./SearchResult";
+import SearchResultWireFrame from "./SearchResultWireFrame";
 
 export default function SearchModal({ closeModalContainer }) {
   const [searchResults, setSearchResults] = useState([]);
   const [query, setQuery] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
     async function search() {
-      const data = await searchUsers(query, signal);
-      setSearchResults(data);
+      setIsLoading(true);
+      try {
+        const data = await searchUsers(query, signal);
+        setSearchResults(data);
+        setIsLoading(false);
+      } catch (error) {
+        if (controller.signal.aborted) {
+          return;
+        }
+      }
     }
     if (!query) {
       setSearchResults([]);
@@ -41,14 +54,26 @@ export default function SearchModal({ closeModalContainer }) {
         <i className="fa-solid fa-magnifying-glass"></i>
       </form>
       <ul className={styles.searchResults}>
-        {searchResults.map((result) => (
-          <SearchResult
-            key={result._id}
-            result={result}
-            closeModalContainer={closeModalContainer}
-          />
-        ))}
+        {isLoading ? (
+          <>
+            <SearchResultWireFrame />
+            <SearchResultWireFrame />
+            <SearchResultWireFrame />
+          </>
+        ) : (
+          searchResults.map((result) => (
+            <SearchResult
+              key={result._id}
+              result={result}
+              closeModalContainer={closeModalContainer}
+            />
+          ))
+        )}
       </ul>
     </div>
   );
 }
+
+SearchModal.propTypes = {
+  closeModalContainer: propTypes.func,
+};

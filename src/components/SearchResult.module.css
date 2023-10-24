@@ -6,9 +6,14 @@
   padding: 10px 1rem;
   width: 100%;
   display: flex;
+  outline: none;
 }
 
 .result:hover a {
+  background-color: #eee;
+}
+
+.result a:focus {
   background-color: #eee;
 }
 

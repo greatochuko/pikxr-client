@@ -17,7 +17,7 @@ export default function useValidateEmail(email) {
         });
       } catch (err) {
         if (controller.signal.aborted) {
-          console.log("The user aborted the request");
+          return;
         }
       }
     }
