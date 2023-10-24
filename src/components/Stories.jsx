@@ -1,6 +1,6 @@
 import styles from "./Stories.module.css";
 import Story from "./Story";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function Stories() {
   const { stories } = useSelector((state) => state.story);

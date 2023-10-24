@@ -1,11 +1,11 @@
-import { fetchDeletePost } from "../services/postServices";
-import { logoutUser } from "../slice/userSlice";
-import styles from "./LogoutModal.module.css";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { fetchDeletePost, fetchDeleteStory } from "../services/postServices";
+import { fetchStories } from "../services/storyServices";
+import styles from "./LogoutModal.module.css";
 import propTypes from "prop-types";
+import { setStories } from "../slice/storySlice";
 
-export default function LogoutModal({
+export default function DeleteModal({
   type,
   closeModalContainer,
   postId,
@@ -13,21 +13,15 @@ export default function LogoutModal({
   setPosts,
 }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  function logout() {
-    navigate("/login");
-    dispatch(logoutUser());
-  }
-
   async function deletePost() {
-    await fetchDeletePost(postId);
-    setPosts((curr) => curr.filter((p) => p._id !== postId));
+    const data = await fetchDeletePost(postId);
+    setPosts((curr) => curr.filter((p) => p._id !== data._id));
   }
 
   async function deleteStory() {
-    await fetchDeletePost(storyId);
-    // setPosts((curr) => curr.filter((p) => p._id !== postId));
+    await fetchDeleteStory(storyId);
+    const data = await fetchStories();
+    dispatch(setStories(data));
   }
 
   if (type === "deletePost") {
@@ -48,7 +42,6 @@ export default function LogoutModal({
   }
 
   if (type === "deleteStory") {
-    console.log(storyId);
     return (
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
@@ -64,26 +57,13 @@ export default function LogoutModal({
       </div>
     );
   }
-
-  return (
-    <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-      <div className={styles.header}>
-        <h3>Logout?</h3>
-        <p>Are you sure you want to logout?</p>
-      </div>
-      <div className={styles.buttons}>
-        <button onClick={closeModalContainer}>Cancel</button>
-        <button onClick={logout} className={styles.logout}>
-          Logout
-        </button>
-      </div>
-    </div>
-  );
 }
 
-LogoutModal.propTypes = {
+DeleteModal.propTypes = {
   type: propTypes.string,
   closeModalContainer: propTypes.func,
   postId: propTypes.string,
+  storyId: propTypes.string,
   setPosts: propTypes.func,
+  setStories: propTypes.func,
 };

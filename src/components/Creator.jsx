@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import OptionsButton from "./OptionsButton";
 import { getDuration } from "../utils/getDuration";
 
-export default function Creator({ post, story, className, setType }) {
+export default function Creator({ post, story, className, setType, type }) {
   const data = post || story;
   const duration = getDuration(data.createdAt);
 
@@ -13,7 +13,7 @@ export default function Creator({ post, story, className, setType }) {
   }
 
   function openDeletePostModal() {
-    setType("deletePost");
+    setType("deleteStory");
   }
 
   return (
@@ -36,6 +36,7 @@ export default function Creator({ post, story, className, setType }) {
         <OptionsButton
           openEditPostModal={openEditPostModal}
           openDeletePostModal={openDeletePostModal}
+          type={type}
         />
       </div>
     </>
@@ -46,5 +47,6 @@ Creator.propTypes = {
   post: PropTypes.object,
   story: PropTypes.object,
   className: PropTypes.string,
+  type: PropTypes.string,
   setType: PropTypes.func,
 };

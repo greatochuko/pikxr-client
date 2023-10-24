@@ -4,8 +4,9 @@ import { useSelector } from "react-redux";
 import ModalContainer from "./ModalContainer";
 import { useState } from "react";
 
-export default function Story({ story, type }) {
+export default function Story({ story, type, setStories }) {
   const { user } = useSelector((state) => state.user);
+  const { stories } = useSelector((state) => state.story);
 
   const [modalType, setModalType] = useState(null);
 
@@ -51,8 +52,10 @@ export default function Story({ story, type }) {
       {modalType ? (
         <ModalContainer
           type={modalType}
+          setType={setModalType}
           closeModalContainer={closeModalContainer}
           story={story}
+          setStories={setStories}
         />
       ) : null}
     </>
@@ -62,4 +65,6 @@ export default function Story({ story, type }) {
 Story.propTypes = {
   story: PropTypes.object,
   type: PropTypes.string,
+  stories: PropTypes.array,
+  setStories: PropTypes.func,
 };

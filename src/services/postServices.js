@@ -101,3 +101,14 @@ export async function fetchDeletePost(postId) {
   const data = await res.json();
   return data;
 }
+export async function fetchDeleteStory(storyId) {
+  const token = localStorage.getItem("token");
+  const res = await fetch("http://localhost:5000/story/" + storyId, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await res.json();
+  return data;
+}

@@ -7,6 +7,7 @@ import CreateStoryModal from "./CreateStoryModal";
 import StoryViewModal from "./StoryViewModal";
 import SearchModal from "./SearchModal";
 import FollowersModal from "./FollowersModal";
+import DeleteModal from "./DeleteModal";
 
 export default function ModalContainer({
   type,
@@ -41,17 +42,25 @@ export default function ModalContainer({
       ) : type === "logout" ? (
         <LogoutModal />
       ) : type === "deletePost" ? (
-        <LogoutModal
+        <DeleteModal
           type={type}
           closeModalContainer={closeModalContainer}
           postId={post._id}
           setPosts={setPosts}
+        />
+      ) : type === "deleteStory" ? (
+        <DeleteModal
+          type={type}
+          closeModalContainer={closeModalContainer}
+          storyId={story._id}
         />
       ) : type === "createStory" ? (
         <CreateStoryModal closeModalContainer={closeModalContainer} />
       ) : type === "viewStory" ? (
         <StoryViewModal
           story={story}
+          type={type}
+          setType={setType}
           closeModalContainer={closeModalContainer}
         />
       ) : type === "search" ? (
@@ -82,5 +91,7 @@ ModalContainer.propTypes = {
   setPosts: propTypes.func,
   post: propTypes.object,
   story: propTypes.object,
+  stories: propTypes.array,
+  setStories: propTypes.func,
   username: propTypes.string,
 };
