@@ -4,8 +4,9 @@ import styles from "./ProfilePost.module.css";
 import { useState } from "react";
 import ModalContainer from "./ModalContainer";
 
-export default function ProfilePost({ post }) {
+export default function ProfilePost({ post: currentPost }) {
   const [modalType, setModalType] = useState(null);
+  const [post, setPost] = useState(currentPost);
 
   function closeModalContainer() {
     setModalType(null);
@@ -37,6 +38,8 @@ export default function ProfilePost({ post }) {
           type={modalType}
           closeModalContainer={closeModalContainer}
           post={post}
+          setCurrentPost={setPost}
+          setType={setModalType}
         />
       ) : null}
     </>

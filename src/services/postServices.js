@@ -89,3 +89,15 @@ export async function updatePost(postId, formData) {
   const data = await res.json();
   return data;
 }
+
+export async function fetchDeletePost(postId) {
+  const token = localStorage.getItem("token");
+  const res = await fetch("http://localhost:5000/post/" + postId, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await res.json();
+  return data;
+}

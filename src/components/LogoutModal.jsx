@@ -1,9 +1,16 @@
+import { fetchDeletePost } from "../services/postServices";
 import { logoutUser } from "../slice/userSlice";
 import styles from "./LogoutModal.module.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import propTypes from "prop-types";
 
-export default function LogoutModal() {
+export default function LogoutModal({
+  type,
+  closeModalContainer,
+  postId,
+  setPosts,
+}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -12,14 +19,35 @@ export default function LogoutModal() {
     dispatch(logoutUser());
   }
 
+  async function deletePost() {
+    await fetchDeletePost(postId);
+    setPosts((curr) => curr.filter((p) => p._id !== postId));
+  }
+  if (type === "deletePost") {
+    return (
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.header}>
+          <h3>Delete Post?</h3>
+          <p>Are you sure you want to delete this post?</p>
+        </div>
+        <div className={styles.buttons}>
+          <button onClick={closeModalContainer}>Cancel</button>
+          <button onClick={deletePost} className={styles.logout}>
+            Delete
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className={styles.modal}>
+    <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
       <div className={styles.header}>
         <h3>Logout?</h3>
         <p>Are you sure you want to logout?</p>
       </div>
       <div className={styles.buttons}>
-        <button>Cancel</button>
+        <button onClick={closeModalContainer}>Cancel</button>
         <button onClick={logout} className={styles.logout}>
           Logout
         </button>
@@ -27,3 +55,10 @@ export default function LogoutModal() {
     </div>
   );
 }
+
+LogoutModal.propTypes = {
+  type: propTypes.string,
+  closeModalContainer: propTypes.func,
+  postId: propTypes.string,
+  setPosts: propTypes.func,
+};

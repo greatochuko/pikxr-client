@@ -179,18 +179,4 @@ export default function Profile() {
         )}
       </>
     );
-  else {
-    return (
-      <h1
-        style={{
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        User does not exist
-      </h1>
-    );
-  }
 }

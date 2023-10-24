@@ -1,6 +1,5 @@
 import styles from "./PostViewModal.module.css";
 import CommentForm from "./CommentForm";
-import { useState } from "react";
 import Comment from "./Comment.jsx";
 import Creator from "./Creator";
 import propTypes from "prop-types";
@@ -44,4 +43,5 @@ PostViewModal.propTypes = {
   post: propTypes.object,
   updateMasonryGridPost: propTypes.func,
   setType: propTypes.func,
+  setCurrentPost: propTypes.func,
 };

@@ -17,6 +17,7 @@ export default function ModalContainer({
   updateMasonryGridPost,
   setCurrentPost,
   setType,
+  setPosts,
 }) {
   return (
     <div className={styles.modalContainer} onClick={closeModalContainer}>
@@ -39,6 +40,13 @@ export default function ModalContainer({
         />
       ) : type === "logout" ? (
         <LogoutModal />
+      ) : type === "deletePost" ? (
+        <LogoutModal
+          type={type}
+          closeModalContainer={closeModalContainer}
+          postId={post._id}
+          setPosts={setPosts}
+        />
       ) : type === "createStory" ? (
         <CreateStoryModal closeModalContainer={closeModalContainer} />
       ) : type === "viewStory" ? (
@@ -71,6 +79,7 @@ ModalContainer.propTypes = {
   updateMasonryGridPost: propTypes.func,
   setType: propTypes.func,
   setCurrentPost: propTypes.func,
+  setPosts: propTypes.func,
   post: propTypes.object,
   story: propTypes.object,
   username: propTypes.string,

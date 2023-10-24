@@ -11,7 +11,7 @@ import {
 } from "../services/postServices";
 import ModalContainer from "./ModalContainer";
 
-export default function Post({ currentPost }) {
+export default function Post({ currentPost, setPosts }) {
   const { user } = useSelector((state) => state.user);
 
   const [post, setPost] = useState(currentPost);
@@ -98,6 +98,7 @@ export default function Post({ currentPost }) {
           closeModalContainer={closeModalContainer}
           post={post}
           setType={setModalType}
+          setPosts={setPosts}
         />
       ) : null}
     </>

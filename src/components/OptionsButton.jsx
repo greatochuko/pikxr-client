@@ -31,4 +31,5 @@ OptionsButton.propTypes = {
   size: propTypes.number,
   openEditPostModal: propTypes.func,
   openDeletePostModal: propTypes.func,
+  type: propTypes.string,
 };

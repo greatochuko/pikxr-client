@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
+import { useState } from "react";
 import styles from "./SideNav.module.css";
 import { Link, useLocation } from "react-router-dom";
 
 export default function SideNav() {
   const { pathname } = useLocation();
-  const { modalType } = useSelector((state) => state.post);
+  const [modalType, setModalType] = useState(null);
 
   return (
     <div className={styles.sidebar}>
