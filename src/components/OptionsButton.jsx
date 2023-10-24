@@ -4,13 +4,16 @@ import propTypes from "prop-types";
 export default function OptionsButton({
   openEditPostModal,
   openDeletePostModal,
+  type,
 }) {
   return (
     <>
       <div className={styles.options}>
-        <button className={styles.optionsButton} onClick={openEditPostModal}>
-          <i className="fa-solid fa-pen-to-square"></i>
-        </button>
+        {!type ? (
+          <button className={styles.optionsButton} onClick={openEditPostModal}>
+            <i className="fa-solid fa-pen-to-square"></i>
+          </button>
+        ) : null}
         <button
           className={styles.optionsButton + " " + styles.delete}
           onClick={openDeletePostModal}

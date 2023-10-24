@@ -35,6 +35,7 @@ export default function ModalContainer({
           setType={setType}
           post={post}
           updateMasonryGridPost={updateMasonryGridPost}
+          setCurrentPost={setCurrentPost}
         />
       ) : type === "logout" ? (
         <LogoutModal />

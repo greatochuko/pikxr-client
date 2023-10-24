@@ -43,6 +43,7 @@
   position: absolute;
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 
 .modal form input[type="file"] {

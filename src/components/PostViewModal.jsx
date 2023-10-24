@@ -9,47 +9,19 @@ export default function PostViewModal({
   post,
   updateMasonryGridPost,
   setType,
+  setCurrentPost,
 }) {
-  const [currentPost, setCurrentPost] = useState(post);
-  const [caption, setCaption] = useState(
-    currentPost.caption.length > 50
-      ? currentPost.caption.slice(0, 50) + "..."
-      : currentPost.caption
-  );
-  const comments = currentPost.comments;
-
-  function toggleSeeMore() {
-    caption.includes("...")
-      ? setCaption(currentPost.caption)
-      : setCaption(
-          currentPost.caption.length > 50
-            ? currentPost.caption.slice(0, 50) + "..."
-            : currentPost.caption
-        );
-  }
+  const comments = post.comments;
 
   return (
     <div className={styles.postViewModal} onClick={(e) => e.stopPropagation()}>
       <div className={styles.imgContainer}>
-        <img
-          src={`http://localhost:5000/posts/${currentPost.imageUrl}`}
-          alt=""
-        />
+        <img src={`http://localhost:5000/posts/${post.imageUrl}`} alt="" />
+        <p className={styles.caption}>{post.caption}</p>
       </div>
       <div className={styles.details}>
-        <Creator
-          post={currentPost}
-          className={styles.creator}
-          setType={setType}
-        />
-        <p className={styles.caption}>
-          {caption}
-          {caption.includes("...") ? (
-            <a onClick={toggleSeeMore}>See more</a>
-          ) : (
-            <a onClick={toggleSeeMore}>See less</a>
-          )}
-        </p>
+        <Creator post={post} className={styles.creator} setType={setType} />
+
         <div className={styles.comments}>
           <ul>
             {comments.map((comment) => (
@@ -59,9 +31,9 @@ export default function PostViewModal({
         </div>
         <CommentForm
           className={styles.commentForm}
-          postId={currentPost._id}
+          postId={post._id}
           setCurrentPost={updateMasonryGridPost || setCurrentPost}
-          creatorId={currentPost.creator._id}
+          creatorId={post.creator._id}
         />
       </div>
     </div>
