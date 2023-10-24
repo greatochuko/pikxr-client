@@ -15,6 +15,20 @@ export default function Feed() {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
 
+  let sortedPosts;
+  sortedPosts = posts
+    ?.map((a) => a)
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+
+  if (sortBy === "popular") {
+    sortedPosts = posts
+      ?.map((a) => a)
+      .sort((a, b) => b.likes.length - a.likes.length);
+  }
+
   useEffect(() => {
     async function refreshPosts() {
       setIsLoading(true);
@@ -55,7 +69,9 @@ export default function Feed() {
               <PostWireFrame />
             </>
           ) : posts.length ? (
-            posts.map((post) => <Post key={post._id} currentPost={post} />)
+            sortedPosts?.map((post) => (
+              <Post key={post._id} currentPost={post} />
+            ))
           ) : (
             <div className={styles.empty}>Your feed is empty</div>
           )}

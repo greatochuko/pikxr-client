@@ -10,6 +10,11 @@ export default function Stories() {
   const { stories } = useSelector((state) => state.story);
   const { user } = useSelector((state) => state.user);
   const [isLoading, setIsLoading] = useState(true);
+  const sortedStories = stories
+    ?.map((a) => a)
+    .sort((a, b) => {
+      return new Date(a.createdAt).getTime - new Date(b.createdAt).getTime;
+    });
 
   const dispatch = useDispatch();
 
@@ -40,10 +45,10 @@ export default function Stories() {
         ) : (
           <>
             {!userHasStory ? <Story /> : null}
-            {stories?.map((story) => (
+            {sortedStories?.map((story) => (
               <Story story={story} key={story._id} />
             ))}
-            {stories?.length ? <Story type={"watch"} /> : null}
+            {sortedStories?.length ? <Story type={"watch"} /> : null}
           </>
         )}
       </div>
