@@ -3,21 +3,28 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import Post from "./Post";
 import { fetchPosts } from "../services/postServices";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setPosts } from "../slice/postSlice";
+import PostWireFrame from "./PostWireFrame";
 
 export default function Feed() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const sortBy = searchParams.get("sortBy");
-  const [posts, setPosts] = useState(null);
+  const { posts } = useSelector((state) => state.post);
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function refreshPosts() {
+      setIsLoading(true);
       const data = await fetchPosts();
 
-      setPosts(data);
+      dispatch(setPosts(data));
+      setIsLoading(false);
     }
     refreshPosts();
-  }, []);
+  }, [dispatch]);
 
   if (posts)
     return (
@@ -39,15 +46,20 @@ export default function Feed() {
             </p>
           </div>
         </div>
-        {posts.length ? (
-          <div className={styles.posts}>
-            {posts.map((post) => (
-              <Post key={post._id} currentPost={post} setPosts={setPosts} />
-            ))}
-          </div>
-        ) : (
-          <div className={styles.empty}>Your feed is empty</div>
-        )}
+        <div className={styles.posts}>
+          {isLoading ? (
+            <>
+              <PostWireFrame />
+              <PostWireFrame />
+              <PostWireFrame />
+              <PostWireFrame />
+            </>
+          ) : posts.length ? (
+            posts.map((post) => <Post key={post._id} currentPost={post} />)
+          ) : (
+            <div className={styles.empty}>Your feed is empty</div>
+          )}
+        </div>
       </div>
     );
 }

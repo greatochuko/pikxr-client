@@ -6,7 +6,6 @@ import { useState } from "react";
 
 export default function Story({ story, type, setStories }) {
   const { user } = useSelector((state) => state.user);
-  const { stories } = useSelector((state) => state.story);
 
   const [modalType, setModalType] = useState(null);
 
