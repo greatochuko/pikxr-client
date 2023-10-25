@@ -1,8 +1,8 @@
 .profile {
   padding-top: 55px;
   padding-bottom: 2rem;
-  height: 100vh;
-  overflow-y: scroll;
+  /* height: 100vh; */
+  /* overflow-y: scroll; */
 }
 
 .profileImages {

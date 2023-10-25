@@ -37,6 +37,7 @@ export default function MasonryGridPost({ post: explorePost }) {
           closeModalContainer={closeModalContainer}
           post={post}
           updateMasonryGridPost={updateMasonryGridPost}
+          setType={setModalType}
         />
       ) : null}
     </>

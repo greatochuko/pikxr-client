@@ -52,6 +52,9 @@ export default function CreatePostModal({
       <h2 className={styles.header}>
         {postImgSrc ? "EditPost" : "Create new post"}
       </h2>
+      <button className={styles.close} onClick={() => closeModalContainer()}>
+        <i className="fa-solid fa-circle-xmark"></i>
+      </button>
       <form onSubmit={handleCreatePost}>
         <div
           className={`${styles.imgPreview} ${
