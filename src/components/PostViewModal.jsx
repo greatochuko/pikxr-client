@@ -38,7 +38,12 @@ export default function PostViewModal({
         <div className={styles.comments}>
           <ul>
             {sortedComments.map((comment) => (
-              <Comment key={comment._id} comment={comment} setType={setType} />
+              <Comment
+                key={comment._id}
+                comment={comment}
+                setType={setType}
+                setComments={setComments}
+              />
             ))}
           </ul>
         </div>

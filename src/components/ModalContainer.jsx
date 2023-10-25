@@ -18,6 +18,7 @@ export default function ModalContainer({
   updateMasonryGridPost,
   setCurrentPost,
   setType,
+  setComments,
 }) {
   return (
     <div className={styles.modalContainer} onClick={closeModalContainer}>
@@ -26,7 +27,7 @@ export default function ModalContainer({
       ) : type === "editPost" ? (
         <CreatePostModal
           closeModalContainer={closeModalContainer}
-          postImgSrc={`http://localhost:5000/posts/${post.imageUrl}`}
+          postImgSrc={`http://192.168.0.101:5000/posts/${post.imageUrl}`}
           postImgCaption={post.caption}
           postId={post._id}
           setCurrentPost={setCurrentPost}
@@ -46,11 +47,12 @@ export default function ModalContainer({
           closeModalContainer={closeModalContainer}
           postId={post._id}
         />
-      ) : type === "deleteComment" ? (
+      ) : type.includes("deleteComment") ? (
         <DeleteModal
           type={type}
           closeModalContainer={closeModalContainer}
-          postId={post._id}
+          commentId={type.split(".")[1]}
+          setComments={setComments}
         />
       ) : type === "deleteStory" ? (
         <DeleteModal
@@ -97,5 +99,6 @@ ModalContainer.propTypes = {
   story: propTypes.object,
   stories: propTypes.array,
   setStories: propTypes.func,
+  setComments: propTypes.func,
   username: propTypes.string,
 };

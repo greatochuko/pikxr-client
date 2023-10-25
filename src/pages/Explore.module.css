@@ -1,10 +1,8 @@
 .explore {
   margin: auto;
-  overflow-y: scroll;
   width: 80vw;
   max-width: 2000px;
   padding-top: 4rem;
-  height: 100vh;
 }
 
 .explore::-webkit-scrollbar {

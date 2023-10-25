@@ -22,3 +22,15 @@ export async function postComment(comment, targetUserId, postId) {
   const data = await res.json();
   return data;
 }
+
+export async function fetchDeleteComment(commentId) {
+  const token = localStorage.getItem("token");
+  const res = await fetch("http://localhost:5000/comment/" + commentId, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await res.json();
+  return data;
+}

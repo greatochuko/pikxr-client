@@ -2,7 +2,7 @@ import styles from "./Comment.module.css";
 import PropType from "prop-types";
 import OptionsButton from "./OptionsButton";
 
-export default function Comment({ comment, setType }) {
+export default function Comment({ comment, setType, setComments }) {
   function openDeleteCommentModal() {
     setType("deleteComment." + comment._id);
   }
@@ -26,4 +26,5 @@ export default function Comment({ comment, setType }) {
 
 Comment.propTypes = {
   comment: PropType.object,
+  setType: PropType.func,
 };
