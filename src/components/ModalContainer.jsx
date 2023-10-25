@@ -9,7 +9,7 @@ import SearchModal from "./SearchModal";
 import FollowersModal from "./FollowersModal";
 import DeleteModal from "./DeleteModal";
 
-const BASE_URL = "http://192.168.0.101:5000";
+const BASE_URL = "https://pikxr-api.onrender.com";
 
 export default function ModalContainer({
   type,

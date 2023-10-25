@@ -48,7 +48,6 @@ export default function LogoutModal({
   }
 
   if (type === "deleteStory") {
-    console.log(storyId);
     return (
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>

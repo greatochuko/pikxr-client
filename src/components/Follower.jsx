@@ -5,7 +5,7 @@ import { fetchUnFollowUser, fetchfollowUser } from "../services/userServices";
 import propTypes from "prop-types";
 import { useState } from "react";
 
-const BASE_URL = "http://192.168.0.101:5000";
+const BASE_URL = "https://pikxr-api.onrender.com";
 
 export default function Follower({ closeModalContainer, follower, type }) {
   const { user } = useSelector((state) => state.user);
@@ -16,8 +16,6 @@ export default function Follower({ closeModalContainer, follower, type }) {
   }
 
   const [isFollowing, setIsFollowing] = useState(following);
-
-  console.log(user.following);
 
   async function toggleFollow(e) {
     e.preventDefault();

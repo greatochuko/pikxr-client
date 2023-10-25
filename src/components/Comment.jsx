@@ -2,7 +2,7 @@ import styles from "./Comment.module.css";
 import PropType from "prop-types";
 import OptionsButton from "./OptionsButton";
 
-const BASE_URL = "http://192.168.0.101:5000";
+const BASE_URL = "https://pikxr-api.onrender.com";
 
 export default function Comment({ comment, setType }) {
   function openDeleteCommentModal() {

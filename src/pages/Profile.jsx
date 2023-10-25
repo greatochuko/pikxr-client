@@ -21,7 +21,7 @@ import {
 
 import { loginUser } from "../slice/userSlice";
 
-const BASE_URL = "http://192.168.0.101:5000";
+const BASE_URL = "https://pikxr-api.onrender.com";
 
 export default function Profile() {
   const { username } = useParams();

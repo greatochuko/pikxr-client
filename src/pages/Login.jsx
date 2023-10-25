@@ -20,6 +20,7 @@ export default function Login() {
   async function handleLogin(e) {
     e.preventDefault();
     setError("");
+    console.log("login...");
     const data = await login(email, password);
     if (data.error) {
       setError(data.error);

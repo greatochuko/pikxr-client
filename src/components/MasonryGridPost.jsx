@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import ModalContainer from "./ModalContainer";
 import { useState } from "react";
 
-const BASE_URL = "http://192.168.0.101:5000";
+const BASE_URL = "https://pikxr-api.onrender.com";
 
 export default function MasonryGridPost({ post: explorePost }) {
   const [modalType, setModalType] = useState(null);

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import OptionsButton from "./OptionsButton";
 import { getDuration } from "../utils/getDuration";
 
-const BASE_URL = "http://192.168.0.101:5000";
+const BASE_URL = "https://pikxr-api.onrender.com";
 
 export default function Creator({ post, story, className, setType, type }) {
   const data = post || story;

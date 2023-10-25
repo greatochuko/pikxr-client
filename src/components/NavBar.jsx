@@ -5,7 +5,7 @@ import ModalContainer from "./ModalContainer";
 
 import styles from "./NavBar.module.css";
 
-const BASE_URL = "http://192.168.0.101:5000";
+const BASE_URL = "https://pikxr-api.onrender.com";
 
 export default function NavBar() {
   const [modalType, setModalType] = useState(null);

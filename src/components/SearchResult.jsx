@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { fetchUnFollowUser, fetchfollowUser } from "../services/userServices";
 
-const BASE_URL = "http://192.168.0.101:5000";
+const BASE_URL = "https://pikxr-api.onrender.com";
 
 export default function SearchResult({ result, closeModalContainer }) {
   const { user } = useSelector((state) => state.user);

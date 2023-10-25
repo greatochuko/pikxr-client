@@ -3,7 +3,7 @@ import styles from "./Notification.module.css";
 import { getDuration } from "../utils/getDuration";
 import propTypes from "prop-types";
 
-const BASE_URL = "http://192.168.0.101:5000";
+const BASE_URL = "https://pikxr-api.onrender.com";
 
 export default function Notification({ notif }) {
   return (

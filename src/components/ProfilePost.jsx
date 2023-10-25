@@ -4,7 +4,7 @@ import styles from "./ProfilePost.module.css";
 import { useState } from "react";
 import ModalContainer from "./ModalContainer";
 
-const BASE_URL = "http://192.168.0.101:5000";
+const BASE_URL = "https://pikxr-api.onrender.com";
 
 export default function ProfilePost({ post: currentPost }) {
   const [modalType, setModalType] = useState(null);
