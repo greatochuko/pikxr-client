@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { createPost, fetchPosts, updatePost } from "../services/postServices";
 import { resizeImage } from "../utils/imageResize";
 import propTypes from "prop-types";
+import LoadingIndicator from "./LoadingIndicator";
 
 export default function CreatePostModal({
   closeModalContainer,
@@ -19,6 +20,7 @@ export default function CreatePostModal({
   const [caption, setCaption] = useState(postImgCaption);
   const [imgPreviewSrc, setImgPreviewSrc] = useState(postImgSrc);
   const { user } = useSelector((state) => state.user);
+  const [loading, setLoading] = useState(false);
 
   function handleChange(e) {
     e.preventDefault();
@@ -32,6 +34,8 @@ export default function CreatePostModal({
 
   async function handleCreatePost(e) {
     e.preventDefault();
+    setLoading(true);
+
     const formData = new FormData();
     formData.append("caption", caption);
     formData.append("image", image);
@@ -42,6 +46,8 @@ export default function CreatePostModal({
       return;
     }
     await createPost(formData);
+    setLoading(false);
+
     const data = await fetchPosts();
     dispatch(setPosts(data));
     closeModalContainer();
@@ -90,7 +96,9 @@ export default function CreatePostModal({
           value={caption}
           onChange={(e) => setCaption(e.target.value)}
         ></textarea>
-        <input type="submit" value={postImgSrc ? "Edit" : "Create"} />
+        <button type="submit">
+          {loading ? <LoadingIndicator /> : postImgSrc ? "Edit" : "Create"}
+        </button>
       </form>
     </div>
   );

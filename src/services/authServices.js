@@ -1,10 +1,12 @@
+const BASE_URL = "http://localhost:5000";
+
 export async function login(email, password) {
   let username;
   if (!email.includes("@")) {
     username = email;
   }
   try {
-    const res = await fetch("http://localhost:5000/login", {
+    const res = await fetch(BASE_URL + "/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,7 +26,7 @@ export async function login(email, password) {
 
 export async function signup(username, fullname, email, password) {
   try {
-    const res = await fetch("http://localhost:5000/signup", {
+    const res = await fetch(BASE_URL + "/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +42,7 @@ export async function signup(username, fullname, email, password) {
 }
 
 export async function validateEmail(email, signal) {
-  const res = await fetch("http://localhost:5000/validateEmail", {
+  const res = await fetch(BASE_URL + "/validateEmail", {
     signal,
     method: "POST",
     headers: {
@@ -53,7 +55,7 @@ export async function validateEmail(email, signal) {
 }
 
 export async function validateUsername(username, signal) {
-  const res = await fetch("http://localhost:5000/validateUsername", {
+  const res = await fetch(BASE_URL + "/validateUsername", {
     signal,
     method: "POST",
     headers: {

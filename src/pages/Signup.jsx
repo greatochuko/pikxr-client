@@ -8,7 +8,6 @@ import FieldValidator from "../components/FieldValidator";
 import useValidateEmail from "../hooks/useValidateEmail";
 import useValidateUsername from "../hooks/useValidateUsername";
 import useValidatePassword from "../hooks/useValidatePassword";
-import { fetchUser } from "../services/userServices";
 
 export default function Signup() {
   const [email, setEmail] = useState("");

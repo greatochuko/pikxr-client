@@ -1,6 +1,8 @@
+const BASE_URL = "http://localhost:5000";
+
 export async function fetchComments(postId) {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:5000/comments/" + postId, {
+  const res = await fetch(BASE_URL + "/comments/" + postId, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -11,7 +13,7 @@ export async function fetchComments(postId) {
 
 export async function postComment(comment, targetUserId, postId) {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:5000/comments", {
+  const res = await fetch(BASE_URL + "/comments", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -25,7 +27,7 @@ export async function postComment(comment, targetUserId, postId) {
 
 export async function fetchDeleteComment(commentId) {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:5000/comment/" + commentId, {
+  const res = await fetch(BASE_URL + "/comment/" + commentId, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,

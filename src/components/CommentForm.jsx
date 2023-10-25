@@ -3,6 +3,7 @@ import styles from "./CommentForm.module.css";
 import propTypes from "prop-types";
 import { useState } from "react";
 import { fetchComments, postComment } from "../services/commentServices";
+import LoadingIndicator from "./LoadingIndicator";
 
 export default function CommentForm({
   className,
@@ -13,14 +14,17 @@ export default function CommentForm({
 }) {
   const { user } = useSelector((state) => state.user);
   const [comment, setComment] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handlePostComment(e) {
     e.preventDefault();
+    setLoading(true);
     const data = await postComment(comment, creatorId, postId);
     if (data.error) return;
     setCurrentPost(data);
     setComments(await fetchComments(postId));
     setComment("");
+    setLoading(false);
   }
   return (
     <form
@@ -34,7 +38,7 @@ export default function CommentForm({
         onChange={(e) => setComment(e.target.value)}
         placeholder="Comment"
       />
-      <button type="submit">Post</button>
+      <button type="submit">{loading ? <LoadingIndicator /> : "Send"}</button>
     </form>
   );
 }
@@ -43,6 +47,7 @@ CommentForm.propTypes = {
   className: propTypes.string,
   postId: propTypes.string,
   setCurrentPost: propTypes.func,
+  setComments: propTypes.func,
   updateMasonryGridPost: propTypes.func,
   creatorId: propTypes.string,
 };

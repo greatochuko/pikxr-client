@@ -100,7 +100,7 @@ button.close {
   flex: 1;
 }
 
-.modal form input[type="submit"] {
+.modal form button {
   padding: 10px;
   background-color: var(--BLACK-200);
   color: #fff;
