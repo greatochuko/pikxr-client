@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import ModalContainer from "./ModalContainer";
 import { useState } from "react";
 
+const BASE_URL = "http://192.168.0.101:5000";
+
 export default function Story({ story, type, setStories }) {
   const { user } = useSelector((state) => state.user);
 
@@ -28,7 +30,7 @@ export default function Story({ story, type, setStories }) {
           onClick={() => setModalType("viewStory")}
         >
           <img
-            src={`http://localhost:5000/stories/${story.imageUrl} `}
+            src={`${BASE_URL}/stories/${story.imageUrl} `}
             alt={story.imageUrl}
           />
           <h4 className={styles.username}>@{story.creator.username}</h4>
@@ -38,10 +40,7 @@ export default function Story({ story, type, setStories }) {
           className={styles.story + " " + styles.addStory}
           onClick={() => setModalType("createStory")}
         >
-          <img
-            src={`http://localhost:5000/users/${user.imageUrl} `}
-            alt={"user image"}
-          />
+          <img src={`${BASE_URL}/users/${user.imageUrl} `} alt={"user image"} />
           <button>
             <i className="fa-solid fa-circle-plus"></i>
           </button>

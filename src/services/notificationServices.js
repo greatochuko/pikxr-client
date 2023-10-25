@@ -1,6 +1,9 @@
+// const BASE_URL = "http://localhost:5000";
+const BASE_URL = "http://192.168.0.101:5000";
+
 export async function fetchNotifications() {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:5000/notifications", {
+  const res = await fetch(BASE_URL + "/notifications", {
     headers: {
       Authorization: `Bearer, ${token}`,
     },
@@ -11,7 +14,7 @@ export async function fetchNotifications() {
 
 export async function markNotificationsAsRead() {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:5000/notifications", {
+  const res = await fetch(BASE_URL + "/notifications", {
     method: "POST",
     headers: {
       Authorization: `Bearer, ${token}`,

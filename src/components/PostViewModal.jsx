@@ -6,6 +6,8 @@ import propTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { fetchComments } from "../services/commentServices";
 
+const BASE_URL = "http://192.168.0.101:5000";
+
 export default function PostViewModal({
   post,
   updateMasonryGridPost,
@@ -29,7 +31,7 @@ export default function PostViewModal({
   return (
     <div className={styles.postViewModal} onClick={(e) => e.stopPropagation()}>
       <div className={styles.imgContainer}>
-        <img src={`http://localhost:5000/posts/${post.imageUrl}`} alt="" />
+        <img src={`${BASE_URL}/posts/${post.imageUrl}`} alt="" />
         <p className={styles.caption}>{post.caption}</p>
       </div>
       <div className={styles.details}>

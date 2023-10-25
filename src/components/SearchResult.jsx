@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { fetchUnFollowUser, fetchfollowUser } from "../services/userServices";
 
+const BASE_URL = "http://192.168.0.101:5000";
+
 export default function SearchResult({ result, closeModalContainer }) {
   const { user } = useSelector((state) => state.user);
   const [isFollowing, setIsFollowing] = useState(
@@ -21,7 +23,7 @@ export default function SearchResult({ result, closeModalContainer }) {
   return (
     <li className={styles.result} key={result._id}>
       <Link to={"/profile/" + result.username} onClick={closeModalContainer}>
-        <img src={"http://localhost:5000/users/" + result.imageUrl} alt="" />
+        <img src={BASE_URL + "/users/" + result.imageUrl} alt="" />
         <div className={styles.resultDetails}>
           <h3>{result.fullname}</h3>
           <p>
@@ -44,4 +46,5 @@ export default function SearchResult({ result, closeModalContainer }) {
 
 SearchResult.propTypes = {
   result: propTypes.object,
+  closeModalContainer: propTypes.func,
 };

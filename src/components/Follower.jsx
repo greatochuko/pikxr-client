@@ -1,19 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styles from "./Follower.module.css";
 import { useSelector } from "react-redux";
 import { fetchUnFollowUser, fetchfollowUser } from "../services/userServices";
 import propTypes from "prop-types";
 import { useState } from "react";
 
+const BASE_URL = "http://192.168.0.101:5000";
+
 export default function Follower({ closeModalContainer, follower, type }) {
   const { user } = useSelector((state) => state.user);
-
-  const [isFollowing, setIsFollowing] = useState(true);
-
-  function handleRemoveFollower(e) {
-    e.preventDefault();
-    closeModalContainer();
+  const { username } = useParams();
+  let following = true;
+  if (type === "followers") {
+    following = user.following.includes(follower._id);
   }
+
+  const [isFollowing, setIsFollowing] = useState(following);
+
+  console.log(user.following);
 
   async function toggleFollow(e) {
     e.preventDefault();
@@ -25,18 +29,16 @@ export default function Follower({ closeModalContainer, follower, type }) {
   return (
     <li className={styles.follower} key={follower._id}>
       <Link to={"/profile/" + follower.username}>
-        <img src={"http://localhost:5000/" + follower.imageUrl} alt="" />
+        <img src={BASE_URL + "/users/" + follower.imageUrl} alt="" />
         <div className={styles.info}>
           <p>{follower.fullname}</p>
           <p>@{follower.username}</p>
         </div>
-        {type === "followers" ? (
-          <button onClick={handleRemoveFollower}>Remove</button>
-        ) : (
+        {user.username === username ? (
           <button onClick={toggleFollow}>
             {isFollowing ? "Unfollow" : "Follow"}
           </button>
-        )}
+        ) : null}
       </Link>
     </li>
   );

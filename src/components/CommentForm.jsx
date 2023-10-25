@@ -5,6 +5,8 @@ import { useState } from "react";
 import { fetchComments, postComment } from "../services/commentServices";
 import LoadingIndicator from "./LoadingIndicator";
 
+const BASE_URL = "http://192.168.0.101:5000";
+
 export default function CommentForm({
   className,
   postId,
@@ -31,7 +33,7 @@ export default function CommentForm({
       className={styles.commentForm + " " + className}
       onSubmit={handlePostComment}
     >
-      <img src={"http://localhost:5000/users/" + user.imageUrl} alt="" />
+      <img src={BASE_URL + "/users/" + user.imageUrl} alt="" />
       <input
         type="text"
         value={comment}

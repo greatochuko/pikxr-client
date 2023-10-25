@@ -2,7 +2,7 @@ import styles from "./Profile.module.css";
 
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import ProfilePostGrid from "../components/ProfilePostGrid";
 import ModalContainer from "../components/ModalContainer";
@@ -21,11 +21,13 @@ import {
 
 import { loginUser } from "../slice/userSlice";
 
+const BASE_URL = "http://192.168.0.101:5000";
+
 export default function Profile() {
   const { username } = useParams();
+  const { user } = useSelector((state) => state.user);
 
   const [activeTab, setActiveTab] = useState("posts");
-  const [user, setUser] = useState(null);
   const [modalType, setModalType] = useState(null);
   const [previewProfilePhotoUrl, setPreviewProfilePhotoUrl] = useState(null);
   const [previewCoverPhotoUrl, setPreviewCoverPhotoUrl] = useState(null);
@@ -40,7 +42,7 @@ export default function Profile() {
   async function closeModalContainer() {
     setModalType(null);
     const data = await fetchUserProfile(username);
-    setUser(data);
+    dispatch(loginUser(data));
   }
 
   async function handleEditAbout(e) {
@@ -77,7 +79,6 @@ export default function Profile() {
           console.log("Error, unable to upload image please try again later");
           return;
         }
-        setUser(data);
         dispatch(loginUser(data));
       }
     );
@@ -86,11 +87,12 @@ export default function Profile() {
   useEffect(() => {
     async function getUser() {
       const data = await fetchUserProfile(username);
-      setUser(data);
+      dispatch(loginUser(data));
+
       setAbout(data.about);
     }
     getUser();
-  }, [username]);
+  }, [username, dispatch]);
 
   if (user)
     return (
@@ -109,7 +111,7 @@ export default function Profile() {
               <img
                 src={
                   previewCoverPhotoUrl ||
-                  "http://localhost:5000/users/" + user.coverPhotoUrl
+                  BASE_URL + "/users/" + user.coverPhotoUrl
                 }
                 alt="cover photo"
               />
@@ -118,8 +120,7 @@ export default function Profile() {
             <div className={styles.profileImage}>
               <img
                 src={
-                  previewProfilePhotoUrl ||
-                  "http://localhost:5000/users/" + user.imageUrl
+                  previewProfilePhotoUrl || BASE_URL + "/users/" + user.imageUrl
                 }
                 alt="profile picture"
               />

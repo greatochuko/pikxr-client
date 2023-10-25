@@ -5,6 +5,8 @@ import ModalContainer from "./ModalContainer";
 
 import styles from "./NavBar.module.css";
 
+const BASE_URL = "http://192.168.0.101:5000";
+
 export default function NavBar() {
   const [modalType, setModalType] = useState(null);
 
@@ -61,7 +63,7 @@ export default function NavBar() {
             </a>
           </li>
           <Link to={"/profile/" + user.username}>
-            <img src={"http://localhost:5000/users/" + user.imageUrl} alt="" />
+            <img src={BASE_URL + "/users/" + user.imageUrl} alt="" />
           </Link>
         </div>
       </nav>

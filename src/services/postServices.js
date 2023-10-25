@@ -1,6 +1,9 @@
+// const BASE_URL = "http://localhost:5000";
+const BASE_URL = "http://192.168.0.101:5000";
+
 export async function fetchPosts() {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:5000/posts/", {
+  const res = await fetch(BASE_URL + "/posts/", {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -11,7 +14,7 @@ export async function fetchPosts() {
 
 export async function createPost(formData) {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:5000/posts", {
+  const res = await fetch(BASE_URL + "/posts", {
     method: "POST",
     body: formData,
     headers: {
@@ -23,7 +26,7 @@ export async function createPost(formData) {
 
 export async function likePost(postId, targetUserId) {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:5000/post/like", {
+  const res = await fetch(BASE_URL + "/post/like", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -37,7 +40,7 @@ export async function likePost(postId, targetUserId) {
 
 export async function unLikePost(postId, targetUserId) {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:5000/post/unlike", {
+  const res = await fetch(BASE_URL + "/post/unlike", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -51,7 +54,7 @@ export async function unLikePost(postId, targetUserId) {
 
 export async function savePost(postId) {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:5000/post/save", {
+  const res = await fetch(BASE_URL + "/post/save", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -65,7 +68,7 @@ export async function savePost(postId) {
 
 export async function unSavePost(postId) {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:5000/post/unsave", {
+  const res = await fetch(BASE_URL + "/post/unsave", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -79,7 +82,7 @@ export async function unSavePost(postId) {
 
 export async function updatePost(postId, formData) {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:5000/post/" + postId, {
+  const res = await fetch(BASE_URL + "/post/" + postId, {
     method: "PATCH",
     body: formData,
     headers: {
@@ -92,7 +95,7 @@ export async function updatePost(postId, formData) {
 
 export async function fetchDeletePost(postId) {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:5000/post/" + postId, {
+  const res = await fetch(BASE_URL + "/post/" + postId, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -103,7 +106,7 @@ export async function fetchDeletePost(postId) {
 }
 export async function fetchDeleteStory(storyId) {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:5000/story/" + storyId, {
+  const res = await fetch(BASE_URL + "/story/" + storyId, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,

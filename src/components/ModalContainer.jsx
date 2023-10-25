@@ -9,6 +9,8 @@ import SearchModal from "./SearchModal";
 import FollowersModal from "./FollowersModal";
 import DeleteModal from "./DeleteModal";
 
+const BASE_URL = "http://192.168.0.101:5000";
+
 export default function ModalContainer({
   type,
   closeModalContainer,
@@ -27,7 +29,7 @@ export default function ModalContainer({
       ) : type === "editPost" ? (
         <CreatePostModal
           closeModalContainer={closeModalContainer}
-          postImgSrc={`http://192.168.0.101:5000/posts/${post.imageUrl}`}
+          postImgSrc={`${BASE_URL}/posts/${post.imageUrl}`}
           postImgCaption={post.caption}
           postId={post._id}
           setCurrentPost={setCurrentPost}

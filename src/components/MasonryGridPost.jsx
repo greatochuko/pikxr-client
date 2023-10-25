@@ -3,6 +3,8 @@ import propTypes from "prop-types";
 import ModalContainer from "./ModalContainer";
 import { useState } from "react";
 
+const BASE_URL = "http://192.168.0.101:5000";
+
 export default function MasonryGridPost({ post: explorePost }) {
   const [modalType, setModalType] = useState(null);
   const [post, setPost] = useState(explorePost);
@@ -18,7 +20,7 @@ export default function MasonryGridPost({ post: explorePost }) {
   return (
     <>
       <div className={styles.post} onClick={() => setModalType("viewPost")}>
-        <img src={`http://localhost:5000/posts/${post.imageUrl}`} alt="" />
+        <img src={`${BASE_URL}/posts/${post.imageUrl}`} alt="" />
         <div className={styles.overlay}>
           <span>
             <i className="fa-solid fa-heart"></i>

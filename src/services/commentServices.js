@@ -1,4 +1,5 @@
-const BASE_URL = "http://localhost:5000";
+// const BASE_URL = "http://localhost:5000";
+const BASE_URL = "http://192.168.0.101:5000";
 
 export async function fetchComments(postId) {
   const token = localStorage.getItem("token");

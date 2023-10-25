@@ -11,6 +11,8 @@ import {
 } from "../services/postServices";
 import ModalContainer from "./ModalContainer";
 
+const BASE_URL = "http://192.168.0.101:5000";
+
 export default function Post({ currentPost }) {
   const { user } = useSelector((state) => state.user);
 
@@ -61,7 +63,7 @@ export default function Post({ currentPost }) {
     <>
       <div className={styles.post}>
         <div className={styles.images} onClick={() => setModalType("viewPost")}>
-          <img src={`http://localhost:5000/posts/${post.imageUrl}`} />
+          <img src={`${BASE_URL}/posts/${post.imageUrl}`} />
         </div>
         <div className={styles.actionButtons}>
           <button onClick={toggleLike}>

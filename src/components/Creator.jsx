@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import OptionsButton from "./OptionsButton";
 import { getDuration } from "../utils/getDuration";
 
+const BASE_URL = "http://192.168.0.101:5000";
+
 export default function Creator({ post, story, className, setType, type }) {
   const data = post || story;
   const duration = getDuration(data.createdAt);
@@ -22,7 +24,7 @@ export default function Creator({ post, story, className, setType, type }) {
       <div className={styles.creator + " " + className}>
         <Link to={"/profile/" + data.creator.username}>
           <img
-            src={"http://localhost:5000/users/" + data.creator.imageUrl}
+            src={BASE_URL + "/users/" + data.creator.imageUrl}
             alt={data.creator.username}
           />
           <div className={styles.text}>
