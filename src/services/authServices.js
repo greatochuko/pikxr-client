@@ -15,7 +15,7 @@ export async function login(email, password) {
     });
     const data = await res.json();
 
-    localStorage.setItem("token", JSON.stringify(data.token));
+    if (!data.error) localStorage.setItem("token", data.token);
     return data;
   } catch (err) {
     return err;
@@ -32,7 +32,7 @@ export async function signup(username, fullname, email, password) {
       body: JSON.stringify({ username, fullname, email, password }),
     });
     const data = await res.json();
-    localStorage.setItem("token", JSON.stringify(data.token));
+    if (!data.error) localStorage.setItem("token", data.token);
     return data;
   } catch (err) {
     console.log(err);

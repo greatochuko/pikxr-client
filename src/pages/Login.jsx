@@ -5,7 +5,6 @@ import styles from "./Auth.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../slice/userSlice";
 import { login } from "../services/authServices";
-import { fetchUser } from "../services/userServices";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -26,6 +25,7 @@ export default function Login() {
       setError(data.error);
       return;
     }
+
     dispatch(loginUser(data.user));
     navigate("/");
   }
@@ -36,7 +36,6 @@ export default function Login() {
 
   return (
     <div className={styles.auth}>
-      <div className={styles.img}></div>
       <div className={styles.authContainer}>
         <div className={styles.header}>
           <h1 className="title">Login to Pikxr</h1>

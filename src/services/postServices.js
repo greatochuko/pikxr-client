@@ -1,6 +1,6 @@
 export async function fetchPosts() {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:5000/posts", {
+  const res = await fetch("http://localhost:5000/posts/", {
     headers: {
       Authorization: `Bearer ${token}`,
     },

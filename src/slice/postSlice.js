@@ -1,13 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchPosts } from "../services/postServices";
-import { fetchUser } from "../services/userServices";
-
-const { likedPosts, savedPosts } = await fetchUser();
 
 const initialState = {
-  posts: await fetchPosts(),
-  likedPosts,
-  savedPosts,
+  posts: [],
 };
 
 const postSlice = createSlice({
@@ -20,19 +14,8 @@ const postSlice = createSlice({
     filterDeletedPost: (state, action) => {
       state.posts = state.posts.filter((post) => post._id !== action.payload);
     },
-    refreshPostLikes: (state, action) => {
-      state.likedPosts = action.payload;
-    },
-    refreshPostSaves: (state, action) => {
-      state.savedPosts = action.payload;
-    },
   },
 });
 
-export const {
-  setPosts,
-  filterDeletedPost,
-  refreshPostLikes,
-  refreshPostSaves,
-} = postSlice.actions;
+export const { setPosts, filterDeletedPost } = postSlice.actions;
 export default postSlice.reducer;

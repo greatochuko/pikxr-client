@@ -1,5 +1,5 @@
 .auth {
-  width: 60%;
+  width: min(80%, 500px);
   margin: auto;
   display: flex;
   align-items: center;
@@ -13,10 +13,6 @@
   border: solid 1px #ccc;
   /* height: 80%; */
   padding: 1.5rem;
-}
-
-.img {
-  flex: 1;
 }
 
 .header {

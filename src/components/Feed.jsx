@@ -15,8 +15,7 @@ export default function Feed() {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
 
-  let sortedPosts;
-  sortedPosts = posts
+  let sortedPosts = posts
     ?.map((a) => a)
     .sort(
       (a, b) =>
@@ -33,7 +32,6 @@ export default function Feed() {
     async function refreshPosts() {
       setIsLoading(true);
       const data = await fetchPosts();
-
       dispatch(setPosts(data));
       setIsLoading(false);
     }
