@@ -21,11 +21,12 @@ export default function SearchModal({ closeModalContainer }) {
       try {
         const data = await searchUsers(query, signal);
         setSearchResults(data);
-        setIsLoading(false);
       } catch (error) {
         if (controller.signal.aborted) {
           return;
         }
+      } finally {
+        setIsLoading(false);
       }
     }
     if (!query) {

@@ -7,12 +7,15 @@ import { createStory, fetchStories } from "../services/storyServices";
 
 import styles from "./StoriesModal.module.css";
 import { setStories } from "../slice/storySlice";
+import LoadingIndicator from "./LoadingIndicator";
 
 export default function CreateStoryModal({ closeModalContainer }) {
   const [image, setImage] = useState(null);
   const imageInputRef = useRef();
   const [caption, setCaption] = useState("");
   const [imgPreviewSrc, setImgPreviewSrc] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -29,12 +32,14 @@ export default function CreateStoryModal({ closeModalContainer }) {
   async function handleCreateStory(e) {
     e.preventDefault();
     if (!image) return;
+    setLoading(true);
     const formData = new FormData();
     formData.append("caption", caption);
     formData.append("storyImage", image);
     formData.append("creator", user._id);
 
     const resData = await createStory(formData);
+    setLoading(false);
     if (resData.error) {
       return;
     }
@@ -77,7 +82,7 @@ export default function CreateStoryModal({ closeModalContainer }) {
           />
         </div>
 
-        <input type="submit" value="Post" />
+        <button type="submit">{loading ? <LoadingIndicator /> : "POST"}</button>
       </form>
     </div>
   );
