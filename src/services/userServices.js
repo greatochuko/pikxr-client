@@ -92,3 +92,17 @@ export async function fetchUploadProfilePhoto(formData) {
   const data = await res.json();
   return data;
 }
+
+export async function fetchEditUserAbout(about, userId) {
+  const token = localStorage.getItem("token");
+  const res = await fetch("http://localhost:5000/user/" + userId, {
+    method: "PATCH",
+    body: JSON.stringify({ about, userId }),
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await res.json();
+  return data;
+}

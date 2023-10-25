@@ -17,6 +17,9 @@ const postSlice = createSlice({
     setPosts: (state, action) => {
       state.posts = action.payload;
     },
+    filterDeletedPost: (state, action) => {
+      state.posts = state.posts.filter((post) => post._id !== action.payload);
+    },
     refreshPostLikes: (state, action) => {
       state.likedPosts = action.payload;
     },
@@ -26,6 +29,10 @@ const postSlice = createSlice({
   },
 });
 
-export const { setPosts, refreshPostLikes, refreshPostSaves } =
-  postSlice.actions;
+export const {
+  setPosts,
+  filterDeletedPost,
+  refreshPostLikes,
+  refreshPostSaves,
+} = postSlice.actions;
 export default postSlice.reducer;

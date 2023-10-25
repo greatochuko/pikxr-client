@@ -1,7 +1,7 @@
 .modal {
   width: 450px;
-  height: 500px;
-  width: 35vw;
+  height: max(500px, 50vh);
+  width: max(35vw, 600px);
   height: min(90vh, 800px);
   background-color: white;
   animation: show 0.3s forwards;

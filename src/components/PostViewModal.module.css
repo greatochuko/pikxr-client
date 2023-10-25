@@ -1,6 +1,6 @@
 .postViewModal {
   width: fit-content;
-  max-width: 80vw;
+  max-width: 80%;
   height: min(80vh, 800px);
   animation: show 0.3s forwards;
   border-radius: 10px;
@@ -86,4 +86,56 @@
 /* COMMENT FORM */
 .commentForm {
   margin: 10px;
+}
+
+/* LARGE */
+
+@media screen and (max-width: 1024px) {
+  .postViewModal {
+    flex-direction: column;
+    height: min(80vh, 900px);
+  }
+
+  .imgContainer {
+    max-width: 100%;
+    min-height: 30%;
+  }
+
+  .details {
+    width: 100%;
+    min-height: 60%;
+  }
+
+  .comments {
+    flex: 1;
+  }
+}
+
+/* MEDIUM */
+
+@media screen and (max-width: 768px) {
+  .postViewModal {
+    min-height: 70dvh;
+    max-width: 90%;
+  }
+}
+
+/* SMALL */
+
+@media screen and (max-device-width: 768px) and (orientation: landscape) {
+  .postViewModal {
+    flex-direction: row;
+  }
+  .imgContainer {
+    max-width: 50%;
+    height: 100%;
+    position: relative;
+  }
+  .commentForm {
+    margin-top: auto;
+  }
+  .details {
+    flex: 1;
+    height: 100%;
+  }
 }

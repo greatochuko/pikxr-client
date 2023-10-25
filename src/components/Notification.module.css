@@ -38,3 +38,20 @@
 .notification p span:last-child {
   margin-left: auto;
 }
+
+/* ------------- MEDIA QUERIES ------------- */
+
+/* SMALL */
+
+@media screen and (max-width: 576px) {
+  .notification {
+    align-items: start;
+  }
+  .notification p {
+    flex-direction: column;
+  }
+
+  .notification p span {
+    margin-left: 0;
+  }
+}

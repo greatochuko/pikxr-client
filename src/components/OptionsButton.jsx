@@ -8,7 +8,7 @@ export default function OptionsButton({
 }) {
   return (
     <>
-      <div className={styles.options}>
+      <div className={styles.options} onClick={(e) => e.stopPropagation()}>
         {!type ? (
           <button className={styles.optionsButton} onClick={openEditPostModal}>
             <i className="fa-solid fa-pen-to-square"></i>

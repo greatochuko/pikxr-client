@@ -13,7 +13,8 @@ export default function Creator({ post, story, className, setType, type }) {
   }
 
   function openDeletePostModal() {
-    setType("deleteStory");
+    if (type === "viewStory") setType("deleteStory");
+    else setType("deletePost");
   }
 
   return (

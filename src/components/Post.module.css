@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   transition: 0.3s;
-  cursor: pointer;
 }
 
 .post .images {
@@ -15,6 +14,7 @@
 .post .images img {
   height: 100%;
   width: 100%;
+  cursor: pointer;
   object-fit: cover;
 }
 

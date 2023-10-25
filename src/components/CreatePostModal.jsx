@@ -49,7 +49,9 @@ export default function CreatePostModal({
 
   return (
     <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-      <h2 className={styles.header}>Create new post</h2>
+      <h2 className={styles.header}>
+        {postImgSrc ? "EditPost" : "Create new post"}
+      </h2>
       <form onSubmit={handleCreatePost}>
         <div
           className={`${styles.imgPreview} ${
@@ -85,7 +87,7 @@ export default function CreatePostModal({
           value={caption}
           onChange={(e) => setCaption(e.target.value)}
         ></textarea>
-        <input type="submit" value="Post" />
+        <input type="submit" value={postImgSrc ? "Edit" : "Create"} />
       </form>
     </div>
   );

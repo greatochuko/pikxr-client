@@ -2,26 +2,20 @@
   width: 100%;
   display: flex;
   position: fixed;
-  top: 0;
-  padding: 5px 1.5rem;
+  bottom: 0;
+  padding: 5px 10px;
   align-items: center;
-  z-index: 200;
+  z-index: 150;
   background-color: white;
-}
-
-.logo {
-  width: 100px;
-}
-
-.logo img {
-  width: 80px;
+  border-top: solid 1px #eee;
+  box-shadow: 0 -2px 2px #eee;
+  display: none;
 }
 
 .navbar ul {
   display: flex;
   flex: 1;
-  justify-content: center;
-  gap: 2rem;
+  justify-content: space-around;
   font-size: 1.2rem;
 }
 
@@ -45,34 +39,10 @@
   color: brown;
 }
 
-/* PROFILE */
-
-.profile {
-  width: fit-content;
-  display: flex;
-  align-items: center;
-  position: relative;
-  margin-left: auto;
-}
-
-.profile a {
-  padding: 0;
-  width: fit-content;
-  margin-left: 1rem;
-  font-size: 1.2rem;
-}
-
-.profile img {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
 /* -------------------- MEDIA QUERIES -------------------- */
 
 @media screen and (max-width: 768px) {
-  .navbar ul {
-    display: none;
+  .navbar {
+    display: block;
   }
 }

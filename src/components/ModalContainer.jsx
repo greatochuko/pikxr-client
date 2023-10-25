@@ -18,7 +18,6 @@ export default function ModalContainer({
   updateMasonryGridPost,
   setCurrentPost,
   setType,
-  setPosts,
 }) {
   return (
     <div className={styles.modalContainer} onClick={closeModalContainer}>
@@ -46,7 +45,12 @@ export default function ModalContainer({
           type={type}
           closeModalContainer={closeModalContainer}
           postId={post._id}
-          setPosts={setPosts}
+        />
+      ) : type === "deleteComment" ? (
+        <DeleteModal
+          type={type}
+          closeModalContainer={closeModalContainer}
+          postId={post._id}
         />
       ) : type === "deleteStory" ? (
         <DeleteModal

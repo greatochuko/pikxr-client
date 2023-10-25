@@ -34,3 +34,19 @@
   flex-direction: column;
   gap: 10px;
 }
+
+/* ------------- MEDIA QUERIES ------------- */
+
+/* LARGE */
+@media screen and (max-width: 1024px) {
+  .notifications {
+    padding: 3.5rem 10vw;
+  }
+}
+
+/* MEDIUM */
+@media screen and (max-width: 576px) {
+  .notifications {
+    padding: 3.5rem 5vw;
+  }
+}

@@ -1,5 +1,5 @@
 .modal {
-  width: 40vw;
+  width: min(800px, 80vw);
   height: min(90vh, 800px);
   background-color: white;
   animation: show 0.3s forwards;
@@ -47,4 +47,29 @@
   gap: 10px;
   overflow-y: scroll;
   flex: 1;
+}
+
+/* ------------------------------ MEDIA QUERIES ------------------------- */
+
+/* LARGE */
+@media screen and (max-width: 1024px) {
+  .modal {
+    height: max(500px, 70%);
+  }
+}
+
+/* MEDIUM */
+@media screen and (max-width: 768px) {
+  .modal {
+    height: max(500px, 70%);
+  }
+}
+
+/* SMALL */
+@media screen and (max-width: 576px) {
+  .modal {
+    align-self: flex-start;
+    margin-top: 10%;
+    width: 90%;
+  }
 }

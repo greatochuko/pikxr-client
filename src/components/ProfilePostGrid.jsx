@@ -28,9 +28,13 @@ export default function ProfilePostGrid({ type, user }) {
 
   return (
     <div className={styles.postGrid}>
-      {filteredPosts?.map((post) => (
-        <ProfilePost post={post} key={post._id} />
-      ))}
+      {filteredPosts?.length ? (
+        filteredPosts?.map((post) => <ProfilePost post={post} key={post._id} />)
+      ) : (
+        <p className={styles.noPosts}>
+          You have no {type !== "posts" && type} posts
+        </p>
+      )}
     </div>
   );
 }

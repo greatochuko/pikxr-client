@@ -3,6 +3,8 @@ import CommentForm from "./CommentForm";
 import Comment from "./Comment.jsx";
 import Creator from "./Creator";
 import propTypes from "prop-types";
+import { useEffect, useState } from "react";
+import { fetchComments } from "../services/commentServices";
 
 export default function PostViewModal({
   post,
@@ -10,7 +12,19 @@ export default function PostViewModal({
   setType,
   setCurrentPost,
 }) {
-  const comments = post.comments;
+  const [comments, setComments] = useState([]);
+
+  const sortedComments = [...comments].sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+
+  useEffect(() => {
+    async function getComments() {
+      const data = await fetchComments(post._id);
+      setComments(data);
+    }
+    getComments();
+  }, [post._id]);
 
   return (
     <div className={styles.postViewModal} onClick={(e) => e.stopPropagation()}>
@@ -23,8 +37,8 @@ export default function PostViewModal({
 
         <div className={styles.comments}>
           <ul>
-            {comments.map((comment) => (
-              <Comment key={comment._id} comment={comment} />
+            {sortedComments.map((comment) => (
+              <Comment key={comment._id} comment={comment} setType={setType} />
             ))}
           </ul>
         </div>
@@ -33,6 +47,7 @@ export default function PostViewModal({
           postId={post._id}
           setCurrentPost={updateMasonryGridPost || setCurrentPost}
           creatorId={post.creator._id}
+          setComments={setComments}
         />
       </div>
     </div>

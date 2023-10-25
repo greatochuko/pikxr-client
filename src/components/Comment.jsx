@@ -2,7 +2,10 @@ import styles from "./Comment.module.css";
 import PropType from "prop-types";
 import OptionsButton from "./OptionsButton";
 
-export default function Comment({ comment }) {
+export default function Comment({ comment, setType }) {
+  function openDeleteCommentModal() {
+    setType("deleteComment." + comment._id);
+  }
   return (
     <li className={styles.comment}>
       <img
@@ -13,7 +16,10 @@ export default function Comment({ comment }) {
         <h4>{comment.user.fullname}</h4>
         <p>{comment.comment}</p>
       </div>
-      <OptionsButton type={"comment"} />
+      <OptionsButton
+        type={"comment"}
+        openDeletePostModal={openDeleteCommentModal}
+      />
     </li>
   );
 }

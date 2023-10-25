@@ -4,3 +4,11 @@
   overflow-y: scroll;
   height: 100vh;
 }
+
+/* -------------------- MEDIA QUERIES -------------------- */
+
+@media screen and (max-width: 1024px) {
+  .homepage {
+    padding: 3rem 5vw;
+  }
+}

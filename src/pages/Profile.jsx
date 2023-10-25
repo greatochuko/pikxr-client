@@ -8,6 +8,7 @@ import ProfilePostGrid from "../components/ProfilePostGrid";
 import ModalContainer from "../components/ModalContainer";
 
 import {
+  fetchEditUserAbout,
   fetchUploadCoverPhoto,
   fetchUploadProfilePhoto,
   fetchUserProfile,
@@ -28,6 +29,8 @@ export default function Profile() {
   const [modalType, setModalType] = useState(null);
   const [previewProfilePhotoUrl, setPreviewProfilePhotoUrl] = useState(null);
   const [previewCoverPhotoUrl, setPreviewCoverPhotoUrl] = useState(null);
+  const [editAbout, setEditAbout] = useState(false);
+  const [about, setAbout] = useState(user?.about);
 
   const coverPhotoRef = useRef(null);
   const profilePhotoRef = useRef(null);
@@ -38,6 +41,12 @@ export default function Profile() {
     setModalType(null);
     const data = await fetchUserProfile(username);
     setUser(data);
+  }
+
+  async function handleEditAbout(e) {
+    e.preventDefault();
+    await fetchEditUserAbout(about, user._id);
+    setEditAbout(false);
   }
 
   function handleChangeCoverPhoto() {
@@ -78,6 +87,7 @@ export default function Profile() {
     async function getUser() {
       const data = await fetchUserProfile(username);
       setUser(data);
+      setAbout(data.about);
     }
     getUser();
   }, [username]);
@@ -141,7 +151,24 @@ export default function Profile() {
                   <span>{user.following.length}</span>Following
                 </li>
               </ul>
-              <p className={styles.about}>{user.about}</p>
+              {editAbout ? (
+                <form onSubmit={handleEditAbout}>
+                  <input
+                    className={styles.about}
+                    value={about}
+                    onChange={(e) => setAbout(e.target.value)}
+                  />
+                </form>
+              ) : (
+                <p className={styles.about}>
+                  <span>{about || "About me"}</span>
+                  <i
+                    className="fa-solid fa-pen-to-square"
+                    title="Edit about"
+                    onClick={() => setEditAbout(true)}
+                  ></i>
+                </p>
+              )}
             </div>
             <div className={styles.posts}>
               <div className={styles.header}>

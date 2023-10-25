@@ -1,5 +1,5 @@
 .profile {
-  padding-top: 57px;
+  padding-top: 55px;
   padding-bottom: 2rem;
   height: 100vh;
   overflow-y: scroll;
@@ -77,6 +77,18 @@
   margin-top: 8vh;
 }
 
+.userInfo form {
+  width: 100%;
+  display: flex;
+}
+
+.userInfo form input {
+  width: 100%;
+  padding: 5px;
+  outline: none;
+  border: solid 1px #ddd;
+}
+
 .name {
   margin-top: 10px;
 }
@@ -99,7 +111,7 @@
   gap: 10px;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 1.5rem;
+  margin-bottom: 10px;
 }
 
 .userStats li {
@@ -111,6 +123,7 @@
   cursor: pointer;
   font-weight: 600;
   transition: color 0.3s;
+  width: 80px;
 }
 
 .userStats li:first-child {
@@ -136,6 +149,11 @@
   line-height: 1.5rem;
   font-weight: 600;
   color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.userInfo .about i {
+  margin-left: 10px;
 }
 
 /* POSTS */
@@ -147,6 +165,8 @@
 .header {
   border-bottom: solid 1px #ddd;
   margin-bottom: 1rem;
+  background-color: #fff;
+  z-index: 2;
 }
 
 .header ul {
@@ -171,4 +191,34 @@
   border-bottom-color: #333;
 }
 
-/* POSTS GRID */
+/* -------------------- MEDIA QUERIES -------------------- */
+
+@media screen and (max-width: 1024px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+  }
+
+  .header ul {
+    justify-content: center;
+  }
+
+  .userInfo {
+    margin: auto;
+    margin-top: 8vh;
+    width: min(500px, 80%);
+  }
+
+  .profileImages .profileImage {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .posts {
+    padding: 0 2rem;
+  }
+}

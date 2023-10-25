@@ -4,18 +4,18 @@ import { fetchStories } from "../services/storyServices";
 import styles from "./LogoutModal.module.css";
 import propTypes from "prop-types";
 import { setStories } from "../slice/storySlice";
+import { filterDeletedPost } from "../slice/postSlice";
 
 export default function DeleteModal({
   type,
   closeModalContainer,
   postId,
   storyId,
-  setPosts,
 }) {
   const dispatch = useDispatch();
   async function deletePost() {
     const data = await fetchDeletePost(postId);
-    setPosts((curr) => curr.filter((p) => p._id !== data._id));
+    dispatch(filterDeletedPost(data._id));
   }
 
   async function deleteStory() {

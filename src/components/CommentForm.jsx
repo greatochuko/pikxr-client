@@ -2,13 +2,14 @@ import { useSelector } from "react-redux";
 import styles from "./CommentForm.module.css";
 import propTypes from "prop-types";
 import { useState } from "react";
-import { postComment } from "../services/commentServices";
+import { fetchComments, postComment } from "../services/commentServices";
 
 export default function CommentForm({
   className,
   postId,
   setCurrentPost,
   creatorId,
+  setComments,
 }) {
   const { user } = useSelector((state) => state.user);
   const [comment, setComment] = useState("");
@@ -18,6 +19,7 @@ export default function CommentForm({
     const data = await postComment(comment, creatorId, postId);
     if (data.error) return;
     setCurrentPost(data);
+    setComments(await fetchComments(postId));
     setComment("");
   }
   return (

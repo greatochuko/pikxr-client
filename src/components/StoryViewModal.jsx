@@ -26,7 +26,7 @@ export default function StoryViewModal({
     return () => clearInterval(timeout);
   }, [currentIndex, stories, closeModalContainer]);
   return (
-    <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+    <div className={styles.modal}>
       <div className={styles.header}>
         <div className={styles.progressBar}>
           <span></span>

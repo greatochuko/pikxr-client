@@ -1,3 +1,14 @@
+export async function fetchComments(postId) {
+  const token = localStorage.getItem("token");
+  const res = await fetch("http://localhost:5000/comments/" + postId, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await res.json();
+  return data;
+}
+
 export async function postComment(comment, targetUserId, postId) {
   const token = localStorage.getItem("token");
   const res = await fetch("http://localhost:5000/comments", {
