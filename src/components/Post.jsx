@@ -11,7 +11,7 @@ import {
 } from "../services/postServices";
 import ModalContainer from "./ModalContainer";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
+const BASE_URL = "http://localhost:5000";
 
 export default function Post({ currentPost }) {
   const { user } = useSelector((state) => state.user);

@@ -1,20 +1,25 @@
 import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import ModalContainer from "./ModalContainer";
 
 import styles from "./NavBar.module.css";
+import { fetchUser } from "../services/userServices";
+import { loginUser } from "../slice/userSlice";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
+const BASE_URL = "http://localhost:5000";
 
 export default function NavBar() {
   const [modalType, setModalType] = useState(null);
 
   const { pathname } = useLocation();
   const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  function closeModalContainer() {
+  async function closeModalContainer() {
     setModalType(null);
+    const data = await fetchUser();
+    dispatch(loginUser(data));
   }
 
   return (

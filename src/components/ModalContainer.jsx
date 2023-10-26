@@ -9,7 +9,7 @@ import SearchModal from "./SearchModal";
 import FollowersModal from "./FollowersModal";
 import DeleteModal from "./DeleteModal";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
+const BASE_URL = "http://localhost:5000";
 
 export default function ModalContainer({
   type,
@@ -21,6 +21,7 @@ export default function ModalContainer({
   setCurrentPost,
   setType,
   setComments,
+  userProfile,
 }) {
   return (
     <div className={styles.modalContainer} onClick={closeModalContainer}>
@@ -78,12 +79,14 @@ export default function ModalContainer({
           username={username}
           closeModalContainer={closeModalContainer}
           type={"followers"}
+          userProfile={userProfile}
         />
       ) : type === "following" ? (
         <FollowersModal
           username={username}
           closeModalContainer={closeModalContainer}
           type={"following"}
+          userProfile={userProfile}
         />
       ) : null}
     </div>
@@ -99,6 +102,7 @@ ModalContainer.propTypes = {
   setPosts: propTypes.func,
   post: propTypes.object,
   story: propTypes.object,
+  userProfile: propTypes.object,
   stories: propTypes.array,
   setStories: propTypes.func,
   setComments: propTypes.func,

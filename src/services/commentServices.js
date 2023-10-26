@@ -1,5 +1,5 @@
-// const BASE_URL = "https://pikxr-api.onrender.com";
-const BASE_URL = "https://pikxr-api.onrender.com";
+// const BASE_URL = "http://localhost:5000";
+const BASE_URL = "http://localhost:5000";
 
 export async function fetchComments(postId) {
   const token = localStorage.getItem("token");

@@ -9,6 +9,7 @@ export default function FollowersModal({
   username,
   closeModalContainer,
   type,
+  userProfile,
 }) {
   const [followers, setFollowers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -44,6 +45,7 @@ export default function FollowersModal({
               key={follower._id}
               follower={follower}
               type={type}
+              userProfile={userProfile}
             />
           ))
         )}
@@ -56,4 +58,5 @@ FollowersModal.propTypes = {
   username: propTypes.string,
   type: propTypes.string,
   closeModalContainer: propTypes.func,
+  userProfile: propTypes.object,
 };

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import propTypes from "prop-types";
 import { useSelector } from "react-redux";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
+const BASE_URL = "http://localhost:5000";
 
 export default function StoryViewModal({
   story,

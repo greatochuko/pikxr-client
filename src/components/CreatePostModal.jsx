@@ -7,6 +7,8 @@ import { resizeImage } from "../utils/imageResize";
 import propTypes from "prop-types";
 import LoadingIndicator from "./LoadingIndicator";
 
+const BASE_URL = "http://localhost:5000";
+
 export default function CreatePostModal({
   closeModalContainer,
   postImgSrc,
@@ -84,8 +86,8 @@ export default function CreatePostModal({
           {imgPreviewSrc && <img src={imgPreviewSrc} alt="" />}
         </div>
         <div className={styles.user}>
-          <img src="/profileImg.jpg" alt="" />
-          <p>@greatochuko</p>
+          <img src={BASE_URL + "/users/" + user.imageUrl} alt="" />
+          <p>@{user.username}</p>
         </div>
         <textarea
           name="caption"

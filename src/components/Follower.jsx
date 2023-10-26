@@ -5,14 +5,14 @@ import { fetchUnFollowUser, fetchfollowUser } from "../services/userServices";
 import propTypes from "prop-types";
 import { useState } from "react";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
+const BASE_URL = "http://localhost:5000";
 
-export default function Follower({ closeModalContainer, follower, type }) {
+export default function Follower({ follower, type, userProfile }) {
   const { user } = useSelector((state) => state.user);
   const { username } = useParams();
   let following = true;
   if (type === "followers") {
-    following = user.following.includes(follower._id);
+    following = userProfile.following.includes(follower._id);
   }
 
   const [isFollowing, setIsFollowing] = useState(following);
@@ -44,6 +44,7 @@ export default function Follower({ closeModalContainer, follower, type }) {
 
 Follower.propTypes = {
   follower: propTypes.object,
+  userProfile: propTypes.object,
   type: propTypes.string,
   closeModalContainer: propTypes.func,
 };

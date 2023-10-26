@@ -3,12 +3,15 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import OptionsButton from "./OptionsButton";
 import { getDuration } from "../utils/getDuration";
+import { useSelector } from "react-redux";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
+const BASE_URL = "http://localhost:5000";
 
 export default function Creator({ post, story, className, setType, type }) {
   const data = post || story;
   const duration = getDuration(data.createdAt);
+
+  const { user } = useSelector((state) => state.user);
 
   function openEditPostModal() {
     setType("editPost");
@@ -30,17 +33,21 @@ export default function Creator({ post, story, className, setType, type }) {
           <div className={styles.text}>
             <h4>
               {data.creator.fullname}
-              <span>{duration}</span>
+              <span style={type === "viewStory" ? { color: "white" } : null}>
+                {duration}
+              </span>
             </h4>
 
             <p>@{data.creator.username}</p>
           </div>
         </Link>
-        <OptionsButton
-          openEditPostModal={openEditPostModal}
-          openDeletePostModal={openDeletePostModal}
-          type={type}
-        />
+        {user._id === data.creator._id ? (
+          <OptionsButton
+            openEditPostModal={openEditPostModal}
+            openDeletePostModal={openDeletePostModal}
+            type={type}
+          />
+        ) : null}
       </div>
     </>
   );

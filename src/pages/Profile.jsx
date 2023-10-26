@@ -21,7 +21,7 @@ import {
 
 import { loginUser } from "../slice/userSlice";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
+const BASE_URL = "http://localhost:5000";
 
 export default function Profile() {
   const { username } = useParams();
@@ -32,7 +32,8 @@ export default function Profile() {
   const [previewProfilePhotoUrl, setPreviewProfilePhotoUrl] = useState(null);
   const [previewCoverPhotoUrl, setPreviewCoverPhotoUrl] = useState(null);
   const [editAbout, setEditAbout] = useState(false);
-  const [about, setAbout] = useState(user?.about);
+  const [userProfile, setUserProfile] = useState({});
+  const [about, setAbout] = useState(userProfile?.about);
 
   const coverPhotoRef = useRef(null);
   const profilePhotoRef = useRef(null);
@@ -42,12 +43,12 @@ export default function Profile() {
   async function closeModalContainer() {
     setModalType(null);
     const data = await fetchUserProfile(username);
-    dispatch(loginUser(data));
+    setUserProfile(data);
   }
 
   async function handleEditAbout(e) {
     e.preventDefault();
-    await fetchEditUserAbout(about, user._id);
+    await fetchEditUserAbout(about, userProfile._id);
     setEditAbout(false);
   }
 
@@ -87,31 +88,35 @@ export default function Profile() {
   useEffect(() => {
     async function getUser() {
       const data = await fetchUserProfile(username);
-      dispatch(loginUser(data));
-
+      setUserProfile(data);
+      setModalType(null);
       setAbout(data.about);
     }
     getUser();
   }, [username, dispatch]);
 
-  if (user)
+  if (userProfile)
     return (
       <>
         <main className={styles.profile}>
           <div className={styles.profileImages}>
             <div className={styles.coverPhoto}>
-              <label htmlFor="coverPhoto">Change Photo</label>
-              <input
-                type="file"
-                name="coverPhoto"
-                id="coverPhoto"
-                ref={coverPhotoRef}
-                onChange={handleChangeCoverPhoto}
-              />
+              {user._id === userProfile._id ? (
+                <>
+                  <label htmlFor="coverPhoto">Change Photo</label>
+                  <input
+                    type="file"
+                    name="coverPhoto"
+                    id="coverPhoto"
+                    ref={coverPhotoRef}
+                    onChange={handleChangeCoverPhoto}
+                  />
+                </>
+              ) : null}
               <img
                 src={
                   previewCoverPhotoUrl ||
-                  BASE_URL + "/users/" + user.coverPhotoUrl
+                  BASE_URL + "/users/" + userProfile.coverPhotoUrl
                 }
                 alt="cover photo"
               />
@@ -120,36 +125,41 @@ export default function Profile() {
             <div className={styles.profileImage}>
               <img
                 src={
-                  previewProfilePhotoUrl || BASE_URL + "/users/" + user.imageUrl
+                  previewProfilePhotoUrl ||
+                  BASE_URL + "/users/" + userProfile.imageUrl
                 }
                 alt="profile picture"
               />
-              <label htmlFor="profilePhoto">
-                <i className="fa-regular fa-images"></i>
-              </label>
-              <input
-                type="file"
-                name="profilePhoto"
-                id="profilePhoto"
-                ref={profilePhotoRef}
-                onChange={handleChangeProfilePhoto}
-              />
+              {user._id === userProfile._id ? (
+                <>
+                  <label htmlFor="profilePhoto">
+                    <i className="fa-regular fa-images"></i>
+                  </label>
+                  <input
+                    type="file"
+                    name="profilePhoto"
+                    id="profilePhoto"
+                    ref={profilePhotoRef}
+                    onChange={handleChangeProfilePhoto}
+                  />
+                </>
+              ) : null}
             </div>
           </div>
           <div className={styles.main}>
             <div className={styles.userInfo}>
-              <h3 className={styles.name}>{user.fullname}</h3>
-              <p className={styles.username}>@{user.username}</p>
-              <p className={styles.email}>{user.email}</p>
+              <h3 className={styles.name}>{userProfile.fullname}</h3>
+              <p className={styles.username}>@{userProfile.username}</p>
+              <p className={styles.email}>{userProfile.email}</p>
               <ul className={styles.userStats}>
                 <li>
-                  <span>{user.posts?.length || 0}</span>Posts
+                  <span>{userProfile?.posts?.length || 0}</span>Posts
                 </li>
                 <li onClick={() => setModalType("followers")}>
-                  <span>{user.followers.length}</span>Followers
+                  <span>{userProfile?.followers?.length}</span>Followers
                 </li>
                 <li onClick={() => setModalType("following")}>
-                  <span>{user.following.length}</span>Following
+                  <span>{userProfile?.following?.length}</span>Following
                 </li>
               </ul>
               {editAbout ? (
@@ -163,11 +173,13 @@ export default function Profile() {
               ) : (
                 <p className={styles.about}>
                   <span>{about || "About me"}</span>
-                  <i
-                    className="fa-solid fa-pen-to-square"
-                    title="Edit about"
-                    onClick={() => setEditAbout(true)}
-                  ></i>
+                  {userProfile._id === user._id ? (
+                    <i
+                      className="fa-solid fa-pen-to-square"
+                      title="Edit about"
+                      onClick={() => setEditAbout(true)}
+                    ></i>
+                  ) : null}
                 </p>
               )}
             </div>
@@ -186,15 +198,17 @@ export default function Profile() {
                   >
                     Liked
                   </li>
-                  <li
-                    onClick={() => setActiveTab("saved")}
-                    className={activeTab === "saved" ? styles.active : ""}
-                  >
-                    Saved
-                  </li>
+                  {user._id === userProfile._id ? (
+                    <li
+                      onClick={() => setActiveTab("saved")}
+                      className={activeTab === "saved" ? styles.active : ""}
+                    >
+                      Saved
+                    </li>
+                  ) : null}
                 </ul>
               </div>
-              <ProfilePostGrid type={activeTab} user={user} />
+              <ProfilePostGrid type={activeTab} user={userProfile} />
             </div>
           </div>
         </main>
@@ -203,6 +217,7 @@ export default function Profile() {
             type={modalType}
             closeModalContainer={closeModalContainer}
             username={username}
+            userProfile={userProfile}
           />
         )}
       </>

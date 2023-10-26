@@ -5,7 +5,7 @@ import { useState } from "react";
 import { fetchComments, postComment } from "../services/commentServices";
 import LoadingIndicator from "./LoadingIndicator";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
+const BASE_URL = "http://localhost:5000";
 
 export default function CommentForm({
   className,

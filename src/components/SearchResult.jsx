@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { fetchUnFollowUser, fetchfollowUser } from "../services/userServices";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
+const BASE_URL = "http://localhost:5000";
 
 export default function SearchResult({ result, closeModalContainer }) {
   const { user } = useSelector((state) => state.user);
@@ -15,6 +15,7 @@ export default function SearchResult({ result, closeModalContainer }) {
 
   async function toggleFollow(e) {
     e.preventDefault();
+    e.stopPropagation();
     if (isFollowing) await fetchUnFollowUser(user._id, result._id);
     else if (!isFollowing) await fetchfollowUser(user._id, result._id);
     setIsFollowing((curr) => !curr);

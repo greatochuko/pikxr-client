@@ -6,7 +6,7 @@ import propTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { fetchComments } from "../services/commentServices";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
+const BASE_URL = "http://localhost:5000";
 
 export default function PostViewModal({
   post,

@@ -1,13 +1,17 @@
 import styles from "./Comment.module.css";
 import PropType from "prop-types";
 import OptionsButton from "./OptionsButton";
+import { useSelector } from "react-redux";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
+const BASE_URL = "http://localhost:5000";
 
 export default function Comment({ comment, setType }) {
+  const { user } = useSelector((state) => state.user);
+
   function openDeleteCommentModal() {
     setType("deleteComment." + comment._id);
   }
+
   return (
     <li className={styles.comment}>
       <img src={BASE_URL + "/users/" + comment.user.imageUrl} alt="" />
@@ -15,10 +19,12 @@ export default function Comment({ comment, setType }) {
         <h4>{comment.user.fullname}</h4>
         <p>{comment.comment}</p>
       </div>
-      <OptionsButton
-        type={"comment"}
-        openDeletePostModal={openDeleteCommentModal}
-      />
+      {user._id === comment.user._id ? (
+        <OptionsButton
+          type={"comment"}
+          openDeletePostModal={openDeleteCommentModal}
+        />
+      ) : null}
     </li>
   );
 }

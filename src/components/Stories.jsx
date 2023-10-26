@@ -37,7 +37,6 @@ export default function Stories() {
     <div className={styles.stories}>
       <div className={styles.header}>
         <h3>Stories</h3>
-        <button>Watch all</button>
       </div>
       <div className={styles.storiesList}>
         {isLoading ? (
