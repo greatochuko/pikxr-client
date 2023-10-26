@@ -11,7 +11,7 @@ import {
 } from "../services/postServices";
 import ModalContainer from "./ModalContainer";
 
-const BASE_URL = "https://tan-wild-raven.cyclic.app";
+const BASE_URL = "https://pikxr-api.onrender.com";
 
 export default function Post({ currentPost }) {
   const { user } = useSelector((state) => state.user);

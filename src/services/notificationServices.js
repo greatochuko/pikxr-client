@@ -1,4 +1,4 @@
-const BASE_URL = "https://tan-wild-raven.cyclic.app";
+const BASE_URL = "https://pikxr-api.onrender.com";
 
 export async function fetchNotifications() {
   const token = localStorage.getItem("token");

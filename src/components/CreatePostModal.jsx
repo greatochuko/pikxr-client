@@ -7,7 +7,7 @@ import { resizeImage } from "../utils/imageResize";
 import propTypes from "prop-types";
 import LoadingIndicator from "./LoadingIndicator";
 
-const BASE_URL = "https://tan-wild-raven.cyclic.app";
+const BASE_URL = "https://pikxr-api.onrender.com";
 
 export default function CreatePostModal({
   closeModalContainer,
