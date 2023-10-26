@@ -5,7 +5,7 @@ import OptionsButton from "./OptionsButton";
 import { getDuration } from "../utils/getDuration";
 import { useSelector } from "react-redux";
 
-const BASE_URL = "https://tan-wild-raven.cyclic.app/";
+const BASE_URL = "http://localhost:5000";
 
 export default function Creator({ post, story, className, setType, type }) {
   const data = post || story;

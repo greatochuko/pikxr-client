@@ -21,7 +21,7 @@ import {
 
 import { loginUser } from "../slice/userSlice";
 
-const BASE_URL = "https://tan-wild-raven.cyclic.app/";
+const BASE_URL = "http://localhost:5000";
 
 export default function Profile() {
   const { username } = useParams();
