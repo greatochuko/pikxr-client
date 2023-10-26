@@ -3,7 +3,7 @@ import PropType from "prop-types";
 import OptionsButton from "./OptionsButton";
 import { useSelector } from "react-redux";
 
-const BASE_URL = "https://tan-wild-raven.cyclic.app";
+const BASE_URL = "https://tan-wild-raven.cyclic.app/";
 
 export default function Comment({ comment, setType }) {
   const { user } = useSelector((state) => state.user);

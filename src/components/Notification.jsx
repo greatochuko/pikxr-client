@@ -3,7 +3,7 @@ import styles from "./Notification.module.css";
 import { getDuration } from "../utils/getDuration";
 import propTypes from "prop-types";
 
-const BASE_URL = "https://tan-wild-raven.cyclic.app";
+const BASE_URL = "https://tan-wild-raven.cyclic.app/";
 
 export default function Notification({ notif }) {
   return (

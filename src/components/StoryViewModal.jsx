@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import propTypes from "prop-types";
 import { useSelector } from "react-redux";
 
-const BASE_URL = "https://tan-wild-raven.cyclic.app";
+const BASE_URL = "https://tan-wild-raven.cyclic.app/";
 
 export default function StoryViewModal({
   story,
