@@ -7,7 +7,7 @@ import styles from "./NavBar.module.css";
 import { fetchUser } from "../services/userServices";
 import { loginUser } from "../slice/userSlice";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://tan-wild-raven.cyclic.app";
 
 export default function NavBar() {
   const [modalType, setModalType] = useState(null);

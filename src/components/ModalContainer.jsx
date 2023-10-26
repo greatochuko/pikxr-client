@@ -9,7 +9,7 @@ import SearchModal from "./SearchModal";
 import FollowersModal from "./FollowersModal";
 import DeleteModal from "./DeleteModal";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://tan-wild-raven.cyclic.app";
 
 export default function ModalContainer({
   type,

@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import ModalContainer from "./ModalContainer";
 import { useState } from "react";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://tan-wild-raven.cyclic.app";
 
 export default function MasonryGridPost({ post: explorePost }) {
   const [modalType, setModalType] = useState(null);

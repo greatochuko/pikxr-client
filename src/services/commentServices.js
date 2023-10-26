@@ -1,5 +1,4 @@
-// const BASE_URL = "http://localhost:5000";
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://tan-wild-raven.cyclic.app";
 
 export async function fetchComments(postId) {
   const token = localStorage.getItem("token");
