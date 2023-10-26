@@ -6,7 +6,7 @@ import propTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { fetchComments } from "../services/commentServices";
 
-const BASE_URL = "https://tan-wild-raven.cyclic.app/";
+const BASE_URL = "https://tan-wild-raven.cyclic.app";
 
 export default function PostViewModal({
   post,

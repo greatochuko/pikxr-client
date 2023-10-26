@@ -4,7 +4,7 @@ import styles from "./ProfilePost.module.css";
 import { useState } from "react";
 import ModalContainer from "./ModalContainer";
 
-const BASE_URL = "https://tan-wild-raven.cyclic.app/";
+const BASE_URL = "https://tan-wild-raven.cyclic.app";
 
 export default function ProfilePost({ post: currentPost }) {
   const [modalType, setModalType] = useState(null);

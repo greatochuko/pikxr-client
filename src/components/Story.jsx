@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import ModalContainer from "./ModalContainer";
 import { useState } from "react";
 
-const BASE_URL = "https://tan-wild-raven.cyclic.app/";
+const BASE_URL = "https://tan-wild-raven.cyclic.app";
 
 export default function Story({ story, type, setStories }) {
   const { user } = useSelector((state) => state.user);
