@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import propTypes from "prop-types";
 import { useSelector } from "react-redux";
 
-const BASE_URL = "http://localhost:5000";
 
 export default function StoryViewModal({
   story,
@@ -40,11 +39,7 @@ export default function StoryViewModal({
           setType={setType}
         />
       </div>
-      <img
-        className={styles.storyImage}
-        src={`${BASE_URL}/stories/${currentStory.imageUrl}`}
-        alt=""
-      />
+      <img className={styles.storyImage} src={currentStory.imageUrl} alt="" />
       <p className={styles.caption}>{currentStory.caption}</p>
       <div className={styles.overlay}></div>
     </div>

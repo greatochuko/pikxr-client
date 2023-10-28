@@ -8,8 +8,8 @@ import StoryViewModal from "./StoryViewModal";
 import SearchModal from "./SearchModal";
 import FollowersModal from "./FollowersModal";
 import DeleteModal from "./DeleteModal";
+import EditPostModal from "./EditPostModal";
 
-const BASE_URL = "http://localhost:5000";
 
 export default function ModalContainer({
   type,
@@ -28,10 +28,10 @@ export default function ModalContainer({
       {type === "createPost" ? (
         <CreatePostModal closeModalContainer={closeModalContainer} />
       ) : type === "editPost" ? (
-        <CreatePostModal
+        <EditPostModal
           closeModalContainer={closeModalContainer}
-          postImgSrc={`${BASE_URL}/posts/${post.imageUrl}`}
-          postImgCaption={post.caption}
+          postImgSrc={post.imageUrl}
+          postCaption={post.caption}
           postId={post._id}
           setCurrentPost={setCurrentPost}
         />

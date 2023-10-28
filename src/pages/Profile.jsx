@@ -21,8 +21,6 @@ import {
 
 import { loginUser } from "../slice/userSlice";
 
-const BASE_URL = "http://localhost:5000";
-
 export default function Profile() {
   const { username } = useParams();
   const { user } = useSelector((state) => state.user);
@@ -114,20 +112,14 @@ export default function Profile() {
                 </>
               ) : null}
               <img
-                src={
-                  previewCoverPhotoUrl ||
-                  BASE_URL + "/users/" + userProfile.coverPhotoUrl
-                }
+                src={previewCoverPhotoUrl || userProfile.coverPhotoUrl}
                 alt="cover photo"
               />
             </div>
 
             <div className={styles.profileImage}>
               <img
-                src={
-                  previewProfilePhotoUrl ||
-                  BASE_URL + "/users/" + userProfile.imageUrl
-                }
+                src={previewProfilePhotoUrl || userProfile.imageUrl}
                 alt="profile picture"
               />
               {user._id === userProfile._id ? (

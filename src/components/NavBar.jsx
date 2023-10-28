@@ -7,8 +7,6 @@ import styles from "./NavBar.module.css";
 import { fetchUser } from "../services/userServices";
 import { loginUser } from "../slice/userSlice";
 
-const BASE_URL = "http://localhost:5000";
-
 export default function NavBar() {
   const [modalType, setModalType] = useState(null);
 
@@ -68,7 +66,7 @@ export default function NavBar() {
             </a>
           </li>
           <Link to={"/profile/" + user.username}>
-            <img src={BASE_URL + "/users/" + user.imageUrl} alt="" />
+            <img src={user.imageUrl} alt="" />
           </Link>
         </div>
       </nav>

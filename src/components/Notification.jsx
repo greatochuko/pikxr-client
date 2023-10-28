@@ -3,8 +3,6 @@ import styles from "./Notification.module.css";
 import { getDuration } from "../utils/getDuration";
 import propTypes from "prop-types";
 
-const BASE_URL = "http://localhost:5000";
-
 export default function Notification({ notif }) {
   return (
     <div
@@ -15,7 +13,7 @@ export default function Notification({ notif }) {
       }
     >
       <Link to={"/profile/" + notif.user.username}>
-        <img src={BASE_URL + "/users/" + notif.user.imageUrl} alt="" />
+        <img src={notif.user.imageUrl} alt="" />
       </Link>
       <p>
         <Link to={"/profile/" + notif.user.username}>
