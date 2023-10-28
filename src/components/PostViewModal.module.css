@@ -94,6 +94,7 @@
   .postViewModal {
     flex-direction: column;
     height: min(80vh, 900px);
+    width: min(500px, 90%);
   }
 
   .imgContainer {
@@ -119,8 +120,6 @@
     max-width: 90%;
   }
 }
-
-/* SMALL */
 
 @media screen and (max-device-width: 768px) and (orientation: landscape) {
   .postViewModal {

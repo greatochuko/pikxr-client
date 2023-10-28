@@ -21,8 +21,6 @@ import {
 
 import { loginUser } from "../slice/userSlice";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
-
 export default function Profile() {
   const { username } = useParams();
   const { user } = useSelector((state) => state.user);
@@ -73,7 +71,7 @@ export default function Profile() {
       setPreviewProfilePhotoUrl,
       async (newImage) => {
         const formData = new FormData();
-        formData.append("coverPhoto", newImage);
+        formData.append("profilePhoto", newImage);
         formData.append("fileName", newImage.name);
         const data = await fetchUploadProfilePhoto(formData, newImage.name);
         if (data.error) {
@@ -114,20 +112,14 @@ export default function Profile() {
                 </>
               ) : null}
               <img
-                src={
-                  previewCoverPhotoUrl ||
-                  BASE_URL + "/users/" + userProfile.coverPhotoUrl
-                }
+                src={previewCoverPhotoUrl || userProfile.coverPhotoUrl}
                 alt="cover photo"
               />
             </div>
 
             <div className={styles.profileImage}>
               <img
-                src={
-                  previewProfilePhotoUrl ||
-                  BASE_URL + "/users/" + userProfile.imageUrl
-                }
+                src={previewProfilePhotoUrl || userProfile.imageUrl}
                 alt="profile picture"
               />
               {user._id === userProfile._id ? (

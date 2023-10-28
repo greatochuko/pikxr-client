@@ -5,8 +5,6 @@ import { fetchUnFollowUser, fetchfollowUser } from "../services/userServices";
 import propTypes from "prop-types";
 import { useState } from "react";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
-
 export default function Follower({ follower, type, userProfile }) {
   const { user } = useSelector((state) => state.user);
   const { username } = useParams();
@@ -27,7 +25,7 @@ export default function Follower({ follower, type, userProfile }) {
   return (
     <li className={styles.follower} key={follower._id}>
       <Link to={"/profile/" + follower.username}>
-        <img src={BASE_URL + "/users/" + follower.imageUrl} alt="" />
+        <img src={follower.imageUrl} alt="" />
         <div className={styles.info}>
           <p>{follower.fullname}</p>
           <p>@{follower.username}</p>

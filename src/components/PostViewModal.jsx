@@ -6,7 +6,6 @@ import propTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { fetchComments } from "../services/commentServices";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
 
 export default function PostViewModal({
   post,
@@ -31,7 +30,7 @@ export default function PostViewModal({
   return (
     <div className={styles.postViewModal} onClick={(e) => e.stopPropagation()}>
       <div className={styles.imgContainer}>
-        <img src={`${BASE_URL}/posts/${post.imageUrl}`} alt="" />
+        <img src={post.imageUrl} alt="" />
         <p className={styles.caption}>{post.caption}</p>
       </div>
       <div className={styles.details}>

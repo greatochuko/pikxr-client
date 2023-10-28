@@ -3,7 +3,6 @@ import propTypes from "prop-types";
 import ModalContainer from "./ModalContainer";
 import { useState } from "react";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
 
 export default function MasonryGridPost({ post: explorePost }) {
   const [modalType, setModalType] = useState(null);
@@ -20,7 +19,7 @@ export default function MasonryGridPost({ post: explorePost }) {
   return (
     <>
       <div className={styles.post} onClick={() => setModalType("viewPost")}>
-        <img src={`${BASE_URL}/posts/${post.imageUrl}`} alt="" />
+        <img src={post.imageUrl} alt="" />
         <div className={styles.overlay}>
           <span>
             <i className="fa-solid fa-heart"></i>

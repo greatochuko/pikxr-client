@@ -5,8 +5,6 @@ import OptionsButton from "./OptionsButton";
 import { getDuration } from "../utils/getDuration";
 import { useSelector } from "react-redux";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
-
 export default function Creator({ post, story, className, setType, type }) {
   const data = post || story;
   const duration = getDuration(data.createdAt);
@@ -26,10 +24,7 @@ export default function Creator({ post, story, className, setType, type }) {
     <>
       <div className={styles.creator + " " + className}>
         <Link to={"/profile/" + data.creator.username}>
-          <img
-            src={BASE_URL + "/users/" + data.creator.imageUrl}
-            alt={data.creator.username}
-          />
+          <img src={data.creator.imageUrl} alt={data.creator.username} />
           <div className={styles.text}>
             <h4>
               {data.creator.fullname}

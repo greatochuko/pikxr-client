@@ -11,7 +11,6 @@ import {
 } from "../services/postServices";
 import ModalContainer from "./ModalContainer";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
 
 export default function Post({ currentPost }) {
   const { user } = useSelector((state) => state.user);
@@ -63,7 +62,7 @@ export default function Post({ currentPost }) {
     <>
       <div className={styles.post}>
         <div className={styles.images} onClick={() => setModalType("viewPost")}>
-          <img src={`${BASE_URL}/posts/${post.imageUrl}`} />
+          <img src={post.imageUrl} />
         </div>
         <div className={styles.actionButtons}>
           <button onClick={toggleLike}>

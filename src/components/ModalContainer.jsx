@@ -8,8 +8,7 @@ import StoryViewModal from "./StoryViewModal";
 import SearchModal from "./SearchModal";
 import FollowersModal from "./FollowersModal";
 import DeleteModal from "./DeleteModal";
-
-const BASE_URL = "https://pikxr-api.onrender.com";
+import EditPostModal from "./EditPostModal";
 
 export default function ModalContainer({
   type,
@@ -28,10 +27,10 @@ export default function ModalContainer({
       {type === "createPost" ? (
         <CreatePostModal closeModalContainer={closeModalContainer} />
       ) : type === "editPost" ? (
-        <CreatePostModal
+        <EditPostModal
           closeModalContainer={closeModalContainer}
-          postImgSrc={`${BASE_URL}/posts/${post.imageUrl}`}
-          postImgCaption={post.caption}
+          postImgSrc={post.imageUrl}
+          postCaption={post.caption}
           postId={post._id}
           setCurrentPost={setCurrentPost}
         />

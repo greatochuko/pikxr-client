@@ -1,22 +1,26 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styles from "./CreatePostModal.module.css";
-import { setPosts } from "../slice/postSlice";
 import { useRef, useState } from "react";
-import { createPost, fetchPosts } from "../services/postServices";
+import { updatePost } from "../services/postServices";
 import { resizeImage } from "../utils/imageResize";
 import propTypes from "prop-types";
 import LoadingIndicator from "./LoadingIndicator";
 
-
-export default function CreatePostModal({ closeModalContainer }) {
-
-  const dispatch = useDispatch();
-  const [image, setImage] = useState(null);
-  const imageInputRef = useRef();
-  const [caption, setCaption] = useState();
-  const [imgPreviewSrc, setImgPreviewSrc] = useState();
+export default function EditPostModal({
+  closeModalContainer,
+  postImgSrc,
+  postCaption,
+  postId,
+  setCurrentPost,
+}) {
   const { user } = useSelector((state) => state.user);
+
+  const [image, setImage] = useState(null);
+  const [caption, setCaption] = useState(postCaption);
+  const [imgPreviewSrc, setImgPreviewSrc] = useState(postImgSrc);
   const [loading, setLoading] = useState(false);
+
+  const imageInputRef = useRef();
 
   function handleChange(e) {
     e.preventDefault();
@@ -28,7 +32,7 @@ export default function CreatePostModal({ closeModalContainer }) {
     }
   }
 
-  async function handleCreatePost(e) {
+  async function handleEditPost(e) {
     e.preventDefault();
     setLoading(true);
 
@@ -37,30 +41,22 @@ export default function CreatePostModal({ closeModalContainer }) {
     formData.append("image", image);
     formData.append("creator", user._id);
 
-    try {
-      await createPost(formData);
-      const data = await fetchPosts();
-      dispatch(setPosts(data));
-      closeModalContainer();
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
+    // Make fetch request to update post
+    const data = await updatePost(postId, formData);
+
+    setCurrentPost(data);
+    setLoading(false);
+    closeModalContainer();
   }
 
   return (
     <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-      <h2 className={styles.header}>Create new post</h2>
+      <h2 className={styles.header}>EditPost</h2>
       <button className={styles.close} onClick={() => closeModalContainer()}>
         <i className="fa-solid fa-circle-xmark"></i>
       </button>
-      <form onSubmit={handleCreatePost}>
-        <div
-          className={`${styles.imgPreview} ${
-            imgPreviewSrc ? styles.imageLoaded : ""
-          }`}
-        >
+      <form onSubmit={handleEditPost}>
+        <div className={`${styles.imgPreview} ${styles.imageLoaded}`}>
           <input
             type="file"
             name="image"
@@ -75,7 +71,7 @@ export default function CreatePostModal({ closeModalContainer }) {
               {imgPreviewSrc ? "Change img" : "Click to upload photo"}
             </p>
           </label>
-          {imgPreviewSrc && <img src={imgPreviewSrc} alt="" />}
+          <img src={imgPreviewSrc} alt="" />
         </div>
         <div className={styles.user}>
           <img src={user.imageUrl} alt="" />
@@ -90,17 +86,16 @@ export default function CreatePostModal({ closeModalContainer }) {
           value={caption}
           onChange={(e) => setCaption(e.target.value)}
         ></textarea>
-        <button type="submit">
-          {loading ? <LoadingIndicator /> : "Create"}
-        </button>
+        <button type="submit">{loading ? <LoadingIndicator /> : "Edit"}</button>
       </form>
     </div>
   );
 }
 
-CreatePostModal.propTypes = {
+EditPostModal.propTypes = {
   closeModalContainer: propTypes.func,
   setCurrentPost: propTypes.func,
-  postImgCaption: propTypes.string,
+  postImgSrc: propTypes.string,
+  postCaption: propTypes.string,
   postId: propTypes.string,
 };

@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import propTypes from "prop-types";
 import { useSelector } from "react-redux";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
-
 export default function StoryViewModal({
   story,
   closeModalContainer,
@@ -40,11 +38,7 @@ export default function StoryViewModal({
           setType={setType}
         />
       </div>
-      <img
-        className={styles.storyImage}
-        src={`${BASE_URL}/stories/${currentStory.imageUrl}`}
-        alt=""
-      />
+      <img className={styles.storyImage} src={currentStory.imageUrl} alt="" />
       <p className={styles.caption}>{currentStory.caption}</p>
       <div className={styles.overlay}></div>
     </div>

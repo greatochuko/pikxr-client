@@ -4,8 +4,6 @@ import styles from "./ProfilePost.module.css";
 import { useState } from "react";
 import ModalContainer from "./ModalContainer";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
-
 export default function ProfilePost({ post: currentPost }) {
   const [modalType, setModalType] = useState(null);
   const [post, setPost] = useState(currentPost);
@@ -21,7 +19,7 @@ export default function ProfilePost({ post: currentPost }) {
         key={post._id}
         onClick={() => setModalType("viewPost")}
       >
-        <img src={BASE_URL + "/posts/" + post.imageUrl} alt="" />
+        <img src={post.imageUrl} alt="" />
         <div className={styles.overlay}>
           <div className={styles.postStats}>
             <p>

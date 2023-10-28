@@ -5,7 +5,6 @@ import { useState } from "react";
 import { fetchComments, postComment } from "../services/commentServices";
 import LoadingIndicator from "./LoadingIndicator";
 
-const BASE_URL = "https://pikxr-api.onrender.com";
 
 export default function CommentForm({
   className,
@@ -33,7 +32,7 @@ export default function CommentForm({
       className={styles.commentForm + " " + className}
       onSubmit={handlePostComment}
     >
-      <img src={BASE_URL + "/users/" + user.imageUrl} alt="" />
+      <img src={user.imageUrl} alt="" />
       <input
         type="text"
         value={comment}
