@@ -10,7 +10,6 @@ import FollowersModal from "./FollowersModal";
 import DeleteModal from "./DeleteModal";
 import EditPostModal from "./EditPostModal";
 
-
 export default function ModalContainer({
   type,
   closeModalContainer,

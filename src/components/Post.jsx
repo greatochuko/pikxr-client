@@ -11,6 +11,7 @@ import {
 } from "../services/postServices";
 import ModalContainer from "./ModalContainer";
 
+
 export default function Post({ currentPost }) {
   const { user } = useSelector((state) => state.user);
 

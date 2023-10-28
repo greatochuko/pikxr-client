@@ -5,7 +5,6 @@ import { fetchUnFollowUser, fetchfollowUser } from "../services/userServices";
 import propTypes from "prop-types";
 import { useState } from "react";
 
-
 export default function Follower({ follower, type, userProfile }) {
   const { user } = useSelector((state) => state.user);
   const { username } = useParams();

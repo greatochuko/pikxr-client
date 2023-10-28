@@ -3,6 +3,7 @@ import propTypes from "prop-types";
 import ModalContainer from "./ModalContainer";
 import { useState } from "react";
 
+
 export default function MasonryGridPost({ post: explorePost }) {
   const [modalType, setModalType] = useState(null);
   const [post, setPost] = useState(explorePost);

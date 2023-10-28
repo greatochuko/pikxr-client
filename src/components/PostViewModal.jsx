@@ -6,6 +6,7 @@ import propTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { fetchComments } from "../services/commentServices";
 
+
 export default function PostViewModal({
   post,
   updateMasonryGridPost,

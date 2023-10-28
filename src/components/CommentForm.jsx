@@ -5,6 +5,7 @@ import { useState } from "react";
 import { fetchComments, postComment } from "../services/commentServices";
 import LoadingIndicator from "./LoadingIndicator";
 
+
 export default function CommentForm({
   className,
   postId,

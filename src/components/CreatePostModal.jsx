@@ -7,7 +7,9 @@ import { resizeImage } from "../utils/imageResize";
 import propTypes from "prop-types";
 import LoadingIndicator from "./LoadingIndicator";
 
+
 export default function CreatePostModal({ closeModalContainer }) {
+
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const imageInputRef = useRef();

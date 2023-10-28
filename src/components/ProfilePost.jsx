@@ -4,7 +4,6 @@ import styles from "./ProfilePost.module.css";
 import { useState } from "react";
 import ModalContainer from "./ModalContainer";
 
-
 export default function ProfilePost({ post: currentPost }) {
   const [modalType, setModalType] = useState(null);
   const [post, setPost] = useState(currentPost);

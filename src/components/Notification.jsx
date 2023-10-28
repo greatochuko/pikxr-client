@@ -3,6 +3,7 @@ import styles from "./Notification.module.css";
 import { getDuration } from "../utils/getDuration";
 import propTypes from "prop-types";
 
+
 export default function Notification({ notif }) {
   return (
     <div

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import propTypes from "prop-types";
 import { useSelector } from "react-redux";
 
-
 export default function StoryViewModal({
   story,
   closeModalContainer,
