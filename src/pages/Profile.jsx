@@ -71,7 +71,7 @@ export default function Profile() {
       setPreviewProfilePhotoUrl,
       async (newImage) => {
         const formData = new FormData();
-        formData.append("coverPhoto", newImage);
+        formData.append("profilePhoto", newImage);
         formData.append("fileName", newImage.name);
         const data = await fetchUploadProfilePhoto(formData, newImage.name);
         if (data.error) {
