@@ -6,6 +6,8 @@ import { createPost, fetchPosts } from "../services/postServices";
 import { resizeImage } from "../utils/imageResize";
 import propTypes from "prop-types";
 import LoadingIndicator from "./LoadingIndicator";
+import { logoutUser } from "../slice/userSlice";
+import { useNavigate } from "react-router-dom";
 
 
 export default function CreatePostModal({ closeModalContainer }) {
@@ -17,6 +19,8 @@ export default function CreatePostModal({ closeModalContainer }) {
   const [imgPreviewSrc, setImgPreviewSrc] = useState();
   const { user } = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   function handleChange(e) {
     e.preventDefault();
@@ -40,6 +44,10 @@ export default function CreatePostModal({ closeModalContainer }) {
     try {
       await createPost(formData);
       const data = await fetchPosts();
+      if (data.error === "jwt expired") {
+        dispatch(logoutUser());
+        navigate("/login");
+      }
       dispatch(setPosts(data));
       closeModalContainer();
     } catch (err) {

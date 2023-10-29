@@ -1,7 +1,7 @@
 import styles from "./Profile.module.css";
 
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import ProfilePostGrid from "../components/ProfilePostGrid";
@@ -19,7 +19,7 @@ import {
   resizeProfilePhoto,
 } from "../utils/resizeCoverPhoto";
 
-import { loginUser } from "../slice/userSlice";
+import { loginUser, logoutUser } from "../slice/userSlice";
 
 export default function Profile() {
   const { username } = useParams();
@@ -37,10 +37,15 @@ export default function Profile() {
   const profilePhotoRef = useRef(null);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   async function closeModalContainer() {
     setModalType(null);
     const data = await fetchUserProfile(username);
+    if (data.error === "jwt expired") {
+      dispatch(logoutUser());
+      navigate("/login");
+    }
     setUserProfile(data);
   }
 
@@ -86,12 +91,16 @@ export default function Profile() {
   useEffect(() => {
     async function getUser() {
       const data = await fetchUserProfile(username);
+      if (data.error === "jwt expired") {
+        dispatch(logoutUser());
+        navigate("/login");
+      }
       setUserProfile(data);
       setModalType(null);
       setAbout(data.about);
     }
     getUser();
-  }, [username, dispatch]);
+  }, [username, dispatch, navigate]);
 
   if (userProfile)
     return (

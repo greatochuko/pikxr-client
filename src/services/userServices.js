@@ -2,14 +2,18 @@ const BASE_URL = "https://pikxr-api.onrender.com";
 
 export async function fetchUser() {
   const token = localStorage.getItem("token");
-  const res = await fetch(BASE_URL + "/user", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  try {
+    const res = await fetch(BASE_URL + "/user", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-  const data = await res.json();
-  return data;
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    return;
+  }
 }
 
 export async function fetchUserProfile(username) {

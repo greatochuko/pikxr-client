@@ -5,7 +5,9 @@ import styles from "./LogoutModal.module.css";
 import propTypes from "prop-types";
 import { setStories } from "../slice/storySlice";
 import { filterDeletedPost } from "../slice/postSlice";
-import { fetchComments, fetchDeleteComment } from "../services/commentServices";
+import { fetchDeleteComment } from "../services/commentServices";
+import { logoutUser } from "../slice/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function DeleteModal({
   type,
@@ -13,9 +15,10 @@ export default function DeleteModal({
   postId,
   storyId,
   commentId,
-  setComments,
 }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   async function deletePost() {
     const data = await fetchDeletePost(postId);
     dispatch(filterDeletedPost(data._id));
@@ -24,6 +27,10 @@ export default function DeleteModal({
   async function deleteStory() {
     await fetchDeleteStory(storyId);
     const data = await fetchStories();
+    if (data.error === "jwt expired") {
+      dispatch(logoutUser());
+      navigate("/login");
+    }
     dispatch(setStories(data));
   }
 

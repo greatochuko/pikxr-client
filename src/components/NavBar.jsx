@@ -1,11 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import ModalContainer from "./ModalContainer";
 
 import styles from "./NavBar.module.css";
 import { fetchUser } from "../services/userServices";
-import { loginUser } from "../slice/userSlice";
+import { loginUser, logoutUser } from "../slice/userSlice";
 
 export default function NavBar() {
   const [modalType, setModalType] = useState(null);
@@ -13,10 +13,15 @@ export default function NavBar() {
   const { pathname } = useLocation();
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   async function closeModalContainer() {
     setModalType(null);
     const data = await fetchUser();
+    if (data.error === "jwt expired") {
+      dispatch(logoutUser());
+      navigate("/login");
+    }
     dispatch(loginUser(data));
   }
 

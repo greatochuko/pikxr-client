@@ -20,7 +20,9 @@ export async function login(email, password) {
     if (!data.error) localStorage.setItem("token", data.token);
     return data;
   } catch (err) {
-    return err;
+    if (err.message === "Failed to fetch")
+      return { error: "An error occured please try again later" };
+    return { error: err.message };
   }
 }
 

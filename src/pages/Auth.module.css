@@ -38,25 +38,27 @@
   border-color: gray;
 }
 
-.auth form input[type="submit"] {
+.auth form button {
+  font-weight: 600;
   border: none;
-  /* background-color: rgb(0, 153, 255); */
+  border-radius: 5px;
+  padding: 10px;
   background-color: rgb(0, 125, 255);
   color: #fff;
   transition: background-color 0.15s;
   cursor: pointer;
 }
 
-.auth form input[type="submit"].disabled {
+.auth form button.disabled {
   background-color: gray;
   cursor: not-allowed;
 }
 
-.auth form input[type="submit"].disabled:hover {
+.auth form button.disabled:hover {
   background-color: gray;
 }
 
-.auth form input[type="submit"]:hover {
+.auth form button:hover {
   background-color: rgb(0, 103, 212);
 }
 

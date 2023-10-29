@@ -21,6 +21,7 @@ export default function useValidateUsername(username) {
         if (controller.signal.aborted) {
           return;
         }
+        console.log(err.message);
       }
     }
     if (!username) {
@@ -29,7 +30,12 @@ export default function useValidateUsername(username) {
       });
       return;
     }
-    validateEmailInput();
+    if (username.length >= 3) validateEmailInput();
+    else
+      setUsernameError({
+        validated: false,
+        message: "Username must be at least 3 characters",
+      });
     return () => {
       controller.abort();
     };
