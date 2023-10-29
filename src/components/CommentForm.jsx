@@ -26,7 +26,6 @@ export default function CommentForm({
     if (!comment) return;
     setLoading(true);
     const data = await postComment(comment, creatorId, postId);
-    console.log(data);
     if (data.error) return setLoading(false);
     setCurrentPost(data);
     const commentsData = await fetchComments(postId);

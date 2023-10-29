@@ -20,7 +20,6 @@ export default function Notifications() {
     async function refreshNotifications() {
       setIsLoading(true);
       const data = await fetchNotifications();
-      console.log("Data:", data);
       if (data.error === "jwt expired") {
         dispatch(logoutUser());
         navigate("/login");
