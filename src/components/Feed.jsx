@@ -6,14 +6,16 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../slice/postSlice";
 import PostWireFrame from "./PostWireFrame";
+import { logoutUser } from "../slice/userSlice";
 
 export default function Feed() {
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const sortBy = searchParams.get("sortBy");
   const { posts } = useSelector((state) => state.post);
-  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   let sortedPosts = posts
     ?.map((a) => a)
@@ -32,11 +34,15 @@ export default function Feed() {
     async function refreshPosts() {
       setIsLoading(true);
       const data = await fetchPosts();
+      if (data.error === "jwt expired") {
+        dispatch(logoutUser());
+        navigate("/login");
+      }
       dispatch(setPosts(data));
       setIsLoading(false);
     }
     refreshPosts();
-  }, [dispatch]);
+  }, [dispatch, navigate]);
 
   if (posts)
     return (

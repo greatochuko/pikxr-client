@@ -3,18 +3,27 @@ import ProfilePost from "./ProfilePost";
 import propTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { fetchPosts } from "../services/postServices";
+import { logoutUser } from "../slice/userSlice";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 export default function ProfilePostGrid({ type, user }) {
   const [posts, setPosts] = useState(null);
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     async function refreshPosts() {
       const data = await fetchPosts();
-
+      if (data.error === "jwt expired") {
+        dispatch(logoutUser());
+        navigate("/login");
+      }
       setPosts(data);
     }
     refreshPosts();
-  }, []);
+  }, [dispatch, navigate]);
 
   let filteredPosts = posts;
 

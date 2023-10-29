@@ -6,11 +6,13 @@ import { logoutUser } from "../slice/userSlice";
 export default function Authenticate({ children }) {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  if (!user) {
+
+  if (!user || user.error) {
     dispatch(logoutUser());
     return <Navigate to="/login" replace={true} />;
+  } else {
+    return children;
   }
-  return children;
 }
 
 Authenticate.propTypes = {

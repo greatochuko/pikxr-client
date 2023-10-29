@@ -5,6 +5,9 @@ import Creator from "./Creator";
 import propTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { fetchComments } from "../services/commentServices";
+import { logoutUser } from "../slice/userSlice";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 export default function PostViewModal({
   post,
@@ -13,6 +16,8 @@ export default function PostViewModal({
   setCurrentPost,
 }) {
   const [comments, setComments] = useState([]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const sortedComments = [...comments].sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
@@ -21,10 +26,14 @@ export default function PostViewModal({
   useEffect(() => {
     async function getComments() {
       const data = await fetchComments(post._id);
+      if (data.error === "jwt expired") {
+        dispatch(logoutUser());
+        navigate("/login");
+      }
       setComments(data);
     }
     getComments();
-  }, [post._id]);
+  }, [post._id, dispatch, navigate]);
 
   return (
     <div className={styles.postViewModal} onClick={(e) => e.stopPropagation()}>

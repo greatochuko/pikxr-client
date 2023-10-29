@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setStories } from "../slice/storySlice";
 import { fetchStories } from "../services/storyServices";
 import StoryWireFrame from "./StoryWireFrame";
+import { logoutUser } from "../slice/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Stories() {
   const { stories } = useSelector((state) => state.story);
@@ -17,16 +19,21 @@ export default function Stories() {
     });
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function refreshStories() {
       setIsLoading(true);
       const data = await fetchStories();
+      if (data.error === "jwt expired") {
+        dispatch(logoutUser());
+        navigate("/login");
+      }
       dispatch(setStories(data));
       setIsLoading(false);
     }
     refreshStories();
-  }, [dispatch]);
+  }, [dispatch, navigate]);
 
   let userHasStory = false;
   stories?.forEach((story) => {

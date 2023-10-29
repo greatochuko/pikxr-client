@@ -8,6 +8,8 @@ import { createStory, fetchStories } from "../services/storyServices";
 import styles from "./StoriesModal.module.css";
 import { setStories } from "../slice/storySlice";
 import LoadingIndicator from "./LoadingIndicator";
+import { logoutUser } from "../slice/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateStoryModal({ closeModalContainer }) {
   const [image, setImage] = useState(null);
@@ -18,6 +20,7 @@ export default function CreateStoryModal({ closeModalContainer }) {
 
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handleChange(e) {
     e.preventDefault();
@@ -44,6 +47,10 @@ export default function CreateStoryModal({ closeModalContainer }) {
       return;
     }
     const data = await fetchStories();
+    if (data.error === "jwt expired") {
+      dispatch(logoutUser());
+      navigate("/login");
+    }
     dispatch(setStories(data));
     closeModalContainer();
   }

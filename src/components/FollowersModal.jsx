@@ -4,6 +4,9 @@ import propTypes from "prop-types";
 import { fetchUserFollowers } from "../services/userServices";
 import Follower from "./Follower";
 import FollowerWireframe from "./FollowerWireframe";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../slice/userSlice";
 
 export default function FollowersModal({
   username,
@@ -14,10 +17,17 @@ export default function FollowersModal({
   const [followers, setFollowers] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     async function getUserFollowers() {
       setLoading(true);
       const data = await fetchUserFollowers(username);
+      if (data.error === "jwt expired") {
+        dispatch(logoutUser());
+        navigate("/login");
+      }
       if (type === "followers") {
         setFollowers(data.followers);
       } else if (type === "following") {
@@ -26,7 +36,7 @@ export default function FollowersModal({
       setLoading(false);
     }
     getUserFollowers();
-  }, [username, type]);
+  }, [username, type, dispatch, navigate]);
 
   return (
     <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
