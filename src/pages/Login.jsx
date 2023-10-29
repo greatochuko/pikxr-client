@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
-import styles from "./Auth.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../slice/userSlice";
 import { login } from "../services/authServices";
+import LoadingIndicator from "../components/LoadingIndicator";
+
+import styles from "./Auth.module.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -19,10 +22,12 @@ export default function Login() {
 
   async function handleLogin(e) {
     e.preventDefault();
+    setLoading(true);
     setError("");
     const data = await login(email, password);
     if (data.error) {
       setError(data.error);
+      setLoading(false);
       return;
     }
 
@@ -66,11 +71,12 @@ export default function Login() {
             />
           </div>
           <div className={styles.error}>{error}</div>
-          <input
+          <button
             type="submit"
             className={cannotSubmit ? styles.disabled : null}
-            value="Sign Up"
-          />
+          >
+            {loading ? <LoadingIndicator /> : "Sign In"}
+          </button>
           <p className={styles.break}>or</p>
           <div className={styles.oauth}>
             <a href="#">Sign In with google</a>
