@@ -14,12 +14,18 @@
 
 @media screen and (max-width: 992px) {
   .homepage {
-    padding: 4rem 10vw 0;
+    padding: 4rem 12vw 0;
   }
 }
 
 @media screen and (max-width: 768px) {
   .homepage {
     padding: 4rem 5vw 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .homepage {
+    padding-bottom: 3rem;
   }
 }

@@ -7,7 +7,6 @@ export default function RightSidebar() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  console.log(posts);
 
   useEffect(() => {
     async function refreshPosts() {
@@ -54,11 +53,6 @@ export default function RightSidebar() {
       <div className={styles.trendingHashTags}>
         <h3>Trending Hash Tags</h3>
         <ul>
-          <li>
-            <Link to={"/"}>
-              #react <span>2.7k Posts</span>
-            </Link>
-          </li>
           <li>
             <Link to={"/"}>
               #react <span>2.7k Posts</span>

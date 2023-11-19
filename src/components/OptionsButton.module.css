@@ -3,6 +3,7 @@
   gap: 10px;
   margin-left: auto;
   z-index: 100;
+  align-self: flex-start;
 }
 
 .optionsButton {

@@ -1,14 +1,19 @@
 .post {
   background-color: #fff;
-  aspect-ratio: 8/9;
   display: flex;
   flex-direction: column;
-  transition: 0.3s;
+  gap: 10px;
+  padding: 1rem;
+  border-radius: 10px;
+  color: #333;
 }
 
 .post .images {
   overflow: hidden;
   flex: 1;
+  border-radius: 6px;
+  width: 100%;
+  aspect-ratio: 1.8;
 }
 
 .post .images img {
@@ -18,25 +23,52 @@
   object-fit: cover;
 }
 
-/* ACTION BUTTONS */
-.actionButtons {
-  display: flex;
-  justify-content: space-between;
-}
-
-.actionButtons button {
-  background-color: transparent;
-  border: none;
-  padding: 10px;
-  color: #333;
+.caption a {
+  color: var(--BLUE-100);
   font-size: 0.9rem;
-  transition: scale 0.15s;
 }
 
-.actionButtons button i {
-  margin-right: 10px;
+.caption a:hover {
+  text-decoration: underline;
 }
 
-.actionButtons button:hover {
-  scale: 1.1;
+.actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.actions button {
+  flex: 1;
+  padding: 8px 1rem;
+  border-radius: 8px;
+  border: solid 1px #ddd;
+  white-space: nowrap;
+  background-color: #f5f5f5;
+  color: #333;
+  transition: background-color 0.2s;
+}
+
+.actions button:last-child {
+  flex: 0;
+}
+
+.actions button.active {
+  background-color: var(--BLUE-200);
+  border-color: var(--BLUE-200);
+  color: #fff;
+}
+
+.actions button.active:hover {
+  background-color: var(--BLUE-100);
+  border-color: var(--BLUE-100);
+  color: #fff;
+}
+
+.actions button:hover {
+  background-color: #e5e5e5;
+}
+
+.actions button i {
+  margin-right: 2px;
 }

@@ -1,16 +1,16 @@
-export function getDuration(oldDate, newDate = new Date().getTime()) {
-  let suffix = "s";
+export function getDuration(oldDate, today = new Date().getTime()) {
+  let suffix = " seconds ago";
   const date = new Date(oldDate).getTime();
-  let duration = (newDate - date) / 1000;
+  let duration = (today - date) / 1000;
   if (duration >= 60) {
     duration = Math.floor(duration / 60);
-    suffix = "m";
+    suffix = " minutes ago";
     if (duration >= 60) {
       duration = Math.floor(duration / 60);
-      suffix = "h";
+      suffix = " hours ago";
       if (duration >= 24) {
-        duration = Math.floor(duration / 60);
-        suffix = "d";
+        duration = Math.floor(duration / 24);
+        suffix = " days ago";
       }
     }
   }

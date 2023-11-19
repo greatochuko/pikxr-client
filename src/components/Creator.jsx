@@ -24,16 +24,12 @@ export default function Creator({ post, story, className, setType, type }) {
     <>
       <div className={styles.creator + " " + className}>
         <Link to={"/profile/" + data.creator.username}>
-          <img src={data.creator.imageUrl} alt={data.creator.username} />
-          <div className={styles.text}>
+          <img src={post.creator.imageUrl} alt="" />
+          <div>
             <h4>
-              {data.creator.fullname}
-              <span style={type === "viewStory" ? { color: "white" } : null}>
-                {duration}
-              </span>
+              {post.creator.fullname} <span>@{post.creator.username}</span>
             </h4>
-
-            <p>@{data.creator.username}</p>
+            <p>{getDuration(post.createdAt)}</p>
           </div>
         </Link>
         {user._id === data.creator._id ? (

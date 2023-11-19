@@ -10,7 +10,7 @@ import {
   unSavePost,
 } from "../services/postServices";
 import ModalContainer from "./ModalContainer";
-
+import { Link } from "react-router-dom";
 
 export default function Post({ currentPost }) {
   const { user } = useSelector((state) => state.user);
@@ -61,36 +61,33 @@ export default function Post({ currentPost }) {
   return (
     <>
       <div className={styles.post}>
-        <div className={styles.images} onClick={() => setModalType("viewPost")}>
-          <img src={post.imageUrl} />
+        <Creator post={post} />
+        <p className={styles.caption}>
+          {post.caption.length > 100 ? (
+            <>
+              {post.caption.slice(0, 99)}...<Link to={"/"}>View More</Link>
+            </>
+          ) : (
+            post.caption
+          )}
+        </p>
+        <div className={styles.images}>
+          <img src={post.imageUrl} alt="" />
         </div>
-        <div className={styles.actionButtons}>
-          <button onClick={toggleLike}>
-            <i
-              className={`fa-${
-                isLiked ? "solid " + styles.liked : "regular"
-              } fa-heart `}
-            ></i>
-            {post.likes.length}
-          </button>
-          <button onClick={() => setModalType("viewPost")}>
-            <i className="fa-regular fa-comment"></i>
-            {post.comments?.length}
+        <div className={styles.actions}>
+          <button className={isLiked ? styles.active : ""} onClick={toggleLike}>
+            <i className="fa-solid fa-heart"></i> Like
           </button>
           <button>
-            <i className="fa-solid fa-share-nodes"></i>
-            {post.shares}
+            <i className="fa-solid fa-retweet"></i> Repost
           </button>
-          <button onClick={toggleSave}>
-            <i
-              className={`fa-${
-                isSaved ? "solid " + styles.saved : "regular"
-              } fa-bookmark`}
-            ></i>
-            {post.saves.length}
+          <button onClick={() => setModalType("viewPost")}>
+            <i className="fa-solid fa-comment-dots"></i> Comment
+          </button>
+          <button className={isSaved ? styles.active : ""} onClick={toggleSave}>
+            <i className="fa-solid fa-bookmark"></i>
           </button>
         </div>
-        <Creator post={post} type={modalType} setType={setModalType} />
       </div>
       {modalType ? (
         <ModalContainer
