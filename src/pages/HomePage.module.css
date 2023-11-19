@@ -12,8 +12,14 @@
 
 /* -------------------- MEDIA QUERIES -------------------- */
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 992px) {
   .homepage {
-    padding: 4rem 5vw;
+    padding: 4rem 10vw 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .homepage {
+    padding: 4rem 5vw 0;
   }
 }

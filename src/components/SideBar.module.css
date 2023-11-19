@@ -163,3 +163,9 @@
 .suggestions ul li button:active {
   scale: 0.95;
 }
+
+@media screen and (max-width: 992px) {
+  .sideBar {
+    display: none;
+  }
+}

@@ -78,3 +78,9 @@
   color: gray;
   font-size: 0.9rem;
 }
+
+@media screen and (max-width: 1200px) {
+  .sidebar {
+    display: none;
+  }
+}
