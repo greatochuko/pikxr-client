@@ -25,6 +25,36 @@ export default function SideBar() {
         </div>
         <Link to={`/profile/${user.username}`}>My Profile</Link>
       </div>
+      <div className={styles.suggestions}>
+        <h3>People to follow</h3>
+        <ul>
+          <li>
+            <img src={user.imageUrl} alt="" />
+            <div>
+              <h4>{user.fullname}</h4>
+              <p>@{user.username}</p>
+            </div>
+            <button>Follow</button>
+          </li>
+          <li>
+            <img src={user.imageUrl} alt="" />
+            <div>
+              <h4>{user.fullname}</h4>
+              <p>@{user.username}</p>
+            </div>
+            <button>Follow</button>
+          </li>
+          <li>
+            <img src={user.imageUrl} alt="" />
+            <div>
+              <h4>{user.fullname}</h4>
+              <p>@{user.username}</p>
+            </div>
+            <button>Follow</button>
+          </li>
+        </ul>
+        <Link to={"/"}>Show More</Link>
+      </div>
     </div>
   );
 }

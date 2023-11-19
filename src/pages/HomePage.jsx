@@ -11,6 +11,7 @@ export default function HomePage() {
         <Stories />
         <Feed />
       </div>
+      <SideBar />
     </main>
   );
 }

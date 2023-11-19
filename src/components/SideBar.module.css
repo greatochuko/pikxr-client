@@ -1,8 +1,11 @@
 .sideBar {
   height: fit-content;
-  flex: 0 1 270px;
+  flex: 1;
+  height: calc(100vh - 4rem);
   position: sticky;
   top: 4rem;
+  overflow-y: scroll;
+  padding-bottom: 2rem;
 }
 
 .userInfo {
@@ -84,4 +87,79 @@
   padding: 1rem;
   color: var(--BLUE-100);
   font-weight: 600;
+}
+
+.suggestions {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  color: #444;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.suggestions > h3 {
+  font-size: 1rem;
+}
+
+.suggestions > a {
+  font-size: 0.9rem;
+  color: var(--BLUE-100);
+  font-weight: 600;
+}
+
+.suggestions ul {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+  gap: 1rem;
+}
+
+.suggestions ul li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.suggestions ul li img {
+  width: 40px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.suggestions ul li > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.suggestions ul li > div h4 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.suggestions ul li > div p {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.suggestions ul li button {
+  background-color: #fff;
+  border-radius: 9999px;
+  padding: 7px 1rem;
+  border: solid 1px var(--BLUE-100);
+  color: var(--BLUE-100);
+  margin-left: auto;
+  transition: 0.2s;
+  font-weight: bold;
+}
+
+.suggestions ul li button:hover {
+  border-color: var(--BLUE-100);
+  background-color: var(--BLUE-100);
+  color: #fff;
+}
+
+.suggestions ul li button:active {
+  scale: 0.95;
 }
