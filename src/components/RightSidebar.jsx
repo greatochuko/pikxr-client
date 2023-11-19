@@ -17,7 +17,14 @@ export default function RightSidebar() {
         setError(data.error);
         return;
       }
-      setPosts(data.slice(0, 4));
+      setPosts(
+        [...data]
+          .sort(
+            (a, b) =>
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          )
+          .slice(0, 4)
+      );
       setLoading(false);
     }
     refreshPosts();

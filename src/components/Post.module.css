@@ -72,3 +72,9 @@
 .actions button i {
   margin-right: 2px;
 }
+
+@media screen and (max-width: 600px) {
+  .actions button {
+    padding: 8px;
+  }
+}

@@ -9,6 +9,7 @@
 .main {
   flex: 2;
   width: 100%;
+  /* max-width: 600px; */
 }
 
 /* -------------------- MEDIA QUERIES -------------------- */

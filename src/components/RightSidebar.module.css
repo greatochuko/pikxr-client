@@ -38,6 +38,12 @@
   aspect-ratio: 1.2;
 }
 
+.trendingFeeds ul li img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
 .trendingFeeds ul li.wireframe {
   background-color: #bbb;
   animation: pulse 1.5s infinite;
