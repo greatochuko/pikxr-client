@@ -1,11 +1,9 @@
-import { useSelector } from "react-redux";
 import styles from "./RightSidebar.module.css";
 import { useEffect, useState } from "react";
 import { fetchPosts } from "../services/postServices";
 import { Link } from "react-router-dom";
 
 export default function RightSidebar() {
-  const user = useSelector((state) => state.user.user);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -30,15 +28,28 @@ export default function RightSidebar() {
     <div className={styles.sidebar}>
       <div className={styles.trendingFeeds}>
         <h3>Trending Feeds</h3>
-        <ul>
-          {posts.map((post) => (
-            <li key={post._id}>
-              <Link to={"/"}>
-                <img src={post.imageUrl} alt="" />
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {error ? (
+          <p className={styles.trendingFeedsError}>Something went wrong 😢</p>
+        ) : (
+          <ul>
+            {loading ? (
+              <>
+                <li className={styles.wireframe}></li>
+                <li className={styles.wireframe}></li>
+                <li className={styles.wireframe}></li>
+                <li className={styles.wireframe}></li>
+              </>
+            ) : (
+              posts.map((post) => (
+                <li key={post._id}>
+                  <Link to={"/"}>
+                    <img src={post.imageUrl} alt="" />
+                  </Link>
+                </li>
+              ))
+            )}
+          </ul>
+        )}
       </div>
       <div className={styles.trendingHashTags}>
         <h3>Trending Hash Tags</h3>

@@ -25,10 +25,34 @@
   padding: 1rem 0;
 }
 
+.trendingFeedsError {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .trendingFeeds ul li {
   border-radius: 5px;
   overflow: hidden;
   aspect-ratio: 1.2;
+}
+
+.trendingFeeds ul li.wireframe {
+  background-color: #bbb;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .trendingFeeds ul li img {
