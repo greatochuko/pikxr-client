@@ -1,52 +1,56 @@
 .sidebar {
-  border-left: solid 1px #eee;
-  flex: 0 1 300px;
-  /* max-width: 400px; */
+  flex: 0.8;
+  height: fit-content;
+  position: sticky;
+  top: 4rem;
   padding: 1rem;
   background-color: white;
+  border-radius: 10px;
+  color: #444;
 }
 
-.userInfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 1rem;
+.sidebar h3 {
+  font-size: 1rem;
 }
 
-.userInfo img {
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  padding: 1.5px;
-  box-shadow: 0 0 5px 2px rgb(0, 26, 255);
+.sidebar > :not(:last-child) {
+  border-bottom: solid 1px #ddd;
+  margin-bottom: 1rem;
 }
 
-.name {
-  margin-top: 10px;
+.trendingFeeds ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  padding: 1rem 0;
 }
 
-.username {
-  font-size: 0.9rem;
-  color: gray;
+.trendingFeeds ul li {
+  border-radius: 5px;
+  overflow: hidden;
+  aspect-ratio: 1.2;
 }
 
-.userStats {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-  justify-content: space-between;
+.trendingFeeds ul li img {
   width: 100%;
+  height: 100%;
 }
 
-.userStats li {
-  font-size: 0.9rem;
+.trendingHashTags ul {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  color: gray;
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
-.userStats li span {
-  font-weight: bold;
-  color: #333;
+.trendingHashTags ul li a {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+}
+
+.trendingHashTags ul li a span {
+  font-weight: normal;
+  color: gray;
+  font-size: 0.9rem;
 }

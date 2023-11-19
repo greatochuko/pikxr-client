@@ -1,4 +1,5 @@
 import Feed from "../components/Feed";
+import RightSidebar from "../components/RightSidebar";
 import SideBar from "../components/SideBar";
 import Stories from "../components/Stories";
 import styles from "./HomePage.module.css";
@@ -11,7 +12,7 @@ export default function HomePage() {
         <Stories />
         <Feed />
       </div>
-      <SideBar />
+      <RightSidebar />
     </main>
   );
 }

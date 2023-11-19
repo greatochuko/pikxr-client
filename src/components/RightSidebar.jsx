@@ -1,24 +1,67 @@
 import { useSelector } from "react-redux";
 import styles from "./RightSidebar.module.css";
+import { useEffect, useState } from "react";
+import { fetchPosts } from "../services/postServices";
+import { Link } from "react-router-dom";
 
 export default function RightSidebar() {
   const user = useSelector((state) => state.user.user);
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  console.log(posts);
+
+  useEffect(() => {
+    async function refreshPosts() {
+      setLoading(true);
+      const data = await fetchPosts();
+      if (data.error) {
+        setLoading(false);
+        setError(data.error);
+        return;
+      }
+      setPosts(data.slice(0, 4));
+      setLoading(false);
+    }
+    refreshPosts();
+  }, []);
 
   return (
     <div className={styles.sidebar}>
-      <div className={styles.userInfo}>
-        <img src={user.imageUrl} alt="profile picture" className="profileImg" />
-        <h3 className={styles.name}>{user.fullname}</h3>
-        <p className={styles.username}>@{user.username}</p>
-        <ul className={styles.userStats}>
+      <div className={styles.trendingFeeds}>
+        <h3>Trending Feeds</h3>
+        <ul>
+          {posts.map((post) => (
+            <li key={post._id}>
+              <Link to={"/"}>
+                <img src={post.imageUrl} alt="" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className={styles.trendingHashTags}>
+        <h3>Trending Hash Tags</h3>
+        <ul>
           <li>
-            <span>46</span>Posts
+            <Link to={"/"}>
+              #react <span>2.7k Posts</span>
+            </Link>
           </li>
           <li>
-            <span>2.8k</span>Followers
+            <Link to={"/"}>
+              #react <span>2.7k Posts</span>
+            </Link>
           </li>
           <li>
-            <span>125</span>Following
+            <Link to={"/"}>
+              #react <span>2.7k Posts</span>
+            </Link>
+          </li>
+          <li>
+            <Link to={"/"}>
+              #react <span>2.7k Posts</span>
+            </Link>
           </li>
         </ul>
       </div>
