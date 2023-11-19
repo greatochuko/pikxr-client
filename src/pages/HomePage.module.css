@@ -1,5 +1,5 @@
 .homepage {
-  padding: 4rem 2rem 0;
+  padding: 4.5rem 2rem 0;
   flex: 1;
   display: flex;
   gap: 1rem;
@@ -8,19 +8,20 @@
 
 .main {
   flex: 2;
+  width: 100%;
 }
 
 /* -------------------- MEDIA QUERIES -------------------- */
 
 @media screen and (max-width: 992px) {
   .homepage {
-    padding: 4rem 12vw 0;
+    padding: 4.5rem 12vw 0;
   }
 }
 
 @media screen and (max-width: 768px) {
   .homepage {
-    padding: 4rem 5vw 0;
+    padding: 4.5rem 5vw 0;
   }
 }
 
