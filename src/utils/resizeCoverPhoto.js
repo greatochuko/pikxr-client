@@ -25,7 +25,7 @@ function resizePhoto(imageFile, maxWidth, setPreviewImageUrl, callback) {
 }
 
 export function resizeCoverPhoto(imageFile, setPreviewImageUrl, callback) {
-  resizePhoto(imageFile, 1500, setPreviewImageUrl, callback);
+  resizePhoto(imageFile, 1000, setPreviewImageUrl, callback);
 }
 export function resizeProfilePhoto(imageFile, setPreviewImageUrl, callback) {
   resizePhoto(imageFile, 200, setPreviewImageUrl, callback);

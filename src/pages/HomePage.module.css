@@ -1,12 +1,19 @@
 .homepage {
-  padding: 3rem 15vw;
+  padding: 4rem 2rem;
   flex: 1;
+  display: flex;
+  gap: 1rem;
+  background-color: #eee;
+}
+
+.main {
+  flex: 2;
 }
 
 /* -------------------- MEDIA QUERIES -------------------- */
 
 @media screen and (max-width: 1024px) {
   .homepage {
-    padding: 3rem 5vw;
+    padding: 4rem 5vw;
   }
 }

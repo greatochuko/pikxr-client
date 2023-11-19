@@ -1,4 +1,5 @@
-const BASE_URL = "https://tan-wild-raven.cyclic.app";
+// export const BASE_URL = "https://tan-wild-raven.cyclic.app";
+export const BASE_URL = "http://localhost:5000";
 
 export async function login(email, password) {
   let username;

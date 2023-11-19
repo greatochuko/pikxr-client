@@ -1,4 +1,4 @@
-const BASE_URL = "https://tan-wild-raven.cyclic.app";
+import { BASE_URL } from "./authServices";
 
 export async function fetchComments(postId) {
   const token = localStorage.getItem("token");
