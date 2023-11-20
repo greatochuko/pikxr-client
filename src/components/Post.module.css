@@ -6,6 +6,16 @@
   padding: 1rem;
   border-radius: 10px;
   color: #333;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.post:hover {
+  box-shadow: 0 0 10px #ccc;
+}
+
+.post:hover .caption a {
+  text-decoration: underline;
 }
 
 .post .images {
@@ -19,7 +29,6 @@
 .post .images img {
   height: 100%;
   width: 100%;
-  cursor: pointer;
   object-fit: cover;
 }
 

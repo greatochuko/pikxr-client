@@ -3,7 +3,7 @@
   flex: 1;
   height: calc(100vh - 4rem);
   position: sticky;
-  top: 4.5rem;
+  top: 4rem;
   overflow-y: scroll;
   padding-bottom: 2rem;
 }
