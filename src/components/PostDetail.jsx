@@ -1,30 +1,36 @@
-import Creator from "./Creator";
-import styles from "./Post.module.css";
+import { useEffect, useState } from "react";
+import Creator from "../components/Creator";
+import CommentForm from "../components/CommentForm";
+import Comment from "../components/Comment";
+import styles from "./PostDetail.module.css";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import PropTypes from "prop-types";
-import { useState } from "react";
 import {
+  fetchPost,
   likePost,
   savePost,
   unLikePost,
   unSavePost,
 } from "../services/postServices";
-import ModalContainer from "./ModalContainer";
-import { Link, useNavigate } from "react-router-dom";
 
-export default function Post({ currentPost }) {
+export default function PostDetail() {
   const { user } = useSelector((state) => state.user);
 
-  const [post, setPost] = useState(currentPost);
+  const { postId } = useParams();
+
+  const [post, setPost] = useState(null);
   const isLiked = post?.likes?.includes(user._id);
   const isSaved = post?.saves?.includes(user._id);
-  const [modalType, setModalType] = useState(null);
 
   const navigate = useNavigate();
 
-  function closeModalContainer() {
-    setModalType(null);
-  }
+  useEffect(() => {
+    async function getPost() {
+      const data = await fetchPost(postId);
+      setPost(data);
+    }
+    getPost();
+  }, [postId]);
 
   async function toggleLike() {
     let data;
@@ -58,33 +64,32 @@ export default function Post({ currentPost }) {
     setPost(data);
   }
 
+  console.clear();
+  console.log(post);
+
+  if (!post) return <h1>Loading...</h1>;
   return (
-    <>
-      <div
-        onClick={() => navigate(`/post/${post._id}`)}
-        className={styles.post}
-      >
+    <div className={styles.postDetail} onClick={() => navigate(-1)}>
+      <div className={styles.header}>
+        <button>
+          <i className="fa-solid fa-arrow-left"></i>
+        </button>
+        <h2>Post</h2>
+      </div>
+      <div className={styles.post}>
         <Creator post={post} />
-        <p className={styles.caption}>
-          {post.caption.length > 100 ? (
-            <>
-              {post.caption.slice(0, 99)}...<Link to={"/"}>View More</Link>
-            </>
-          ) : (
-            post.caption
-          )}
-        </p>
+        <p className={styles.caption}>{post.caption}</p>
         <div className={styles.images}>
           <img src={post.imageUrl} alt="" />
         </div>
-        <div className={styles.actions} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.actions}>
           <button className={isLiked ? styles.active : ""} onClick={toggleLike}>
             <i className="fa-solid fa-heart"></i> Like
           </button>
           <button>
             <i className="fa-solid fa-retweet"></i> Repost
           </button>
-          <button onClick={() => setModalType("viewPost")}>
+          <button>
             <i className="fa-solid fa-comment-dots"></i> Comment
           </button>
           <button className={isSaved ? styles.active : ""} onClick={toggleSave}>
@@ -92,20 +97,23 @@ export default function Post({ currentPost }) {
           </button>
         </div>
       </div>
-      {modalType ? (
-        <ModalContainer
-          setCurrentPost={setPost}
-          type={modalType}
-          closeModalContainer={closeModalContainer}
-          post={post}
-          setType={setModalType}
-        />
-      ) : null}
-    </>
+      <CommentForm
+        postId={post._id}
+        creatorId={post.creator._id}
+        setCurrentPost={setPost}
+      />
+      <div className={styles.comments}>
+        <ul>
+          {post.comments.map((comment) => (
+            <Comment
+              key={comment._id}
+              comment={comment}
+              //   setType={setType}
+              //   setComments={setComments}
+            />
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 }
-
-Post.propTypes = {
-  currentPost: PropTypes.object,
-  setPosts: PropTypes.func,
-};

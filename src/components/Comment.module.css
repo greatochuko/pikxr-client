@@ -2,7 +2,6 @@
   display: flex;
   gap: 1rem;
   padding: 10px 0;
-  padding: 1rem;
   position: relative;
 }
 
@@ -14,21 +13,25 @@
 }
 
 .details {
-  border-bottom: solid 1px #eee;
   flex: 1;
+  border-bottom: solid 1px #eee;
   padding-bottom: 10px;
+}
+
+.details .duration {
+  color: gray;
+  font-size: 0.8rem;
 }
 
 .details h4 {
   font-size: 0.9rem;
-  margin-bottom: 6px;
   font-weight: 600;
   display: flex;
   align-items: center;
 }
 
 .details p {
-  font-size: 15px;
-  color: #555;
+  font-size: 0.9rem;
+  color: #333;
   font-weight: 500;
 }

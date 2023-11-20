@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 
 export default function Creator({ post, story, className, setType, type }) {
   const data = post || story;
-  const duration = getDuration(data.createdAt);
 
   const { user } = useSelector((state) => state.user);
 
@@ -23,7 +22,10 @@ export default function Creator({ post, story, className, setType, type }) {
   return (
     <>
       <div className={styles.creator + " " + className}>
-        <Link to={"/profile/" + data.creator.username}>
+        <Link
+          to={"/profile/" + data.creator.username}
+          onClick={(e) => e.stopPropagation()}
+        >
           <img src={post.creator.imageUrl} alt="" />
           <div>
             <h4>

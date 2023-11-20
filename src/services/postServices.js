@@ -11,6 +11,23 @@ export async function fetchPosts() {
   return data;
 }
 
+export async function fetchPost(postId) {
+  const token = localStorage.getItem("token");
+
+  try {
+    const res = await fetch(BASE_URL + "/posts/" + postId, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+    return { error: error.message };
+  }
+}
+
 export async function createPost(formData) {
   const token = localStorage.getItem("token");
   const res = await fetch(BASE_URL + "/posts", {

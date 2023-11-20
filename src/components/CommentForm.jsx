@@ -7,7 +7,6 @@ import LoadingIndicator from "./LoadingIndicator";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../slice/userSlice";
 
-
 export default function CommentForm({
   className,
   postId,
@@ -33,7 +32,7 @@ export default function CommentForm({
       dispatch(logoutUser());
       navigate("/login");
     }
-    setComments(commentsData);
+    // setComments(commentsData);
     setComment("");
     setLoading(false);
   }

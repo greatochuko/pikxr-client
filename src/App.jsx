@@ -11,6 +11,7 @@ import Notifications from "./pages/Notifications";
 import Settings from "./pages/Settings";
 import PageNotFound from "./pages/PageNotFound";
 import Profile from "./pages/Profile";
+import PostDetailPage from "./pages/PostDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/post/:postId",
+        element: <PostDetailPage />,
       },
       {
         path: "/explore",
