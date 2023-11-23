@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchStories } from "../services/storyServices";
 
 const initialState = { stories: null };
 

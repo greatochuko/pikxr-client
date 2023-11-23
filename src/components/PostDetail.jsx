@@ -64,14 +64,11 @@ export default function PostDetail() {
     setPost(data);
   }
 
-  console.clear();
-  console.log(post);
-
   if (!post) return <h1>Loading...</h1>;
   return (
-    <div className={styles.postDetail} onClick={() => navigate(-1)}>
+    <div className={styles.postDetail}>
       <div className={styles.header}>
-        <button>
+        <button onClick={() => navigate(-1)}>
           <i className="fa-solid fa-arrow-left"></i>
         </button>
         <h2>Post</h2>
@@ -104,14 +101,11 @@ export default function PostDetail() {
       />
       <div className={styles.comments}>
         <ul>
-          {post.comments.map((comment) => (
-            <Comment
-              key={comment._id}
-              comment={comment}
-              //   setType={setType}
-              //   setComments={setComments}
-            />
-          ))}
+          {[...post.comments]
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .map((comment) => (
+              <Comment key={comment._id} comment={comment} />
+            ))}
         </ul>
       </div>
     </div>

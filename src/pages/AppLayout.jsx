@@ -6,13 +6,13 @@ import NavBar from "../components/NavBar";
 import MobileNavBar from "../components/MobileNavBar";
 
 export default function AppLayout() {
-  const { modalIsOpen, modalType } = useSelector((state) => state.post);
+  const { open, type } = useSelector((state) => state.modal);
   return (
     <div className={styles.appLayout}>
       <NavBar />
       <Outlet />
       <MobileNavBar />
-      {modalIsOpen ? <ModalContainer type={modalType} /> : null}
+      {open ? <ModalContainer type={type} /> : null}
     </div>
   );
 }

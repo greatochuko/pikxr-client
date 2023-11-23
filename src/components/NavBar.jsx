@@ -6,6 +6,7 @@ import ModalContainer from "./ModalContainer";
 import styles from "./NavBar.module.css";
 import { fetchUser } from "../services/userServices";
 import { loginUser, logoutUser } from "../slice/userSlice";
+import { openModal } from "../slice/modalSlice";
 
 export default function NavBar() {
   const [modalType, setModalType] = useState(null);
@@ -65,7 +66,10 @@ export default function NavBar() {
           </li>
         </ul>
         <div className={styles.profile}>
-          <li className={styles.logout} onClick={() => setModalType("logout")}>
+          <li
+            className={styles.logout}
+            onClick={() => dispatch(openModal("logout"))}
+          >
             <a>
               <i className="fa-solid fa-right-from-bracket"></i>
             </a>

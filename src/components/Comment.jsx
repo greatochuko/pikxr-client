@@ -1,14 +1,16 @@
 import styles from "./Comment.module.css";
 import PropType from "prop-types";
 import OptionsButton from "./OptionsButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getDuration } from "../utils/getDuration";
+import { openModal } from "../slice/modalSlice";
 
-export default function Comment({ comment, setType }) {
+export default function Comment({ comment }) {
   const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   function openDeleteCommentModal() {
-    setType("deleteComment." + comment._id);
+    dispatch(openModal("deleteModal"));
   }
 
   return (

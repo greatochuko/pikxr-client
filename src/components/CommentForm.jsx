@@ -1,38 +1,30 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styles from "./CommentForm.module.css";
 import propTypes from "prop-types";
 import { useState } from "react";
-import { fetchComments, postComment } from "../services/commentServices";
+import { postComment } from "../services/commentServices";
 import LoadingIndicator from "./LoadingIndicator";
-import { useNavigate } from "react-router-dom";
-import { logoutUser } from "../slice/userSlice";
+import { fetchPost } from "../services/postServices";
 
 export default function CommentForm({
   className,
   postId,
   setCurrentPost,
   creatorId,
-  setComments,
 }) {
   const { user } = useSelector((state) => state.user);
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   async function handlePostComment(e) {
     e.preventDefault();
     if (!comment) return;
     setLoading(true);
-    const data = await postComment(comment, creatorId, postId);
+    const resData = await postComment(comment, creatorId, postId);
+    if (resData.error) return setLoading(false);
+    const data = await fetchPost(postId);
     if (data.error) return setLoading(false);
     setCurrentPost(data);
-    const commentsData = await fetchComments(postId);
-    if (commentsData.error === "jwt expired") {
-      dispatch(logoutUser());
-      navigate("/login");
-    }
-    // setComments(commentsData);
     setComment("");
     setLoading(false);
   }
@@ -57,7 +49,5 @@ CommentForm.propTypes = {
   className: propTypes.string,
   postId: propTypes.string,
   setCurrentPost: propTypes.func,
-  setComments: propTypes.func,
-  updateMasonryGridPost: propTypes.func,
   creatorId: propTypes.string,
 };
