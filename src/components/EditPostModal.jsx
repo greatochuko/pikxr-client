@@ -7,12 +7,10 @@ import propTypes from "prop-types";
 import LoadingIndicator from "./LoadingIndicator";
 import { closeModal } from "../slice/modalSlice";
 
-export default function EditPostModal({ setCurrentPost }) {
+export default function EditPostModal() {
   const { user } = useSelector((state) => state.user);
   const { post } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
-  console.clear();
-  console.log(post);
 
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState(post.caption);
@@ -45,9 +43,8 @@ export default function EditPostModal({ setCurrentPost }) {
     formData.append("creator", user._id);
 
     // Make fetch request to update post
-    const data = await updatePost(post._id, formData);
+    await updatePost(post._id, formData);
 
-    setCurrentPost(data);
     setLoading(false);
     closeModalContainer();
   }

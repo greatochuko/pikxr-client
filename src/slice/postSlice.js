@@ -11,11 +11,8 @@ const postSlice = createSlice({
     setPosts: (state, action) => {
       state.posts = action.payload;
     },
-    filterDeletedPost: (state, action) => {
-      state.posts = state.posts.filter((post) => post._id !== action.payload);
-    },
   },
 });
 
-export const { setPosts, filterDeletedPost } = postSlice.actions;
+export const { setPosts } = postSlice.actions;
 export default postSlice.reducer;

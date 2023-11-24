@@ -4,14 +4,12 @@ import { setPosts } from "../slice/postSlice";
 import { useRef, useState } from "react";
 import { createPost, fetchPosts } from "../services/postServices";
 import { resizeImage } from "../utils/imageResize";
-import propTypes from "prop-types";
 import LoadingIndicator from "./LoadingIndicator";
 import { logoutUser } from "../slice/userSlice";
 import { useNavigate } from "react-router-dom";
+import { closeModal } from "../slice/modalSlice";
 
-
-export default function CreatePostModal({ closeModalContainer }) {
-
+export default function CreatePostModal() {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const imageInputRef = useRef();
@@ -19,6 +17,10 @@ export default function CreatePostModal({ closeModalContainer }) {
   const [imgPreviewSrc, setImgPreviewSrc] = useState();
   const { user } = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
+
+  function closeModalContainer() {
+    dispatch(closeModal());
+  }
 
   const navigate = useNavigate();
 
@@ -60,7 +62,7 @@ export default function CreatePostModal({ closeModalContainer }) {
   return (
     <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
       <h2 className={styles.header}>Create new post</h2>
-      <button className={styles.close} onClick={() => closeModalContainer()}>
+      <button className={styles.close} onClick={closeModalContainer}>
         <i className="fa-solid fa-circle-xmark"></i>
       </button>
       <form onSubmit={handleCreatePost}>
@@ -105,10 +107,3 @@ export default function CreatePostModal({ closeModalContainer }) {
     </div>
   );
 }
-
-CreatePostModal.propTypes = {
-  closeModalContainer: propTypes.func,
-  setCurrentPost: propTypes.func,
-  postImgCaption: propTypes.string,
-  postId: propTypes.string,
-};

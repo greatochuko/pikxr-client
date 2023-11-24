@@ -44,16 +44,4 @@ export default function ModalContainer({ type }) {
 
 ModalContainer.propTypes = {
   type: propTypes.string,
-  closeModalContainer: propTypes.func,
-  updateMasonryGridPost: propTypes.func,
-  setType: propTypes.func,
-  setCurrentPost: propTypes.func,
-  setPosts: propTypes.func,
-  post: propTypes.object,
-  story: propTypes.object,
-  userProfile: propTypes.object,
-  stories: propTypes.array,
-  setStories: propTypes.func,
-  setComments: propTypes.func,
-  username: propTypes.string,
 };

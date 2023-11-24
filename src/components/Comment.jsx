@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDuration } from "../utils/getDuration";
 import { openModal } from "../slice/modalSlice";
 
-export default function Comment({ comment }) {
+export default function Comment({ comment, setCurrentPost }) {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -25,6 +25,7 @@ export default function Comment({ comment }) {
         <OptionsButton
           type={"comment"}
           openDeleteModal={openDeleteCommentModal}
+          setCurrentPost={setCurrentPost}
         />
       ) : null}
     </li>

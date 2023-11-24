@@ -12,6 +12,7 @@ import {
   unLikePost,
   unSavePost,
 } from "../services/postServices";
+import PostDetailWireFrame from "./PostDetailWireFrame";
 
 export default function PostDetail() {
   const { user } = useSelector((state) => state.user);
@@ -19,15 +20,24 @@ export default function PostDetail() {
   const { postId } = useParams();
 
   const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
   const isLiked = post?.likes?.includes(user._id);
   const isSaved = post?.saves?.includes(user._id);
+
+  const comments = post
+    ? post.comments
+        .map((a) => a)
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    : [];
 
   const navigate = useNavigate();
 
   useEffect(() => {
     async function getPost() {
+      setLoading(true);
       const data = await fetchPost(postId);
       setPost(data);
+      setLoading(false);
     }
     getPost();
   }, [postId]);
@@ -64,7 +74,6 @@ export default function PostDetail() {
     setPost(data);
   }
 
-  if (!post) return <h1>Loading...</h1>;
   return (
     <div className={styles.postDetail}>
       <div className={styles.header}>
@@ -73,41 +82,55 @@ export default function PostDetail() {
         </button>
         <h2>Post</h2>
       </div>
-      <div className={styles.post}>
-        <Creator post={post} />
-        <p className={styles.caption}>{post.caption}</p>
-        <div className={styles.images}>
-          <img src={post.imageUrl} alt="" />
-        </div>
-        <div className={styles.actions}>
-          <button className={isLiked ? styles.active : ""} onClick={toggleLike}>
-            <i className="fa-solid fa-heart"></i> Like
-          </button>
-          <button>
-            <i className="fa-solid fa-retweet"></i> Repost
-          </button>
-          <button>
-            <i className="fa-solid fa-comment-dots"></i> Comment
-          </button>
-          <button className={isSaved ? styles.active : ""} onClick={toggleSave}>
-            <i className="fa-solid fa-bookmark"></i>
-          </button>
-        </div>
-      </div>
-      <CommentForm
-        postId={post._id}
-        creatorId={post.creator._id}
-        setCurrentPost={setPost}
-      />
-      <div className={styles.comments}>
-        <ul>
-          {[...post.comments]
-            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-            .map((comment) => (
-              <Comment key={comment._id} comment={comment} />
-            ))}
-        </ul>
-      </div>
+      {loading ? (
+        <PostDetailWireFrame />
+      ) : (
+        <>
+          <div className={styles.post}>
+            <Creator post={post} setCurrentPost={setPost} />
+            <p className={styles.caption}>{post.caption}</p>
+            <div className={styles.images}>
+              <img src={post.imageUrl} alt="" />
+            </div>
+            <div className={styles.actions}>
+              <button
+                className={isLiked ? styles.active : ""}
+                onClick={toggleLike}
+              >
+                <i className="fa-solid fa-heart"></i> Like
+              </button>
+              <button>
+                <i className="fa-solid fa-retweet"></i> Repost
+              </button>
+              <button>
+                <i className="fa-solid fa-comment-dots"></i> Comment
+              </button>
+              <button
+                className={isSaved ? styles.active : ""}
+                onClick={toggleSave}
+              >
+                <i className="fa-solid fa-bookmark"></i>
+              </button>
+            </div>
+          </div>
+          <CommentForm
+            postId={post._id}
+            creatorId={post.creator._id}
+            setCurrentPost={setPost}
+          />
+          <div className={styles.comments}>
+            <ul>
+              {comments.map((comment) => (
+                <Comment
+                  key={comment._id}
+                  comment={comment}
+                  setCurrentPost={setPost}
+                />
+              ))}
+            </ul>
+          </div>
+        </>
+      )}
     </div>
   );
 }

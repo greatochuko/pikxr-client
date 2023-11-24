@@ -1,6 +1,6 @@
 import Creator from "./Creator";
 import styles from "./Post.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import {
@@ -9,7 +9,6 @@ import {
   unLikePost,
   unSavePost,
 } from "../services/postServices";
-import ModalContainer from "./ModalContainer";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Post({ currentPost }) {
@@ -18,13 +17,9 @@ export default function Post({ currentPost }) {
   const [post, setPost] = useState(currentPost);
   const isLiked = post?.likes?.includes(user._id);
   const isSaved = post?.saves?.includes(user._id);
-  const [modalType, setModalType] = useState(null);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
-
-  function closeModalContainer() {
-    setModalType(null);
-  }
 
   async function toggleLike() {
     let data;
@@ -59,49 +54,35 @@ export default function Post({ currentPost }) {
   }
 
   return (
-    <>
-      <div
-        onClick={() => navigate(`/post/${post._id}`)}
-        className={styles.post}
-      >
-        <Creator post={post} />
-        <p className={styles.caption}>
-          {post.caption.length > 100 ? (
-            <>
-              {post.caption.slice(0, 99)}...<Link to={"/"}>View More</Link>
-            </>
-          ) : (
-            post.caption
-          )}
-        </p>
-        <div className={styles.images}>
-          <img src={post.imageUrl} alt="" />
-        </div>
-        <div className={styles.actions} onClick={(e) => e.stopPropagation()}>
-          <button className={isLiked ? styles.active : ""} onClick={toggleLike}>
-            <i className="fa-solid fa-heart"></i> Like
-          </button>
-          <button>
-            <i className="fa-solid fa-retweet"></i> Repost
-          </button>
-          <button onClick={() => setModalType("viewPost")}>
-            <i className="fa-solid fa-comment-dots"></i> Comment
-          </button>
-          <button className={isSaved ? styles.active : ""} onClick={toggleSave}>
-            <i className="fa-solid fa-bookmark"></i>
-          </button>
-        </div>
+    <div onClick={() => navigate(`/post/${post._id}`)} className={styles.post}>
+      <Creator post={post} />
+      <p className={styles.caption}>
+        {post.caption.length > 100 ? (
+          <>
+            {post.caption.slice(0, 99)}...<Link to={"/"}>View More</Link>
+          </>
+        ) : (
+          post.caption
+        )}
+      </p>
+      <div className={styles.images}>
+        <img src={post.imageUrl} alt="" />
       </div>
-      {modalType ? (
-        <ModalContainer
-          setCurrentPost={setPost}
-          type={modalType}
-          closeModalContainer={closeModalContainer}
-          post={post}
-          setType={setModalType}
-        />
-      ) : null}
-    </>
+      <div className={styles.actions} onClick={(e) => e.stopPropagation()}>
+        <button className={isLiked ? styles.active : ""} onClick={toggleLike}>
+          <i className="fa-solid fa-heart"></i> Like
+        </button>
+        <button>
+          <i className="fa-solid fa-retweet"></i> Repost
+        </button>
+        <button onClick={() => dispatch({ type: "viewPost" })}>
+          <i className="fa-solid fa-comment-dots"></i> Comment
+        </button>
+        <button className={isSaved ? styles.active : ""} onClick={toggleSave}>
+          <i className="fa-solid fa-bookmark"></i>
+        </button>
+      </div>
+    </div>
   );
 }
 

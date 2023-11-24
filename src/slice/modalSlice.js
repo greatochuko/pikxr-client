@@ -6,6 +6,7 @@ const initialState = {
   post: "post2",
   story: {},
   commentId: "",
+  cb: null,
 };
 
 const modalSlice = createSlice({
@@ -20,7 +21,6 @@ const modalSlice = createSlice({
     },
     closeModal: (state) => {
       state.open = false;
-      state.type = "";
     },
   },
 });

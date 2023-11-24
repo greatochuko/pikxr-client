@@ -20,13 +20,13 @@ import {
 } from "../utils/resizeCoverPhoto";
 
 import { loginUser, logoutUser } from "../slice/userSlice";
+import { closeModal, openModal } from "../slice/modalSlice";
 
 export default function Profile() {
   const { username } = useParams();
   const { user } = useSelector((state) => state.user);
 
   const [activeTab, setActiveTab] = useState("posts");
-  const [modalType, setModalType] = useState(null);
   const [previewProfilePhotoUrl, setPreviewProfilePhotoUrl] = useState(null);
   const [previewCoverPhotoUrl, setPreviewCoverPhotoUrl] = useState(null);
   const [editAbout, setEditAbout] = useState(false);
@@ -39,8 +39,7 @@ export default function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  async function closeModalContainer() {
-    setModalType(null);
+  async function modalCallBack() {
     const data = await fetchUserProfile(username);
     if (data.error === "jwt expired") {
       dispatch(logoutUser());
@@ -96,7 +95,7 @@ export default function Profile() {
         navigate("/login");
       }
       setUserProfile(data);
-      setModalType(null);
+      dispatch(closeModal());
       setAbout(data.about);
     }
     getUser();
@@ -104,123 +103,113 @@ export default function Profile() {
 
   if (userProfile)
     return (
-      <>
-        <main className={styles.profile}>
-          <div className={styles.profileImages}>
-            <div className={styles.coverPhoto}>
-              {user._id === userProfile._id ? (
-                <>
-                  <label htmlFor="coverPhoto">Change Photo</label>
-                  <input
-                    type="file"
-                    name="coverPhoto"
-                    id="coverPhoto"
-                    ref={coverPhotoRef}
-                    onChange={handleChangeCoverPhoto}
-                  />
-                </>
-              ) : null}
-              <img
-                src={previewCoverPhotoUrl || userProfile.coverPhotoUrl}
-                alt="cover photo"
-              />
-            </div>
+      <main className={styles.profile}>
+        <div className={styles.profileImages}>
+          <div className={styles.coverPhoto}>
+            {user._id === userProfile._id ? (
+              <>
+                <label htmlFor="coverPhoto">Change Photo</label>
+                <input
+                  type="file"
+                  name="coverPhoto"
+                  id="coverPhoto"
+                  ref={coverPhotoRef}
+                  onChange={handleChangeCoverPhoto}
+                />
+              </>
+            ) : null}
+            <img
+              src={previewCoverPhotoUrl || userProfile.coverPhotoUrl}
+              alt="cover photo"
+            />
+          </div>
 
-            <div className={styles.profileImage}>
-              <img
-                src={previewProfilePhotoUrl || userProfile.imageUrl}
-                alt="profile picture"
-              />
-              {user._id === userProfile._id ? (
-                <>
-                  <label htmlFor="profilePhoto">
-                    <i className="fa-regular fa-images"></i>
-                  </label>
-                  <input
-                    type="file"
-                    name="profilePhoto"
-                    id="profilePhoto"
-                    ref={profilePhotoRef}
-                    onChange={handleChangeProfilePhoto}
-                  />
-                </>
-              ) : null}
-            </div>
+          <div className={styles.profileImage}>
+            <img
+              src={previewProfilePhotoUrl || userProfile.imageUrl}
+              alt="profile picture"
+            />
+            {user._id === userProfile._id ? (
+              <>
+                <label htmlFor="profilePhoto">
+                  <i className="fa-regular fa-images"></i>
+                </label>
+                <input
+                  type="file"
+                  name="profilePhoto"
+                  id="profilePhoto"
+                  ref={profilePhotoRef}
+                  onChange={handleChangeProfilePhoto}
+                />
+              </>
+            ) : null}
           </div>
-          <div className={styles.main}>
-            <div className={styles.userInfo}>
-              <h3 className={styles.name}>{userProfile.fullname}</h3>
-              <p className={styles.username}>@{userProfile.username}</p>
-              <p className={styles.email}>{userProfile.email}</p>
-              <ul className={styles.userStats}>
-                <li>
-                  <span>{userProfile?.posts?.length || 0}</span>Posts
+        </div>
+        <div className={styles.main}>
+          <div className={styles.userInfo}>
+            <h3 className={styles.name}>{userProfile.fullname}</h3>
+            <p className={styles.username}>@{userProfile.username}</p>
+            <p className={styles.email}>{userProfile.email}</p>
+            <ul className={styles.userStats}>
+              <li>
+                <span>{userProfile?.posts?.length || 0}</span>Posts
+              </li>
+              <li onClick={() => dispatch(openModal({ type: "followers" }))}>
+                <span>{userProfile?.followers?.length}</span>Followers
+              </li>
+              <li onClick={() => dispatch(openModal({ type: "following" }))}>
+                <span>{userProfile?.following?.length}</span>Following
+              </li>
+            </ul>
+            {editAbout ? (
+              <form onSubmit={handleEditAbout}>
+                <input
+                  className={styles.about}
+                  value={about}
+                  onChange={(e) => setAbout(e.target.value)}
+                />
+              </form>
+            ) : (
+              <p className={styles.about}>
+                <span>{about || "About me"}</span>
+                {userProfile._id === user._id ? (
+                  <i
+                    className="fa-solid fa-pen-to-square"
+                    title="Edit about"
+                    onClick={() => setEditAbout(true)}
+                  ></i>
+                ) : null}
+              </p>
+            )}
+          </div>
+          <div className={styles.posts}>
+            <div className={styles.header}>
+              <ul>
+                <li
+                  onClick={() => setActiveTab("posts")}
+                  className={activeTab === "posts" ? styles.active : ""}
+                >
+                  Posts
                 </li>
-                <li onClick={() => setModalType("followers")}>
-                  <span>{userProfile?.followers?.length}</span>Followers
+                <li
+                  onClick={() => setActiveTab("liked")}
+                  className={activeTab === "liked" ? styles.active : ""}
+                >
+                  Liked
                 </li>
-                <li onClick={() => setModalType("following")}>
-                  <span>{userProfile?.following?.length}</span>Following
-                </li>
+                {user._id === userProfile._id ? (
+                  <li
+                    onClick={() => setActiveTab("saved")}
+                    className={activeTab === "saved" ? styles.active : ""}
+                  >
+                    Saved
+                  </li>
+                ) : null}
               </ul>
-              {editAbout ? (
-                <form onSubmit={handleEditAbout}>
-                  <input
-                    className={styles.about}
-                    value={about}
-                    onChange={(e) => setAbout(e.target.value)}
-                  />
-                </form>
-              ) : (
-                <p className={styles.about}>
-                  <span>{about || "About me"}</span>
-                  {userProfile._id === user._id ? (
-                    <i
-                      className="fa-solid fa-pen-to-square"
-                      title="Edit about"
-                      onClick={() => setEditAbout(true)}
-                    ></i>
-                  ) : null}
-                </p>
-              )}
             </div>
-            <div className={styles.posts}>
-              <div className={styles.header}>
-                <ul>
-                  <li
-                    onClick={() => setActiveTab("posts")}
-                    className={activeTab === "posts" ? styles.active : ""}
-                  >
-                    Posts
-                  </li>
-                  <li
-                    onClick={() => setActiveTab("liked")}
-                    className={activeTab === "liked" ? styles.active : ""}
-                  >
-                    Liked
-                  </li>
-                  {user._id === userProfile._id ? (
-                    <li
-                      onClick={() => setActiveTab("saved")}
-                      className={activeTab === "saved" ? styles.active : ""}
-                    >
-                      Saved
-                    </li>
-                  ) : null}
-                </ul>
-              </div>
-              <ProfilePostGrid type={activeTab} user={userProfile} />
-            </div>
+            <ProfilePostGrid type={activeTab} user={userProfile} />
           </div>
-        </main>
-        {modalType && (
-          <ModalContainer
-            type={modalType}
-            closeModalContainer={closeModalContainer}
-            username={username}
-            userProfile={userProfile}
-          />
-        )}
-      </>
+        </div>
+      </main>
     );
 }

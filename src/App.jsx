@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -13,7 +13,7 @@ import PageNotFound from "./pages/PageNotFound";
 import Profile from "./pages/Profile";
 import PostDetailPage from "./pages/PostDetailPage";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     element: (
       <Authenticate>

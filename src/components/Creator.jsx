@@ -40,7 +40,6 @@ export default function Creator({ post, story, className }) {
           <OptionsButton
             openEditPostModal={openEditPostModal}
             openDeleteModal={openDeleteModal}
-            // type={type}
           />
         ) : null}
       </div>

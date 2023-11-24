@@ -1,32 +1,41 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDeletePost, fetchDeleteStory } from "../services/postServices";
+import {
+  fetchDeletePost,
+  fetchDeleteStory,
+  fetchPosts,
+} from "../services/postServices";
 import { fetchStories } from "../services/storyServices";
 import styles from "./LogoutModal.module.css";
-import propTypes from "prop-types";
 import { setStories } from "../slice/storySlice";
-import { filterDeletedPost } from "../slice/postSlice";
+import { setPosts } from "../slice/postSlice";
 import { fetchDeleteComment } from "../services/commentServices";
 import { logoutUser } from "../slice/userSlice";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { closeModal } from "../slice/modalSlice";
 
-export default function DeleteModal({ postId, storyId, commentId }) {
-  const { type } = useSelector((state) => state.modal);
+export default function DeleteModal() {
+  const { type, post, commentId, story } = useSelector((state) => state.modal);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   function closeModalContainer() {
     dispatch(closeModal());
   }
 
   async function deletePost() {
-    const data = await fetchDeletePost(postId);
-    dispatch(filterDeletedPost(data._id));
+    const data = await fetchDeletePost(post._id);
+    if (data.error) return;
+    const postData = await fetchPosts();
+    if (postData.error) return;
+    dispatch(setPosts(postData));
+    dispatch(closeModal());
+    if (pathname.includes("/post/")) navigate(-1);
   }
 
   async function deleteStory() {
-    await fetchDeleteStory(storyId);
+    await fetchDeleteStory(story._id);
     const data = await fetchStories();
     if (data.error === "jwt expired") {
       dispatch(logoutUser());
@@ -36,7 +45,9 @@ export default function DeleteModal({ postId, storyId, commentId }) {
   }
 
   async function deleteComment() {
-    await fetchDeleteComment(commentId);
+    const data = await fetchDeleteComment(commentId);
+    if (data.error) return;
+    navigate(pathname + "/");
     closeModalContainer();
   }
 
@@ -91,14 +102,3 @@ export default function DeleteModal({ postId, storyId, commentId }) {
     );
   }
 }
-
-DeleteModal.propTypes = {
-  type: propTypes.string,
-  closeModalContainer: propTypes.func,
-  postId: propTypes.string,
-  storyId: propTypes.string,
-  commentId: propTypes.string,
-  setPosts: propTypes.func,
-  setStories: propTypes.func,
-  setComments: propTypes.func,
-};

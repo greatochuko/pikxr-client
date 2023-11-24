@@ -27,7 +27,6 @@
   flex-direction: column;
   gap: 10px;
   color: #333;
-  cursor: pointer;
   transition: 0.2s;
 }
 
