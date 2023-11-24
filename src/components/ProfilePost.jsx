@@ -1,5 +1,6 @@
 import propTypes from "prop-types";
 import styles from "./ProfilePost.module.css";
+import { openModal } from "../slice/modalSlice";
 import { useDispatch } from "react-redux";
 
 export default function ProfilePost({ post }) {
@@ -9,7 +10,7 @@ export default function ProfilePost({ post }) {
     <div
       className={styles.post}
       key={post._id}
-      onClick={() => dispatch({ type: "viewPost" })}
+      onClick={() => dispatch(openModal({ type: "viewPost", post }))}
     >
       <img src={post.imageUrl} alt="" />
       <div className={styles.overlay}>

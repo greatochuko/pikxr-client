@@ -20,6 +20,7 @@ export default function ProfilePostGrid({ type, user }) {
         dispatch(logoutUser());
         navigate("/login");
       }
+      if (data.error) return;
       setPosts(data);
     }
     refreshPosts();

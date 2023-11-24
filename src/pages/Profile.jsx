@@ -5,7 +5,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import ProfilePostGrid from "../components/ProfilePostGrid";
-import ModalContainer from "../components/ModalContainer";
 
 import {
   fetchEditUserAbout,
@@ -38,15 +37,6 @@ export default function Profile() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  async function modalCallBack() {
-    const data = await fetchUserProfile(username);
-    if (data.error === "jwt expired") {
-      dispatch(logoutUser());
-      navigate("/login");
-    }
-    setUserProfile(data);
-  }
 
   async function handleEditAbout(e) {
     e.preventDefault();
@@ -154,10 +144,18 @@ export default function Profile() {
               <li>
                 <span>{userProfile?.posts?.length || 0}</span>Posts
               </li>
-              <li onClick={() => dispatch(openModal({ type: "followers" }))}>
+              <li
+                onClick={() =>
+                  dispatch(openModal({ type: "followers", username }))
+                }
+              >
                 <span>{userProfile?.followers?.length}</span>Followers
               </li>
-              <li onClick={() => dispatch(openModal({ type: "following" }))}>
+              <li
+                onClick={() =>
+                  dispatch(openModal({ type: "following", username }))
+                }
+              >
                 <span>{userProfile?.following?.length}</span>Following
               </li>
             </ul>

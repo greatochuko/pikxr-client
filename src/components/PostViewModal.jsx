@@ -4,37 +4,29 @@ import Comment from "./Comment.jsx";
 import Creator from "./Creator";
 import propTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { fetchComments } from "../services/commentServices";
-import { logoutUser } from "../slice/userSlice";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { fetchPost } from "../services/postServices.js";
 
-export default function PostViewModal({
-  updateMasonryGridPost,
-  setType,
-  setCurrentPost,
-}) {
-  const [comments, setComments] = useState([]);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const { post } = useSelector((state) => state.modal);
-
-  const sortedComments = [...comments].sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  );
+export default function PostViewModal({ updateMasonryGridPost, setType }) {
+  const { post: reduxPost } = useSelector((state) => state.modal);
+  const [post, setPost] = useState(reduxPost);
 
   useEffect(() => {
-    async function getComments() {
-      const data = await fetchComments(post._id);
-      if (data.error === "jwt expired") {
-        dispatch(logoutUser());
-        navigate("/login");
-      }
-      setComments(data);
+    async function getPost() {
+      const data = await fetchPost(post._id);
+      if (data.error) return;
+      setPost(data);
     }
-    getComments();
-  }, [post._id, dispatch, navigate]);
+    getPost();
+  }, [post._id]);
+
+  let sortedComments = [];
+  if (post.comments[0]._id) {
+    sortedComments = [...post.comments].sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+  }
 
   return (
     <div className={styles.postViewModal} onClick={(e) => e.stopPropagation()}>
@@ -48,21 +40,15 @@ export default function PostViewModal({
         <div className={styles.comments}>
           <ul>
             {sortedComments.map((comment) => (
-              <Comment
-                key={comment._id}
-                comment={comment}
-                setType={setType}
-                setComments={setComments}
-              />
+              <Comment key={comment._id} comment={comment} setType={setType} />
             ))}
           </ul>
         </div>
         <CommentForm
           className={styles.commentForm}
           postId={post._id}
-          setCurrentPost={updateMasonryGridPost || setCurrentPost}
+          setCurrentPost={updateMasonryGridPost || setPost}
           creatorId={post.creator._id}
-          setComments={setComments}
         />
       </div>
     </div>

@@ -24,6 +24,7 @@ export default function FollowersModal({
     async function getUserFollowers() {
       setLoading(true);
       const data = await fetchUserFollowers(username);
+      console.log(data);
       if (data.error === "jwt expired") {
         dispatch(logoutUser());
         navigate("/login");

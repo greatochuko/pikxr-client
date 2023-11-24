@@ -5,6 +5,7 @@ const initialState = {
   type: "",
   post: "post2",
   story: {},
+  username: "",
   commentId: "",
   cb: null,
 };

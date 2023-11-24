@@ -1,5 +1,6 @@
 .post {
   border-radius: 5px;
+  aspect-ratio: 1;
   overflow: hidden;
   position: relative;
   cursor: pointer;
