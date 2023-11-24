@@ -16,6 +16,7 @@ import PostDetailWireFrame from "./PostDetailWireFrame";
 
 export default function PostDetail() {
   const { user } = useSelector((state) => state.user);
+  const { open } = useSelector((state) => state.modal);
 
   const { postId } = useParams();
 
@@ -39,8 +40,9 @@ export default function PostDetail() {
       setPost(data);
       setLoading(false);
     }
+    if (open) return;
     getPost();
-  }, [postId]);
+  }, [postId, open]);
 
   async function toggleLike() {
     let data;
