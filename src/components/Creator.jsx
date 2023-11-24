@@ -3,20 +3,22 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import OptionsButton from "./OptionsButton";
 import { getDuration } from "../utils/getDuration";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { openModal } from "../slice/modalSlice";
 
-export default function Creator({ post, story, className, setType, type }) {
+export default function Creator({ post, story, className }) {
   const data = post || story;
+  const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.user);
 
   function openEditPostModal() {
-    setType("editPost");
+    dispatch(openModal({ type: "editPost", post }));
   }
 
-  function openDeletePostModal() {
-    if (type === "viewStory") setType("deleteStory");
-    else setType("deletePost");
+  function openDeleteModal() {
+    if (story) dispatch(openModal({ type: "deleteStory", story }));
+    else dispatch(openModal({ type: "deletePost", post }));
   }
 
   return (
@@ -26,19 +28,19 @@ export default function Creator({ post, story, className, setType, type }) {
           to={"/profile/" + data.creator.username}
           onClick={(e) => e.stopPropagation()}
         >
-          <img src={post.creator.imageUrl} alt="" />
+          <img src={data.creator.imageUrl} alt="" />
           <div>
             <h4>
-              {post.creator.fullname} <span>@{post.creator.username}</span>
+              {data.creator.fullname} <span>@{data.creator.username}</span>
             </h4>
-            <p>{getDuration(post.createdAt)}</p>
+            <p>{getDuration(data.createdAt)}</p>
           </div>
         </Link>
         {user._id === data.creator._id ? (
           <OptionsButton
             openEditPostModal={openEditPostModal}
-            openDeletePostModal={openDeletePostModal}
-            type={type}
+            openDeleteModal={openDeleteModal}
+            // type={type}
           />
         ) : null}
       </div>
@@ -50,6 +52,4 @@ Creator.propTypes = {
   post: PropTypes.object,
   story: PropTypes.object,
   className: PropTypes.string,
-  type: PropTypes.string,
-  setType: PropTypes.func,
 };

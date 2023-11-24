@@ -1,26 +1,29 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./CreatePostModal.module.css";
 import { useRef, useState } from "react";
 import { updatePost } from "../services/postServices";
 import { resizeImage } from "../utils/imageResize";
 import propTypes from "prop-types";
 import LoadingIndicator from "./LoadingIndicator";
+import { closeModal } from "../slice/modalSlice";
 
-export default function EditPostModal({
-  closeModalContainer,
-  postImgSrc,
-  postCaption,
-  postId,
-  setCurrentPost,
-}) {
+export default function EditPostModal({ setCurrentPost }) {
   const { user } = useSelector((state) => state.user);
+  const { post } = useSelector((state) => state.modal);
+  const dispatch = useDispatch();
+  console.clear();
+  console.log(post);
 
   const [image, setImage] = useState(null);
-  const [caption, setCaption] = useState(postCaption);
-  const [imgPreviewSrc, setImgPreviewSrc] = useState(postImgSrc);
+  const [caption, setCaption] = useState(post.caption);
+  const [imgPreviewSrc, setImgPreviewSrc] = useState(post.imageUrl);
   const [loading, setLoading] = useState(false);
 
   const imageInputRef = useRef();
+
+  function closeModalContainer() {
+    dispatch(closeModal());
+  }
 
   function handleChange(e) {
     e.preventDefault();
@@ -42,7 +45,7 @@ export default function EditPostModal({
     formData.append("creator", user._id);
 
     // Make fetch request to update post
-    const data = await updatePost(postId, formData);
+    const data = await updatePost(post._id, formData);
 
     setCurrentPost(data);
     setLoading(false);

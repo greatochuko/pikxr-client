@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 
 export default function OptionsButton({
   openEditPostModal,
-  openDeletePostModal,
+  openDeleteModal,
   type,
 }) {
   return (
@@ -16,7 +16,7 @@ export default function OptionsButton({
         ) : null}
         <button
           className={styles.optionsButton + " " + styles.delete}
-          onClick={openDeletePostModal}
+          onClick={openDeleteModal}
         >
           <i className="fa-solid fa-trash-can"></i>
         </button>
@@ -30,6 +30,6 @@ OptionsButton.propTypes = {
   right: propTypes.number,
   size: propTypes.number,
   openEditPostModal: propTypes.func,
-  openDeletePostModal: propTypes.func,
+  openDeleteModal: propTypes.func,
   type: propTypes.string,
 };

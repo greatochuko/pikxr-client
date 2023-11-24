@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchDeletePost, fetchDeleteStory } from "../services/postServices";
 import { fetchStories } from "../services/storyServices";
 import styles from "./LogoutModal.module.css";
@@ -8,16 +8,17 @@ import { filterDeletedPost } from "../slice/postSlice";
 import { fetchDeleteComment } from "../services/commentServices";
 import { logoutUser } from "../slice/userSlice";
 import { useNavigate } from "react-router-dom";
+import { closeModal } from "../slice/modalSlice";
 
-export default function DeleteModal({
-  type,
-  closeModalContainer,
-  postId,
-  storyId,
-  commentId,
-}) {
+export default function DeleteModal({ postId, storyId, commentId }) {
+  const { type } = useSelector((state) => state.modal);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  function closeModalContainer() {
+    dispatch(closeModal());
+  }
 
   async function deletePost() {
     const data = await fetchDeletePost(postId);

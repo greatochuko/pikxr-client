@@ -4,13 +4,9 @@ import { useEffect, useState } from "react";
 import propTypes from "prop-types";
 import { useSelector } from "react-redux";
 
-export default function StoryViewModal({
-  story,
-  closeModalContainer,
-  type,
-  setType,
-}) {
+export default function StoryViewModal({ closeModalContainer, type, setType }) {
   const { stories } = useSelector((state) => state.story);
+  const { story } = useSelector((state) => state.modal);
 
   const currentStoryIndex = story ? stories.indexOf(story) : 0;
   const [currentIndex, setCurrentIndex] = useState(currentStoryIndex);

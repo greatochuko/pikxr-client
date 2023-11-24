@@ -68,7 +68,7 @@ export default function NavBar() {
         <div className={styles.profile}>
           <li
             className={styles.logout}
-            onClick={() => dispatch(openModal("logout"))}
+            onClick={() => dispatch(openModal({ type: "logout" }))}
           >
             <a>
               <i className="fa-solid fa-right-from-bracket"></i>

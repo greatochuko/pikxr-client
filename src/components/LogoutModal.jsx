@@ -4,16 +4,15 @@ import styles from "./LogoutModal.module.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import propTypes from "prop-types";
+import { closeModal } from "../slice/modalSlice";
 
-export default function LogoutModal({
-  type,
-  closeModalContainer,
-  postId,
-  storyId,
-  setPosts,
-}) {
+export default function LogoutModal({ type, postId, storyId, setPosts }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  function closeModalContainer() {
+    dispatch(closeModal());
+  }
 
   function logout() {
     navigate("/login");
@@ -84,5 +83,6 @@ LogoutModal.propTypes = {
   type: propTypes.string,
   closeModalContainer: propTypes.func,
   postId: propTypes.string,
+  storyId: propTypes.string,
   setPosts: propTypes.func,
 };

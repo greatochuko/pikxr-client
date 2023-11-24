@@ -10,7 +10,7 @@ export default function Comment({ comment }) {
   const dispatch = useDispatch();
 
   function openDeleteCommentModal() {
-    dispatch(openModal("deleteModal"));
+    dispatch(openModal({ type: "deleteComment", commentId: comment._id }));
   }
 
   return (
@@ -24,7 +24,7 @@ export default function Comment({ comment }) {
       {user._id === comment.user._id ? (
         <OptionsButton
           type={"comment"}
-          openDeletePostModal={openDeleteCommentModal}
+          openDeleteModal={openDeleteCommentModal}
         />
       ) : null}
     </li>
