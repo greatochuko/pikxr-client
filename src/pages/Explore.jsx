@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Explore() {
   const exploreRef = useRef(null);
-  const [columns, setColumns] = useState();
+  const [columns, setColumns] = useState(null);
   const [posts, setPosts] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ export default function Explore() {
 
   const explore = exploreRef.current;
 
-  const MIN_WIDTH = 350;
+  const MIN_WIDTH = 250;
   let data;
   if (columns) {
     data = generateMasonryArray(columns, posts);

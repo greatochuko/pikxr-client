@@ -1,6 +1,6 @@
 import styles from "./Creator.module.css";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import OptionsButton from "./OptionsButton";
 import { getDuration } from "../utils/getDuration";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import { openModal } from "../slice/modalSlice";
 export default function Creator({ post, story, className }) {
   const data = post || story;
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
 
   const { user } = useSelector((state) => state.user);
 
@@ -36,7 +37,7 @@ export default function Creator({ post, story, className }) {
             <p>{getDuration(data.createdAt)}</p>
           </div>
         </Link>
-        {user._id === data.creator._id ? (
+        {pathname.includes("post") && user._id === data.creator._id ? (
           <OptionsButton
             openEditPostModal={openEditPostModal}
             openDeleteModal={openDeleteModal}

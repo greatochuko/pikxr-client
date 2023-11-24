@@ -16,6 +16,22 @@ export async function fetchUser() {
   }
 }
 
+export async function fetchUsers() {
+  const token = localStorage.getItem("token");
+  try {
+    const res = await fetch(BASE_URL + "/user/all", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    return;
+  }
+}
+
 export async function fetchUserProfile(username) {
   const token = localStorage.getItem("token");
 
@@ -33,17 +49,21 @@ export async function fetchUserProfile(username) {
 export async function fetchUserFollowers(username) {
   const token = localStorage.getItem("token");
   const URL = BASE_URL + "/user/followers/" + username;
-  const res = await fetch(URL, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  try {
+    const res = await fetch(URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-  const data = await res.json();
-  return data;
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    return { error: error.message };
+  }
 }
 
-export async function fetchfollowUser(userId, userToFollowId) {
+export async function fetchfollowUser(userToFollowId) {
   const token = localStorage.getItem("token");
   const URL = BASE_URL + "/user/follow";
   const res = await fetch(URL, {
@@ -52,13 +72,13 @@ export async function fetchfollowUser(userId, userToFollowId) {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ userId, userToFollowId }),
+    body: JSON.stringify({ userToFollowId }),
   });
   const data = await res.json();
   return data;
 }
 
-export async function fetchUnFollowUser(userId, userToUnFollowId) {
+export async function fetchUnFollowUser(userToUnFollowId) {
   const token = localStorage.getItem("token");
   const URL = BASE_URL + "/user/unfollow";
   const res = await fetch(URL, {
@@ -67,7 +87,7 @@ export async function fetchUnFollowUser(userId, userToUnFollowId) {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ userId, userToUnFollowId }),
+    body: JSON.stringify({ userToUnFollowId }),
   });
   const data = await res.json();
   return data;

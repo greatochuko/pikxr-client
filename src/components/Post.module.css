@@ -6,7 +6,6 @@
   padding: 1rem;
   border-radius: 10px;
   color: #333;
-  cursor: pointer;
   transition: 0.2s;
 }
 
@@ -14,7 +13,7 @@
   box-shadow: 0 0 10px #ccc;
 }
 
-.post:hover .caption a {
+.caption a:hover {
   text-decoration: underline;
 }
 
@@ -32,12 +31,12 @@
   object-fit: cover;
 }
 
-.caption a {
+.caption span {
   color: var(--BLUE-100);
   font-size: 0.9rem;
 }
 
-.caption a:hover {
+.caption:hover span {
   text-decoration: underline;
 }
 
@@ -55,7 +54,8 @@
   white-space: nowrap;
   background-color: #f5f5f5;
   color: #333;
-  transition: background-color 0.2s;
+  transition: 0.2s;
+  width: 100%;
 }
 
 .actions button:last-child {
@@ -66,6 +66,14 @@
   background-color: var(--BLUE-200);
   border-color: var(--BLUE-200);
   color: #fff;
+}
+
+.actions :is(button, a):active {
+  scale: 0.95;
+}
+
+.actions a {
+  flex: 1;
 }
 
 .actions button.active:hover {

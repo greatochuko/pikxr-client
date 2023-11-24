@@ -1,6 +1,6 @@
 .postViewModal {
   width: fit-content;
-  max-width: 80%;
+  max-width: 90%;
   height: min(80vh, 800px);
   animation: show 0.3s forwards;
   border-radius: 10px;
@@ -92,17 +92,6 @@
 /* LARGE */
 
 @media screen and (max-width: 1024px) {
-  .postViewModal {
-    flex-direction: column;
-    height: min(80vh, 900px);
-    width: min(500px, 90%);
-  }
-
-  .imgContainer {
-    max-width: 100%;
-    min-height: 30%;
-  }
-
   .details {
     width: 100%;
     min-height: 60%;
@@ -116,8 +105,13 @@
 /* MEDIUM */
 
 @media screen and (max-width: 768px) {
+  .imgContainer {
+    max-width: 100%;
+    min-height: 30%;
+  }
   .postViewModal {
-    min-height: 70dvh;
+    height: min(80vh, 900px);
+    flex-direction: column;
     max-width: 90%;
   }
 }

@@ -5,30 +5,31 @@ import { fetchUserFollowers } from "../services/userServices";
 import Follower from "./Follower";
 import FollowerWireframe from "./FollowerWireframe";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../slice/userSlice";
+import { closeModal } from "../slice/modalSlice";
 
-export default function FollowersModal({
-  username,
-  closeModalContainer,
-  type,
-  userProfile,
-}) {
+export default function FollowersModal() {
   const [followers, setFollowers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { username, type } = useSelector((state) => state.modal);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  function closeModalContainer() {
+    dispatch(closeModal());
+  }
 
   useEffect(() => {
     async function getUserFollowers() {
       setLoading(true);
       const data = await fetchUserFollowers(username);
-      console.log(data);
       if (data.error === "jwt expired") {
         dispatch(logoutUser());
         navigate("/login");
       }
+      if (data.error) return;
       if (type === "followers") {
         setFollowers(data.followers);
       } else if (type === "following") {
@@ -41,7 +42,7 @@ export default function FollowersModal({
 
   return (
     <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-      <h2 className={styles.header}>Followers</h2>
+      <h2 className={styles.header}>{type}</h2>
       <ul className={styles.followers}>
         {loading ? (
           <>
@@ -56,7 +57,6 @@ export default function FollowersModal({
               key={follower._id}
               follower={follower}
               type={type}
-              userProfile={userProfile}
             />
           ))
         )}

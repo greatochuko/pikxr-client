@@ -2,8 +2,13 @@ import { Link } from "react-router-dom";
 import styles from "./SearchResult.module.css";
 import propTypes from "prop-types";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { fetchUnFollowUser, fetchfollowUser } from "../services/userServices";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchUnFollowUser,
+  fetchUserProfile,
+  fetchfollowUser,
+} from "../services/userServices";
+import { loginUser } from "../slice/userSlice";
 
 export default function SearchResult({ result, closeModalContainer }) {
   const { user } = useSelector((state) => state.user);
@@ -11,12 +16,17 @@ export default function SearchResult({ result, closeModalContainer }) {
     user.following.includes(result._id)
   );
 
+  const dispatch = useDispatch();
+
   async function toggleFollow(e) {
     e.preventDefault();
     e.stopPropagation();
-    if (isFollowing) await fetchUnFollowUser(user._id, result._id);
-    else if (!isFollowing) await fetchfollowUser(user._id, result._id);
+    if (isFollowing) await fetchUnFollowUser(result._id);
+    else if (!isFollowing) await fetchfollowUser(result._id);
     setIsFollowing((curr) => !curr);
+    const userData = await fetchUserProfile(user.username);
+    if (userData.error) return;
+    dispatch(loginUser(userData));
   }
 
   return (

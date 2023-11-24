@@ -48,7 +48,7 @@ export default function RightSidebar() {
             ) : (
               posts.map((post) => (
                 <li key={post._id}>
-                  <Link to={"/"}>
+                  <Link to={`/post/${post._id}`}>
                     <img src={post.imageUrl} alt="" />
                   </Link>
                 </li>

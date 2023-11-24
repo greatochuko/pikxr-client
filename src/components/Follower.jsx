@@ -1,25 +1,38 @@
 import { Link, useParams } from "react-router-dom";
 import styles from "./Follower.module.css";
-import { useSelector } from "react-redux";
-import { fetchUnFollowUser, fetchfollowUser } from "../services/userServices";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchUnFollowUser,
+  fetchUserProfile,
+  fetchfollowUser,
+} from "../services/userServices";
 import propTypes from "prop-types";
 import { useState } from "react";
+import { loginUser } from "../slice/userSlice";
 
-export default function Follower({ follower, type, userProfile }) {
+export default function Follower({ follower, type }) {
   const { user } = useSelector((state) => state.user);
   const { username } = useParams();
+
+  const dispatch = useDispatch();
+
   let following = true;
   if (type === "followers") {
-    following = userProfile.following.includes(follower._id);
+    following = user.following.includes(follower._id);
   }
 
   const [isFollowing, setIsFollowing] = useState(following);
 
   async function toggleFollow(e) {
     e.preventDefault();
-    if (isFollowing) await fetchUnFollowUser(user._id, follower._id);
-    else if (!isFollowing) await fetchfollowUser(user._id, follower._id);
+    let data;
+    if (isFollowing) data = await fetchUnFollowUser(follower._id);
+    else if (!isFollowing) data = await fetchfollowUser(follower._id);
+    if (data.error) return;
     setIsFollowing((curr) => !curr);
+    const userData = await fetchUserProfile(user.username);
+    if (userData.error) return;
+    dispatch(loginUser(userData));
   }
 
   return (
@@ -42,7 +55,6 @@ export default function Follower({ follower, type, userProfile }) {
 
 Follower.propTypes = {
   follower: propTypes.object,
-  userProfile: propTypes.object,
   type: propTypes.string,
   closeModalContainer: propTypes.func,
 };

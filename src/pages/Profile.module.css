@@ -4,7 +4,7 @@
 }
 
 .profileImages {
-  height: min(40vh, 300px);
+  height: min(50vh, 300px);
   position: relative;
 }
 

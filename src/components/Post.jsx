@@ -1,6 +1,6 @@
 import Creator from "./Creator";
 import styles from "./Post.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import {
@@ -9,7 +9,7 @@ import {
   unLikePost,
   unSavePost,
 } from "../services/postServices";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Post({ currentPost }) {
   const { user } = useSelector((state) => state.user);
@@ -17,9 +17,6 @@ export default function Post({ currentPost }) {
   const [post, setPost] = useState(currentPost);
   const isLiked = post?.likes?.includes(user._id);
   const isSaved = post?.saves?.includes(user._id);
-  const dispatch = useDispatch();
-
-  const navigate = useNavigate();
 
   async function toggleLike() {
     let data;
@@ -54,20 +51,21 @@ export default function Post({ currentPost }) {
   }
 
   return (
-    <div onClick={() => navigate(`/post/${post._id}`)} className={styles.post}>
+    <div className={styles.post}>
       <Creator post={post} />
-      <p className={styles.caption}>
+      <Link to={`/post/${post._id}`} className={styles.caption}>
         {post.caption.length > 100 ? (
           <>
-            {post.caption.slice(0, 99)}...<Link to={"/"}>View More</Link>
+            {post.caption.slice(0, 99)}...
+            <span>View More</span>
           </>
         ) : (
           post.caption
         )}
-      </p>
-      <div className={styles.images}>
+      </Link>
+      <Link to={`/post/${post._id}`} className={styles.images}>
         <img src={post.imageUrl} alt="" />
-      </div>
+      </Link>
       <div className={styles.actions} onClick={(e) => e.stopPropagation()}>
         <button className={isLiked ? styles.active : ""} onClick={toggleLike}>
           <i className="fa-solid fa-heart"></i> Like
@@ -75,9 +73,11 @@ export default function Post({ currentPost }) {
         <button>
           <i className="fa-solid fa-retweet"></i> Repost
         </button>
-        <button onClick={() => dispatch({ type: "viewPost" })}>
-          <i className="fa-solid fa-comment-dots"></i> Comment
-        </button>
+        <Link to={`/post/${post._id}`}>
+          <button>
+            <i className="fa-solid fa-comment-dots"></i> Comment
+          </button>
+        </Link>
         <button className={isSaved ? styles.active : ""} onClick={toggleSave}>
           <i className="fa-solid fa-bookmark"></i>
         </button>

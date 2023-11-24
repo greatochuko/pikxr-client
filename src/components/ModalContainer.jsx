@@ -29,8 +29,6 @@ const modalComponent = {
 
 export default function ModalContainer({ type }) {
   const dispatch = useDispatch();
-  console.clear();
-  console.log(type);
 
   return (
     <div

@@ -21,7 +21,7 @@ export default function PostViewModal({ updateMasonryGridPost, setType }) {
   }, [post._id]);
 
   let sortedComments = [];
-  if (post.comments[0]._id) {
+  if (post.comments.length && post.comments[0]._id) {
     sortedComments = [...post.comments].sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()

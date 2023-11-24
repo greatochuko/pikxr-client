@@ -8,17 +8,6 @@ export default function NavBar() {
   const { pathname } = useLocation();
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
-
-  // async function closeModalContainer() {
-  //   setModalType(null);
-  //   const data = await fetchUser();
-  //   if (data.error === "jwt expired") {
-  //     dispatch(logoutUser());
-  //     navigate("/login");
-  //   }
-  //   dispatch(loginUser(data));
-  // }
 
   return (
     <nav className={styles.navbar}>

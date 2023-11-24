@@ -13,13 +13,20 @@
   gap: 1rem;
   border-bottom: solid 1px #eee;
   padding-bottom: 10px;
+  color: #333;
 }
 
 .header button {
+  color: #666;
   background-color: transparent;
   border: none;
   padding: 0 1rem;
   font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.header button:hover {
+  color: #000;
 }
 
 .post {

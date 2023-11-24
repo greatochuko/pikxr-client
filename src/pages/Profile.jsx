@@ -29,8 +29,10 @@ export default function Profile() {
   const [previewProfilePhotoUrl, setPreviewProfilePhotoUrl] = useState(null);
   const [previewCoverPhotoUrl, setPreviewCoverPhotoUrl] = useState(null);
   const [editAbout, setEditAbout] = useState(false);
-  const [userProfile, setUserProfile] = useState({});
+  const [userProfile, setUserProfile] = useState(null);
   const [about, setAbout] = useState(userProfile?.about);
+
+  const profile = user._id === userProfile?._id ? user : userProfile;
 
   const coverPhotoRef = useRef(null);
   const profilePhotoRef = useRef(null);
@@ -91,12 +93,12 @@ export default function Profile() {
     getUser();
   }, [username, dispatch, navigate]);
 
-  if (userProfile)
+  if (profile)
     return (
       <main className={styles.profile}>
         <div className={styles.profileImages}>
           <div className={styles.coverPhoto}>
-            {user._id === userProfile._id ? (
+            {user._id === profile._id ? (
               <>
                 <label htmlFor="coverPhoto">Change Photo</label>
                 <input
@@ -109,17 +111,17 @@ export default function Profile() {
               </>
             ) : null}
             <img
-              src={previewCoverPhotoUrl || userProfile.coverPhotoUrl}
+              src={previewCoverPhotoUrl || profile.coverPhotoUrl}
               alt="cover photo"
             />
           </div>
 
           <div className={styles.profileImage}>
             <img
-              src={previewProfilePhotoUrl || userProfile.imageUrl}
+              src={previewProfilePhotoUrl || profile.imageUrl}
               alt="profile picture"
             />
-            {user._id === userProfile._id ? (
+            {user._id === profile._id ? (
               <>
                 <label htmlFor="profilePhoto">
                   <i className="fa-regular fa-images"></i>
@@ -137,26 +139,26 @@ export default function Profile() {
         </div>
         <div className={styles.main}>
           <div className={styles.userInfo}>
-            <h3 className={styles.name}>{userProfile.fullname}</h3>
-            <p className={styles.username}>@{userProfile.username}</p>
-            <p className={styles.email}>{userProfile.email}</p>
+            <h3 className={styles.name}>{profile.fullname}</h3>
+            <p className={styles.username}>@{profile.username}</p>
+            <p className={styles.email}>{profile.email}</p>
             <ul className={styles.userStats}>
               <li>
-                <span>{userProfile?.posts?.length || 0}</span>Posts
+                <span>{profile?.posts?.length || 0}</span>Posts
               </li>
               <li
                 onClick={() =>
                   dispatch(openModal({ type: "followers", username }))
                 }
               >
-                <span>{userProfile?.followers?.length}</span>Followers
+                <span>{profile?.followers?.length}</span>Followers
               </li>
               <li
                 onClick={() =>
                   dispatch(openModal({ type: "following", username }))
                 }
               >
-                <span>{userProfile?.following?.length}</span>Following
+                <span>{profile?.following?.length}</span>Following
               </li>
             </ul>
             {editAbout ? (
@@ -170,7 +172,7 @@ export default function Profile() {
             ) : (
               <p className={styles.about}>
                 <span>{about || "About me"}</span>
-                {userProfile._id === user._id ? (
+                {profile._id === user._id ? (
                   <i
                     className="fa-solid fa-pen-to-square"
                     title="Edit about"
@@ -195,7 +197,7 @@ export default function Profile() {
                 >
                   Liked
                 </li>
-                {user._id === userProfile._id ? (
+                {user._id === profile._id ? (
                   <li
                     onClick={() => setActiveTab("saved")}
                     className={activeTab === "saved" ? styles.active : ""}
@@ -205,7 +207,7 @@ export default function Profile() {
                 ) : null}
               </ul>
             </div>
-            <ProfilePostGrid type={activeTab} user={userProfile} />
+            <ProfilePostGrid type={activeTab} user={profile} />
           </div>
         </div>
       </main>
