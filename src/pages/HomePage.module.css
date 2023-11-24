@@ -27,6 +27,6 @@
 
 @media screen and (max-width: 600px) {
   .homepage {
-    padding-bottom: 3rem;
+    padding: 4rem 3vw 3rem;
   }
 }

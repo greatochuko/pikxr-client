@@ -46,3 +46,9 @@
   font-size: 2rem;
   color: #ccc;
 }
+
+@media screen and (max-width: 600px) {
+  .posts {
+    gap: 1rem;
+  }
+}

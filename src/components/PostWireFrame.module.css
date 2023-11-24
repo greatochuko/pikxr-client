@@ -1,11 +1,13 @@
 .post {
   flex: 2;
   background-color: #fff;
-  aspect-ratio: 8/9;
+  aspect-ratio: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
   transition: 0.3s;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 @keyframes pulse {
@@ -24,7 +26,7 @@
   width: 100%;
   flex: 1;
   background-color: #eee;
-  animation: pulse 1s infinite;
+  animation: pulse 1.5s infinite;
   border-radius: 5px;
 }
 
@@ -38,7 +40,7 @@
   height: 40px;
   border-radius: 50%;
   background-color: #eee;
-  animation: pulse 1s infinite;
+  animation: pulse 1.5s infinite;
 }
 
 .creatorDetails {
@@ -54,7 +56,7 @@
   width: 80%;
   background-color: #eee;
   border-radius: 999px;
-  animation: pulse 1s infinite;
+  animation: pulse 1.5s infinite;
 }
 
 .creatorDetails .username {
@@ -62,7 +64,7 @@
   width: 60%;
   background-color: #eee;
   border-radius: 999px;
-  animation: pulse 1s infinite;
+  animation: pulse 1.5s infinite;
 }
 
 .options {
@@ -75,6 +77,6 @@
   width: 30px;
   height: 30px;
   border: none;
-  animation: pulse 1s infinite;
+  animation: pulse 1.5s infinite;
   border-radius: 50%;
 }
