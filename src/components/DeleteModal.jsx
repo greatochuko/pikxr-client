@@ -47,7 +47,6 @@ export default function DeleteModal() {
   async function deleteComment() {
     const data = await fetchDeleteComment(commentId);
     if (data.error) return;
-    navigate(pathname + "/");
     closeModalContainer();
   }
 

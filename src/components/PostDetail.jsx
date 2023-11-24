@@ -21,6 +21,7 @@ export default function PostDetail() {
   const { postId } = useParams();
 
   const [post, setPost] = useState(null);
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const isLiked = post?.likes?.includes(user._id);
   const isSaved = post?.saves?.includes(user._id);
@@ -37,12 +38,13 @@ export default function PostDetail() {
     async function getPost() {
       setLoading(true);
       const data = await fetchPost(postId);
+      if (data.error) return setError(true);
       setPost(data);
       setLoading(false);
     }
     if (open) return;
     getPost();
-  }, [postId, open]);
+  }, [postId, open, navigate]);
 
   async function toggleLike() {
     let data;
@@ -84,7 +86,18 @@ export default function PostDetail() {
         </button>
         <h2>Post</h2>
       </div>
-      {loading ? (
+      {error ? (
+        <h2
+          style={{
+            flex: 2,
+            display: "grid",
+            placeContent: "center",
+            textAlign: "center",
+          }}
+        >
+          Post not found😟{" "}
+        </h2>
+      ) : loading ? (
         <PostDetailWireFrame />
       ) : (
         <>
