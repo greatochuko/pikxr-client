@@ -139,7 +139,7 @@ export default function Signup() {
           </button>
           <p className={styles.break}>or</p>
           <div className={styles.oauth}>
-            <a href="#">Sign In with google</a>
+            <Link to="/login">Sign In with demo account</Link>
           </div>
         </form>
       </div>

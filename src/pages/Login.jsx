@@ -35,6 +35,21 @@ export default function Login() {
     navigate("/");
   }
 
+  async function loginWithDemoAccount() {
+    setEmail("johndoe");
+    setPassword("123456");
+    setLoading(true);
+    setError("");
+    const data = await login("johndoe", "123456");
+    if (data.error) {
+      setError(data.error);
+      setLoading(false);
+      return;
+    }
+    dispatch(loginUser(data.user));
+    navigate("/");
+  }
+
   if (user?.username) {
     return <Navigate to={"/"} replace={true} />;
   }
@@ -79,7 +94,9 @@ export default function Login() {
           </button>
           <p className={styles.break}>or</p>
           <div className={styles.oauth}>
-            <a href="#">Sign In with google</a>
+            <button onClick={loginWithDemoAccount}>
+              Sign In with demo account
+            </button>
           </div>
         </form>
       </div>
