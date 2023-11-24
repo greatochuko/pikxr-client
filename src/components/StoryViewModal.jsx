@@ -2,25 +2,29 @@ import styles from "./StoryViewModal.module.css";
 import Creator from "./Creator";
 import { useEffect, useState } from "react";
 import propTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { closeModal } from "../slice/modalSlice";
 
-export default function StoryViewModal({ closeModalContainer, type, setType }) {
+export default function StoryViewModal({ type, setType }) {
   const { stories } = useSelector((state) => state.story);
   const { story } = useSelector((state) => state.modal);
 
   const currentStoryIndex = story ? stories.indexOf(story) : 0;
   const [currentIndex, setCurrentIndex] = useState(currentStoryIndex);
   const currentStory = stories[currentIndex];
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const timeout = setInterval(() => {
       if (stories.length - 1 <= currentIndex) {
-        closeModalContainer();
+        dispatch(closeModal());
         return;
       }
       setCurrentIndex((curr) => curr + 1);
     }, 6000);
     return () => clearInterval(timeout);
-  }, [currentIndex, stories, closeModalContainer]);
+  }, [currentIndex, stories, dispatch]);
   return (
     <div className={styles.modal}>
       <div className={styles.header}>
