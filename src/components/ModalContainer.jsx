@@ -1,6 +1,7 @@
 import styles from "./ModalContainer.module.css";
 import CreatePostModal from "./CreatePostModal";
 import propTypes from "prop-types";
+import PostViewModal from "./PostViewModal";
 import LogoutModal from "./LogoutModal";
 import CreateStoryModal from "./CreateStoryModal";
 import StoryViewModal from "./StoryViewModal";
@@ -14,6 +15,7 @@ import { useDispatch } from "react-redux";
 const modalComponent = {
   createPost: <CreatePostModal />,
   editPost: <EditPostModal />,
+  viewPost: <PostViewModal />,
   logout: <LogoutModal />,
   deletePost: <DeleteModal />,
   deleteStory: <DeleteModal />,
@@ -27,6 +29,7 @@ const modalComponent = {
 
 export default function ModalContainer({ type }) {
   const dispatch = useDispatch();
+  console.clear();
   console.log(type);
 
   return (

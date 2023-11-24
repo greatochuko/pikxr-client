@@ -7,11 +7,9 @@ import { useEffect, useState } from "react";
 import { fetchComments } from "../services/commentServices";
 import { logoutUser } from "../slice/userSlice";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 
 export default function PostViewModal({
-  post,
   updateMasonryGridPost,
   setType,
   setCurrentPost,
@@ -19,6 +17,8 @@ export default function PostViewModal({
   const [comments, setComments] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const { post } = useSelector((state) => state.modal);
 
   const sortedComments = [...comments].sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
