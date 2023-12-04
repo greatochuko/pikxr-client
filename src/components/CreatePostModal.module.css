@@ -112,8 +112,13 @@ button.close {
   transition: background-color 0.15s;
 }
 
-.modal form input[type="submit"]:hover {
+.modal form button:hover {
   background-color: var(--BLACK-100);
+}
+
+.modal form button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
 }
 
 /* USER */

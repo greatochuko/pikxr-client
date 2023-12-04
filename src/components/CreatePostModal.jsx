@@ -59,6 +59,8 @@ export default function CreatePostModal() {
     }
   }
 
+  const cannotSubmit = !caption || !image;
+
   return (
     <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
       <h2 className={styles.header}>Create new post</h2>
@@ -97,10 +99,11 @@ export default function CreatePostModal() {
           cols="30"
           rows="10"
           placeholder="Write a caption"
+          required
           value={caption}
           onChange={(e) => setCaption(e.target.value)}
         ></textarea>
-        <button type="submit">
+        <button type="submit" disabled={cannotSubmit}>
           {loading ? <LoadingIndicator /> : "Create"}
         </button>
       </form>

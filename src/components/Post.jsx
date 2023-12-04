@@ -53,18 +53,16 @@ export default function Post({ currentPost }) {
   return (
     <div className={styles.post}>
       <Creator post={post} />
-      {post.caption ? (
-        <Link to={`/post/${post._id}`} className={styles.caption}>
-          {post.caption.length > 100 ? (
-            <>
-              {post.caption.slice(0, 99)}...
-              <span>View More</span>
-            </>
-          ) : (
-            post.caption
-          )}
-        </Link>
-      ) : null}
+      <Link to={`/post/${post._id}`} className={styles.caption}>
+        {post.caption.length > 100 ? (
+          <>
+            {post.caption.slice(0, 99)}...
+            <span>View More</span>
+          </>
+        ) : (
+          post.caption
+        )}
+      </Link>
       <Link to={`/post/${post._id}`} className={styles.images}>
         <img src={post.imageUrl} alt="" />
       </Link>
