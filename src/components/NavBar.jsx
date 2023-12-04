@@ -38,11 +38,8 @@ export default function NavBar() {
             <i className="fa-solid fa-circle-plus"></i>
           </a>
         </li>
-        <li>
-          <Link
-            to="/notifications"
-            className={pathname === "/notifications" ? styles.active : ""}
-          >
+        <li className={pathname === "/notifications" ? styles.active : ""}>
+          <Link to="/notifications">
             <i className="fa-solid fa-bell"></i>
           </Link>
         </li>
