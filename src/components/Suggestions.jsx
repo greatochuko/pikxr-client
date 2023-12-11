@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "./Suggestions.module.css";
+import styles from "../styles/Suggestions.module.css";
 import { fetchUsers } from "../services/userServices";
 import { openModal } from "../slice/modalSlice";
 import { useDispatch, useSelector } from "react-redux";

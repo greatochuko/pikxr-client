@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from "./SearchResult.module.css";
+import styles from "../styles/SearchResult.module.css";
 import propTypes from "prop-types";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

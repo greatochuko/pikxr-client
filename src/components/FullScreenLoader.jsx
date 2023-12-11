@@ -1,4 +1,4 @@
-import styles from "./FullScreenLoader.module.css";
+import styles from "../styles/FullScreenLoader.module.css";
 
 export default function FullScreenLoader() {
   return (

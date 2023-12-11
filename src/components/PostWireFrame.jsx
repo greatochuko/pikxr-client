@@ -1,4 +1,4 @@
-import styles from "./PostWireFrame.module.css";
+import styles from "../styles/PostWireFrame.module.css";
 
 export default function PostWireFrame() {
   return (

@@ -1,5 +1,5 @@
 import propTypes from "prop-types";
-import styles from "./ProfilePost.module.css";
+import styles from "../styles/ProfilePost.module.css";
 import { openModal } from "../slice/modalSlice";
 import { useDispatch } from "react-redux";
 

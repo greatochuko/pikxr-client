@@ -1,4 +1,4 @@
-import styles from "./ModalContainer.module.css";
+import styles from "../styles/ModalContainer.module.css";
 import CreatePostModal from "./CreatePostModal";
 import propTypes from "prop-types";
 import PostViewModal from "./PostViewModal";

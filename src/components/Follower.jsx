@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import styles from "./Follower.module.css";
+import styles from "../styles/Follower.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchUnFollowUser,

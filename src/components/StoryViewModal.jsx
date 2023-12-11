@@ -1,4 +1,4 @@
-import styles from "./StoryViewModal.module.css";
+import styles from "../styles/StoryViewModal.module.css";
 import Creator from "./Creator";
 import { useEffect, useState } from "react";
 import propTypes from "prop-types";

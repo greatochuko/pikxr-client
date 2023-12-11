@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "./Stories.module.css";
+import styles from "../styles/Stories.module.css";
 import Story from "./Story";
 import { useDispatch, useSelector } from "react-redux";
 import { setStories } from "../slice/storySlice";

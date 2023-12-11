@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "./Notifications.module.css";
+import styles from "../styles/Notifications.module.css";
 import {
   fetchNotifications,
   markNotificationsAsRead,

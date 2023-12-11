@@ -1,4 +1,4 @@
-import styles from "./Comment.module.css";
+import styles from "../styles/Comment.module.css";
 import PropType from "prop-types";
 import OptionsButton from "./OptionsButton";
 import { useDispatch, useSelector } from "react-redux";

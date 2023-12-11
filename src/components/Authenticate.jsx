@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { loginUser, logoutUser } from "../slice/userSlice";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import FullScreenLoader from "./FullScreenLoader";
 import { fetchUser } from "../services/userServices";
 
@@ -13,6 +13,7 @@ export default function Authenticate({ children }) {
 
   useEffect(() => {
     async function refreshUser() {
+      console.log("refreshing...");
       const token = localStorage.getItem("token");
       const user = token ? await fetchUser() : null;
       dispatch(loginUser(user));
@@ -27,7 +28,7 @@ export default function Authenticate({ children }) {
     dispatch(logoutUser());
     return <Navigate to="/login" replace={true} />;
   } else {
-    return children;
+    return <Suspense fallback={null}>{children}</Suspense>;
   }
 }
 

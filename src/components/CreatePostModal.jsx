@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./CreatePostModal.module.css";
+import styles from "../styles/CreatePostModal.module.css";
 import { setPosts } from "../slice/postSlice";
 import { useRef, useState } from "react";
 import { createPost, fetchPosts } from "../services/postServices";

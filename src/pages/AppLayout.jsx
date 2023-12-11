@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import styles from "./AppLayout.module.css";
+import styles from "../styles/AppLayout.module.css";
 import { useSelector } from "react-redux";
 import ModalContainer from "../components/ModalContainer";
 import NavBar from "../components/NavBar";

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import MasonryGrid from "../components/MasonryGrid";
-import styles from "./Explore.module.css";
+import styles from "../styles/Explore.module.css";
 import { generateMasonryArray } from "../utils/createMansoryArray";
 import { fetchPosts } from "../services/postServices";
 import { useDispatch } from "react-redux";

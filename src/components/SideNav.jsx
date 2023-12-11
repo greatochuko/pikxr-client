@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./SideNav.module.css";
+import styles from "../styles/SideNav.module.css";
 import { Link, useLocation } from "react-router-dom";
 
 export default function SideNav() {

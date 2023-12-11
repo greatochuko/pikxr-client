@@ -1,4 +1,4 @@
-import styles from "./Story.module.css";
+import styles from "../styles/Story.module.css";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../slice/modalSlice";

@@ -1,4 +1,4 @@
-import styles from "./Feed.module.css";
+import styles from "../styles/Feed.module.css";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Post from "./Post";
 import { fetchPosts } from "../services/postServices";

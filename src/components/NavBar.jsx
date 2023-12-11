@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import styles from "./NavBar.module.css";
+import styles from "../styles/NavBar.module.css";
 import { openModal } from "../slice/modalSlice";
 
 export default function NavBar() {

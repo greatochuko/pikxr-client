@@ -1,4 +1,4 @@
-import styles from "./ProfilePostGrid.module.css";
+import styles from "../styles/ProfilePostGrid.module.css";
 import ProfilePost from "./ProfilePost";
 import propTypes from "prop-types";
 import { useEffect, useState } from "react";

@@ -6,7 +6,7 @@ import { loginUser } from "../slice/userSlice";
 import { login } from "../services/authServices";
 import LoadingIndicator from "../components/LoadingIndicator";
 
-import styles from "./Auth.module.css";
+import styles from "../styles/Auth.module.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");

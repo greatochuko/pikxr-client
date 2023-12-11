@@ -1,4 +1,4 @@
-import styles from "./OptionsButton.module.css";
+import styles from "../styles/OptionsButton.module.css";
 import propTypes from "prop-types";
 
 export default function OptionsButton({

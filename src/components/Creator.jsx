@@ -1,4 +1,4 @@
-import styles from "./Creator.module.css";
+import styles from "../styles/Creator.module.css";
 import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
 import OptionsButton from "./OptionsButton";

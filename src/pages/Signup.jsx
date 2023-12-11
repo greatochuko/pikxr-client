@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./Auth.module.css";
+import styles from "../styles/Auth.module.css";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../slice/userSlice";

@@ -1,5 +1,5 @@
 import Creator from "./Creator";
-import styles from "./Post.module.css";
+import styles from "../styles/Post.module.css";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { useState } from "react";

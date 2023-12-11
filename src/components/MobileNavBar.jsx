@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-import styles from "./MobileNavBar.module.css";
+import styles from "../styles/MobileNavBar.module.css";
 import { openModal } from "../slice/modalSlice";
 import { useDispatch } from "react-redux";
 

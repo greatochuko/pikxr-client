@@ -1,4 +1,4 @@
-import styles from "./LoadingIndicator.module.css";
+import styles from "../styles/LoadingIndicator.module.css";
 
 export default function LoadingIndicator() {
   return (

@@ -1,4 +1,4 @@
-import styles from "./RightSidebar.module.css";
+import styles from "../styles/RightSidebar.module.css";
 import { useEffect, useState } from "react";
 import { fetchPosts } from "../services/postServices";
 import { Link } from "react-router-dom";

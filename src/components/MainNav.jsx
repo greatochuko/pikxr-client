@@ -1,7 +1,6 @@
-import styles from "./MainNav.module.css";
+import styles from "../styles/MainNav.module.css";
 
 export default function MainNav() {
-
   return (
     <>
       <nav className={styles.mainNav}>
@@ -11,11 +10,7 @@ export default function MainNav() {
           <form>
             <input type="text" placeholder="Search" />
           </form>
-          <button
-            className={styles.createPost}
-          >
-            + Create new Post
-          </button>
+          <button className={styles.createPost}>+ Create new Post</button>
         </ul>
       </nav>
     </>

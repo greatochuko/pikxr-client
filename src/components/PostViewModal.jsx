@@ -1,4 +1,4 @@
-import styles from "./PostViewModal.module.css";
+import styles from "../styles/PostViewModal.module.css";
 import CommentForm from "./CommentForm";
 import Comment from "./Comment.jsx";
 import Creator from "./Creator";

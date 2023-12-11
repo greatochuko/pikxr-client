@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Creator from "../components/Creator";
 import CommentForm from "../components/CommentForm";
 import Comment from "../components/Comment";
-import styles from "./PostDetail.module.css";
+import styles from "../styles/PostDetail.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {

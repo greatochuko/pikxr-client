@@ -1,4 +1,4 @@
-import styles from "./FollowerWireframe.module.css";
+import styles from "../styles/FollowerWireframe.module.css";
 
 export default function FollowerWireframe() {
   return (

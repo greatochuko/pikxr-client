@@ -1,4 +1,4 @@
-import styles from "./PostDetailPage.module.css";
+import styles from "../styles/PostDetailPage.module.css";
 import RightSidebar from "../components/RightSidebar";
 import SideBar from "../components/SideBar";
 import PostDetail from "../components/PostDetail";

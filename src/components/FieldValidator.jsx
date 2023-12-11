@@ -1,4 +1,4 @@
-import styles from "./FieldValidator.module.css";
+import styles from "../styles/FieldValidator.module.css";
 import PropTypes from "prop-types";
 
 export default function FieldValidator({ field, error }) {

@@ -1,4 +1,4 @@
-import styles from "./SearchResultWireFrame.module.css";
+import styles from "../styles/SearchResultWireFrame.module.css";
 
 export default function SearchResultWireFrame() {
   return (

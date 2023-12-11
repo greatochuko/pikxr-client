@@ -1,6 +1,6 @@
 import { fetchDeletePost } from "../services/postServices";
 import { logoutUser } from "../slice/userSlice";
-import styles from "./LogoutModal.module.css";
+import styles from "../styles/LogoutModal.module.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import propTypes from "prop-types";

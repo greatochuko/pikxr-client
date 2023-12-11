@@ -5,7 +5,7 @@ import {
   fetchPosts,
 } from "../services/postServices";
 import { fetchStories } from "../services/storyServices";
-import styles from "./LogoutModal.module.css";
+import styles from "../styles/LogoutModal.module.css";
 import { setStories } from "../slice/storySlice";
 import { setPosts } from "../slice/postSlice";
 import { fetchDeleteComment } from "../services/commentServices";

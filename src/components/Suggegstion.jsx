@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { fetchfollowUser } from "../services/userServices";
-import styles from "./Suggestion.module.css";
+import styles from "../styles/Suggestion.module.css";
 import { loginUser } from "../slice/userSlice";
 
 export default function Suggegstion({ user, setSuggestions }) {

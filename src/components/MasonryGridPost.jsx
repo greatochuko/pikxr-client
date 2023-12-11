@@ -1,4 +1,4 @@
-import styles from "./MasonryGridPost.module.css";
+import styles from "../styles/MasonryGridPost.module.css";
 import propTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { openModal } from "../slice/modalSlice";

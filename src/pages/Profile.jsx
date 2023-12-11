@@ -1,4 +1,4 @@
-import styles from "./Profile.module.css";
+import styles from "../styles/Profile.module.css";
 
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";

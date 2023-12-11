@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from "./SideBar.module.css";
+import styles from "../styles/SideBar.module.css";
 import { useSelector } from "react-redux";
 import Suggestions from "./Suggestions";
 

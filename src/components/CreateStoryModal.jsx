@@ -5,7 +5,7 @@ import propTypes from "prop-types";
 import { resizeImage } from "../utils/imageResize";
 import { createStory, fetchStories } from "../services/storyServices";
 
-import styles from "./StoriesModal.module.css";
+import styles from "../styles/StoriesModal.module.css";
 import { setStories } from "../slice/storySlice";
 import LoadingIndicator from "./LoadingIndicator";
 import { logoutUser } from "../slice/userSlice";

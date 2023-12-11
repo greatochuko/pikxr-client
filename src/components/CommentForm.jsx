@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import styles from "./CommentForm.module.css";
+import styles from "../styles/CommentForm.module.css";
 import propTypes from "prop-types";
 import { useState } from "react";
 import { postComment } from "../services/commentServices";

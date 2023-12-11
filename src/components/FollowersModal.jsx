@@ -1,4 +1,4 @@
-import styles from "./FollowersModal.module.css";
+import styles from "../styles/FollowersModal.module.css";
 import { useEffect, useState } from "react";
 import propTypes from "prop-types";
 import { fetchUserFollowers } from "../services/userServices";

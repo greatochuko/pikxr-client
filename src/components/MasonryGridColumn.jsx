@@ -1,4 +1,4 @@
-import styles from "./MasonryGridColumn.module.css";
+import styles from "../styles/MasonryGridColumn.module.css";
 import MasonryGridPost from "./MasonryGridPost";
 import propTypes from "prop-types";
 

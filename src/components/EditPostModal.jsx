@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./CreatePostModal.module.css";
+import styles from "../styles/CreatePostModal.module.css";
 import { useRef, useState } from "react";
 import { updatePost } from "../services/postServices";
 import { resizeImage } from "../utils/imageResize";

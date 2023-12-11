@@ -3,7 +3,7 @@ import { searchUsers } from "../services/searchServices";
 
 import propTypes from "prop-types";
 
-import styles from "./SearchModal.module.css";
+import styles from "../styles/SearchModal.module.css";
 import SearchResult from "./SearchResult";
 import SearchResultWireFrame from "./SearchResultWireFrame";
 

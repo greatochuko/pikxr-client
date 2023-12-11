@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import styles from "./Notification.module.css";
+import styles from "../styles/Notification.module.css";
 import { getDuration } from "../utils/getDuration";
 import propTypes from "prop-types";
-
 
 export default function Notification({ notif }) {
   return (
