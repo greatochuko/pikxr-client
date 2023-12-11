@@ -13,7 +13,6 @@ export default function Authenticate({ children }) {
 
   useEffect(() => {
     async function refreshUser() {
-      console.log("refreshing...");
       const token = localStorage.getItem("token");
       const user = token ? await fetchUser() : null;
       dispatch(loginUser(user));
