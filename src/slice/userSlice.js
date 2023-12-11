@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchUser } from "../services/userServices";
 
-const token = localStorage.getItem("token");
-
 const initialState = {
-  user: token ? await fetchUser() : null,
+  user: null,
 };
+// const token = localStorage.getItem("token");
+
+// const initialState = {
+//   user: token ? await fetchUser() : null,
+// };
 
 const userSlice = createSlice({
   name: "user",
