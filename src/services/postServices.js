@@ -23,7 +23,6 @@ export async function fetchPost(postId) {
     const data = await res.json();
     return data;
   } catch (error) {
-    console.log(error);
     return { error: error.message };
   }
 }

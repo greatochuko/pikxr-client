@@ -53,7 +53,6 @@ export default function CreatePostModal() {
       dispatch(setPosts(data));
       closeModalContainer();
     } catch (err) {
-      console.log(err);
     } finally {
       setLoading(false);
     }

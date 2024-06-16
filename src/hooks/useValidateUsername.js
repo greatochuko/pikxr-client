@@ -21,7 +21,6 @@ export default function useValidateUsername(username) {
         if (controller.signal.aborted) {
           return;
         }
-        console.log(err.message);
       }
     }
     if (!username) {

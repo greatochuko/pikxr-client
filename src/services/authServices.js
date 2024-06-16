@@ -1,5 +1,5 @@
-// export const BASE_URL = "https://tan-wild-raven.cyclic.app";
-export const BASE_URL = "http://localhost:5000";
+export const BASE_URL = "https://pikxr-server.onrender.com";
+// export const BASE_URL = "http://localhost:5000";
 
 export async function login(email, password) {
   let username;
@@ -21,7 +21,6 @@ export async function login(email, password) {
     if (!data.error) localStorage.setItem("token", data.token);
     return data;
   } catch (err) {
-    console.log(err.message)
     if (err.message === "Failed to fetch")
       return { error: "An error occured please try again later" };
     return { error: err.message };
@@ -41,7 +40,6 @@ export async function signup(username, fullname, email, password) {
     if (!data.error) localStorage.setItem("token", data.token);
     return data;
   } catch (err) {
-    console.log(err);
   }
 }
 
