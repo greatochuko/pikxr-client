@@ -5,6 +5,10 @@
   overflow-x: scroll;
 }
 
+.stories::-webkit-scrollbar {
+  display: none;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
